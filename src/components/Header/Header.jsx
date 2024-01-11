@@ -4,24 +4,29 @@ import {
   StyledLink,
   IconWrapper,
 } from './Header.styled';
-import sprite from 'assets/sprite.svg';
+import sprite from '../../images/sprite.svg';
 
 export const Header = () => {
-
   return (
     <HeaderContainer>
       <Navigation>
-        <StyledLink to="/first">
+        <StyledLink to="/">
           <IconWrapper>
             <use href={`${sprite}#icon-logo`} />
           </IconWrapper>
-          First
+          Dairy
         </StyledLink>
-        <StyledLink to="/second">
+        <StyledLink to="/">
           <IconWrapper>
             <use href={`${sprite}#icon-logo`} />
           </IconWrapper>
-          Second
+          Products
+        </StyledLink>
+        <StyledLink to="/">
+          <IconWrapper>
+            <use href={`${sprite}#icon-logo`} />
+          </IconWrapper>
+          Exercises
         </StyledLink>
       </Navigation>
     </HeaderContainer>

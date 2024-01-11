@@ -1,27 +1,67 @@
-import { Route, Routes } from 'react-router-dom';
-import SharedLayout from 'components/SharedLayout/SharedLayout';
-import FirstPage from 'pages/FirstPage/FirstPage';
-import SecondPage from 'pages/SecondPage/SecondPage';
-import HalfPage from 'pages/HalfPage/HalfPage';
-import ErrorPage from 'pages/ErrorPage/ErrorPage';
-import { AppWrapper } from './App.styled';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import SharedLayout from './components/SharedLayout/SharedLayout';
 
-const test = import.meta.env.VITE_API_TEST;
+import ErrorPage from './pages/ErrorPage/ErrorPage';
+import SignUpPage from './pages/SignUpPage/SignUpPage';
+import SignInPage from './pages/SignInPage/SignInPage';
+import DiaryPage from './pages/DiaryPage/DiaryPage';
+import ProductsPage from './pages/ProductsPage/ProductsPage';
+import ExercisesPage from './pages/ExercisesPage/ExercisesPage';
+import UserPage from './pages/UserPage/UserPage';
+import HomePage from './pages/MainPage/MainPage';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { refreshUser } from './redux/auth/operations';
+import { useAuth } from './hooks/useAuth';
 
 function App() {
-  console.log(test);
+  const dispatch = useDispatch();
+  const { goToParams, isLoggedIn } = useAuth();
+
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
+
   return (
-    <AppWrapper>
-      <Routes>
-        <Route path="/" element={<SharedLayout />}>
-          <Route path="/first" element={<FirstPage />} />
-          <Route path="/second" element={<SecondPage />}>
-            <Route path=":half" element={<HalfPage />} />
-          </Route>
-          <Route path="*" element={<ErrorPage />} />
-        </Route>
-      </Routes>
-    </AppWrapper>
+    <Routes>
+      <Route path="/" element={<SharedLayout />}>
+        <Route
+          index
+          element={isLoggedIn ? <Navigate to="/diary" replace /> : <HomePage />}
+        />
+        <Route
+          path="signup"
+          element={
+            goToParams ? <Navigate to="/params" replace /> : <SignUpPage />
+          }
+        />
+
+        <Route
+          path="signin"
+          element={
+            isLoggedIn ? <Navigate to="/diary" replace /> : <SignInPage />
+          }
+        />
+        <Route
+          path="diary"
+          element={isLoggedIn ? <DiaryPage /> : <Navigate to="/" />}
+        />
+        <Route
+          path="products"
+          element={!isLoggedIn ? <Navigate to="/" /> : <ProductsPage />}
+        />
+        <Route
+          path="exercises"
+          element={!isLoggedIn ? <Navigate to="/" /> : <ExercisesPage />}
+        />
+        <Route
+          path="profile"
+          element={!isLoggedIn ? <Navigate to="/" /> : <UserPage />}
+        />
+
+        <Route path="*" element={<ErrorPage />} />
+      </Route>
+    </Routes>
   );
 }
 export default App;
