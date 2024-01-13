@@ -16,7 +16,8 @@ import { useAuth } from './hooks/useAuth';
 
 function App() {
   const dispatch = useDispatch();
-  const { goToParams, isLoggedIn } = useAuth();
+  const { goToParams, isLoggedIns } = useAuth();
+  const isLoggedIn = true;
 
   useEffect(() => {
     dispatch(refreshUser());

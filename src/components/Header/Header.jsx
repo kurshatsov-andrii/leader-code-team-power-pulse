@@ -10,19 +10,19 @@ export const Header = () => {
   return (
     <HeaderContainer>
       <Navigation>
-        <StyledLink to="/">
+        <StyledLink to="/diary">
           <IconWrapper>
             <use href={`${sprite}#icon-logo`} />
           </IconWrapper>
           Dairy
         </StyledLink>
-        <StyledLink to="/">
+        <StyledLink to="/products">
           <IconWrapper>
             <use href={`${sprite}#icon-logo`} />
           </IconWrapper>
           Products
         </StyledLink>
-        <StyledLink to="/">
+        <StyledLink to="/exercises">
           <IconWrapper>
             <use href={`${sprite}#icon-logo`} />
           </IconWrapper>

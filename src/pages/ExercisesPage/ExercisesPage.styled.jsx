@@ -1,18 +1,19 @@
 import styled from 'styled-components';
-
-export const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: 500px;
-`;
+import { device } from '../../styles/device';
 
 export const Title = styled.h1`
-  color: #ffffff;
-  text-shadow:
-    0 0 5px #00baff,
-    0 0 10px #00baff,
-    0 0 20px #00baff,
-    0 0 40px #00baff,
-    0 0 80px #00baff;
+  color: #efede8;
+  padding-top: 40px;
+  padding-left: 20px;
+
+  font-family: Roboto;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 28px;
+
+  @media (${device.tablet}) {
+    font-size: 32px;
+    line-height: 44px;
+  }
 `;
