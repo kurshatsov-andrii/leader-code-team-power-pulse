@@ -22,7 +22,7 @@ const initialState = {
     levelActivity: 2,
   },
   token: null,
-  isLoggedIn: false,
+  isLoggedIn: true,
   goToParams: false,
   isRefreshing: false,
 };

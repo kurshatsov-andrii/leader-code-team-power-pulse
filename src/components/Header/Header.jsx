@@ -1,34 +1,17 @@
-import {
-  HeaderContainer,
-  Navigation,
-  StyledLink,
-  IconWrapper,
-} from './Header.styled';
-import sprite from '../../images/sprite.svg';
+import Logo from '../Logo/Logo';
+import { HeaderContainer, Container } from './Header.styled';
+import { useAuth } from '../../hooks/useAuth.js';
 
-export const Header = () => {
+const Header = () => {
+  const { isLoggedIn } = useAuth();
   return (
-    <HeaderContainer>
-      <Navigation>
-        <StyledLink to="/">
-          <IconWrapper>
-            <use href={`${sprite}#icon-logo`} />
-          </IconWrapper>
-          Dairy
-        </StyledLink>
-        <StyledLink to="/">
-          <IconWrapper>
-            <use href={`${sprite}#icon-logo`} />
-          </IconWrapper>
-          Products
-        </StyledLink>
-        <StyledLink to="/">
-          <IconWrapper>
-            <use href={`${sprite}#icon-logo`} />
-          </IconWrapper>
-          Exercises
-        </StyledLink>
-      </Navigation>
+    <HeaderContainer className={isLoggedIn ? 'isAuth' : undefined}>
+      <Container>
+        <Logo />
+        {isLoggedIn && <p>sdsdsdsd</p>}
+      </Container>
     </HeaderContainer>
   );
 };
+
+export default Header;

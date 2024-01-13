@@ -1,10 +1,10 @@
-import { Container, Title } from './UserPage.styled';
+import Section from 'components/Section/Section';
 
 const UserPage = () => {
   return (
-    <Container>
-      <Title>UserPage</Title>
-    </Container>
+    <Section>
+      <h1>User Page</h1>
+    </Section>
   );
 };
 

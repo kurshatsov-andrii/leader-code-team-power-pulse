@@ -1,65 +1,36 @@
+import { lazy } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import SharedLayout from './components/SharedLayout/SharedLayout';
+// import ErrorPage from './pages/ErrorPage/ErrorPage';
+// import SignUpPage from './pages/SignUpPage/SignUpPage';
+// import SignInPage from './pages/SignInPage/SignInPage';
+// import DiaryPage from './pages/DiaryPage/DiaryPage';
+// import ProductsPage from './pages/ProductsPage/ProductsPage';
+// import ExercisesPage from './pages/ExercisesPage/ExercisesPage';
+// import UserPage from './pages/UserPage/UserPage';
+// import MainPage from './pages/MainPage/MainPage';
 
-import ErrorPage from './pages/ErrorPage/ErrorPage';
-import SignUpPage from './pages/SignUpPage/SignUpPage';
-import SignInPage from './pages/SignInPage/SignInPage';
-import DiaryPage from './pages/DiaryPage/DiaryPage';
-import ProductsPage from './pages/ProductsPage/ProductsPage';
-import ExercisesPage from './pages/ExercisesPage/ExercisesPage';
-import UserPage from './pages/UserPage/UserPage';
-import HomePage from './pages/MainPage/MainPage';
-import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
-import { refreshUser } from './redux/auth/operations';
-import { useAuth } from './hooks/useAuth';
+const MainPage = lazy(() => import('./pages/MainPage/MainPage'));
+const SignUpPage = lazy(() => import('./pages/SignUpPage/SignUpPage'));
+const SignInPage = lazy(() => import('./pages/SignInPage/SignInPage'));
+const UserPage = lazy(() => import('./pages/UserPage/UserPage'));
+const ErrorPage = lazy(() => import('./pages/ErrorPage/ErrorPage'));
+
+// const DiaryPage = lazy(() => import('pages/DiaryPage'));
+// const ProductsPage = lazy(() => import('pages/ProductsPage'));
+// const ExercisesPage = lazy(() => import('pages/ExercisesPage'));
 
 function App() {
-  const dispatch = useDispatch();
-  const { goToParams, isLoggedIn } = useAuth();
-
-  useEffect(() => {
-    dispatch(refreshUser());
-  }, [dispatch]);
-
   return (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
-        <Route
-          index
-          element={isLoggedIn ? <Navigate to="/diary" replace /> : <HomePage />}
-        />
-        <Route
-          path="signup"
-          element={
-            goToParams ? <Navigate to="/params" replace /> : <SignUpPage />
-          }
-        />
-
-        <Route
-          path="signin"
-          element={
-            isLoggedIn ? <Navigate to="/diary" replace /> : <SignInPage />
-          }
-        />
-        <Route
-          path="diary"
-          element={isLoggedIn ? <DiaryPage /> : <Navigate to="/" />}
-        />
-        <Route
-          path="products"
-          element={!isLoggedIn ? <Navigate to="/" /> : <ProductsPage />}
-        />
-        <Route
-          path="exercises"
-          element={!isLoggedIn ? <Navigate to="/" /> : <ExercisesPage />}
-        />
-        <Route
-          path="profile"
-          element={!isLoggedIn ? <Navigate to="/" /> : <UserPage />}
-        />
-
-        <Route path="*" element={<ErrorPage />} />
+        <Route path="/" element={<MainPage />}>
+          <Route path="signup" element={<SignUpPage />} />
+          <Route path="signin" element={<SignInPage />} />
+        </Route>
+        <Route path="profile" element={<UserPage />} />
+        <Route path="/404" element={<ErrorPage />} />
+        <Route path="*" element={<Navigate to="/404" replace />} />
       </Route>
     </Routes>
   );
