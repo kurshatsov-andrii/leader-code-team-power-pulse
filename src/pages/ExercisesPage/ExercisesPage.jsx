@@ -3,7 +3,8 @@ import { Container } from '../../styles/container';
 import { Categories } from '../../components/Exercises/Categories';
 import { useEffect, useState } from 'react';
 import CustomLoader from '../../components/Loader/Loader';
-import axios from 'axios';
+import { ListCategory } from '../../components/Exercises/ListCategory';
+import api from '../../services/api';
 
 const ExercisesPage = () => {
   const [subPage, setSubPage] = useState('Body parts');
@@ -11,26 +12,23 @@ const ExercisesPage = () => {
   const [data, setData] = useState(null);
 
   const onChangeSubPage = (nameCategory) => {
+    console.log('1');
     setSubPage(nameCategory);
   };
 
+  useEffect(() => {
+    api
+      .fetchCategories(subPage)
+      .then((response) => setData(response))
+      .finally(() => setIsLoading(false));
+  }, [subPage]);
 
-  //      REWORK CODE
-  // useEffect(() => {
-  //   setIsLoading(true);
-  //   axios.get("http://localhost:3002/exercises/categories").then(fetched => {
-  //     setData(fetched.data.data.filter(flt => flt.filter === subPage))
-  //   }).finally(() => {
-  //     setIsLoading(false);
-  //   })
-  // }, [subPage]);
-
-  // console.log(data)
-
+  console.log(data);
   return (
     <Container>
       <Title>Exercises</Title>
       <Categories subPage={subPage} onChangeSubPage={onChangeSubPage} />
+      <ListCategory exercisesCategories={data} />
       {isLoading && <CustomLoader />}
     </Container>
   );
