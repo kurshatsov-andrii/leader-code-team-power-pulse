@@ -1,111 +1,4 @@
-import{u as i,j as e}from"./index-5fab2f80.js";const n=i.div`
-  display: inline-flex;
-  flex-wrap: wrap;
-  position: relative;
-
-  @media screen and (max-width: 767px) {
-    padding-top: 30px;
-    margin-bottom: 400px;
-  }
-
-  @media screen and (min-width: 768px) and (max-width: 1439px) {
-    padding-top: 10vh;
-    margin-bottom: 400px;
-  }
-
-  @media screen and (min-width: 1440px) {
-    margin-top: 14vh;
-  }
-`,o=({children:t})=>e.jsx(n,{children:t}),r=i.div`
-  display: inline-flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 40px;
-  max-width: 100%;
-
-  @media screen and (max-width: 767px) {
-    position: absolute;
-    width: 85%;
-    right: 20px;
-    bottom: 0px;
-  }
-
-  @media screen and (min-width: 768px) and (max-width: 1439px) {
-    position: absolute;
-    width: 70%;
-    right: 20px;
-    bottom: 0px;
-  }
-
-  @media screen and (min-width: 1440px) {
-    position: absolute;
-    right: 32px;
-    bottom: 5%;
-    width: 45%;
-    max-width: 750px;
-  }
-`,p=i.div`
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
-  &:first-child {
-    justify-content: flex-start;
-  }
-`,d=i.div`
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  align-items: center;
-  align-content: center;
-  border-radius: 12px;
-  background: #303030;
-
-  @media screen and (max-width: 767px) {
-    width: 164px;
-    padding: 14px 18px;
-    gap: 10px;
-  }
-
-  @media screen and (min-width: 768px) {
-    width: 190px;
-    padding: 14px 24px;
-    gap: 12px;
-  }
-`,s=i.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-items: center;
-  align-content: center;
-  border-radius: 12px;
-  width: 170px;
-  background: var(--orange-light-color);
-  padding: 14px 28px;
-  strong {
-    width: 100%;
-    &:after {
-      content: 'cal';
-      margin-left: 10px;
-      font-size: 16px;
-      line-height: 1.5;
-    }
-  }
-  @media screen and (max-width: 767px) {
-    width: 120px;
-    padding: 12px 20px;
-  }
-`,l=i.div`
-  display: block;
-  width: 100%;
-  max-width: 364px;
-  height: auto;
-  form {
-    margin-top: 10px;
-  }
-  button {
-    margin-top: 10px;
-  }
-`,x=i.form`
+import{u as e}from"./index-8dd05b50.js";const n=e.form`
   display: flex;
   flex-wrap: wrap;
   width: 100%;
@@ -161,7 +54,7 @@ import{u as i,j as e}from"./index-5fab2f80.js";const n=i.div`
   @media screen and (max-width: 767px) {
     gap: 20px 20px;
   }
-`,c=i.label`
+`,o=e.label`
   display: block;
   width: 100%;
   em {
@@ -202,7 +95,7 @@ import{u as i,j as e}from"./index-5fab2f80.js";const n=i.div`
       border: 1px solid var(--success-color);
     }
   }
-`,g=i.p`
+`,a=e.p`
   display: block;
   color: rgba(239, 237, 232, 0.6);
   font-family: inherit;
@@ -211,7 +104,7 @@ import{u as i,j as e}from"./index-5fab2f80.js";const n=i.div`
   font-weight: 400;
   line-height: 1.28571;
   margin-bottom: 4px;
-`,h=i.div`
+`,r=e.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -219,7 +112,7 @@ import{u as i,j as e}from"./index-5fab2f80.js";const n=i.div`
   align-content: center;
   position: relative;
   color: inherit;
-`,m=i.input`
+`,l=e.input`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -263,7 +156,7 @@ import{u as i,j as e}from"./index-5fab2f80.js";const n=i.div`
   &:hover {
     border: 1px solid var(--orange-color);
   }
-`,f=i.div`
+`,p=e.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -279,4 +172,4 @@ import{u as i,j as e}from"./index-5fab2f80.js";const n=i.div`
     margin: 0;
     padding: 0;
   }
-`;export{s as C,o as H,h as I,c as L,r as S,d as V,p as a,l as b,x as c,g as d,m as e,f};
+`;export{n as C,r as I,o as L,a,l as b,p as c};
