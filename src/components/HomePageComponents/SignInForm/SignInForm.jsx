@@ -6,24 +6,31 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { clearAllInputs } from 'components/Forms/Form/FormValidation';
 
+import { useDispatch } from 'react-redux';
+import { logIn } from '../../../redux/auth/operations';
+
 const SignInForm = () => {
+  const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setIsLoading(true);
+  const handleSubmit = async (e) => {
+    const form = e.target;
+    const loginData = {};
+    new FormData(form).forEach((value, key) => {
+      loginData[key] = value;
+    });
 
-    setTimeout(() => {
+    try {
+      setIsLoading(true);
+      await dispatch(logIn(loginData));
+    } catch (error) {
+      console.log(error);
+    } finally {
       setIsLoading(false);
-    }, 750);
-
-    setTimeout(() => {
-      clearAllInputs(e.target);
-    }, 800);
-
-    setTimeout(() => {
-      alert('Липовая логинизация завершена )))');
-    }, 1000);
+      setTimeout(() => {
+        clearAllInputs(form);
+      }, 310);
+    }
   };
 
   return (

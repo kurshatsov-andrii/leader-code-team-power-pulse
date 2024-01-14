@@ -16,13 +16,12 @@ export const validateForm = (form) => {
 export const clearAllInputs = (form) => {
   const formData = form.querySelectorAll('input');
   formData.forEach((input) => {
-    if (input.name !== 'subject') {
+    if (input.type !== 'hidden') {
+      input.value = '';
       const wrapper = input.type === 'radio' ? input.closest('fieldset') : input.closest('label');
       const errorText = wrapper.querySelector('em');
       wrapper.classList.remove('valid', 'invalid');
-
       errorText && errorText.remove();
-      input.value = '';
     }
   });
 };

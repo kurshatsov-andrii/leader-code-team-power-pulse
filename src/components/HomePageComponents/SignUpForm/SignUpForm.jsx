@@ -6,24 +6,31 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { clearAllInputs } from 'components/Forms/Form/FormValidation';
 
+import { useDispatch } from 'react-redux';
+import { register } from '../../../redux/auth/operations';
+// import { useNavigate } from 'react-router-dom';
+
 const SignUpForm = () => {
+  const dispatch = useDispatch();
+  // const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async (e) => {
     setIsLoading(true);
+    const form = e.target;
+    const registerationData = {};
+    new FormData(form).forEach((value, key) => {
+      registerationData[key] = value;
+    });
 
-    setTimeout(() => {
+    try {
+      await dispatch(register(registerationData));
+    } finally {
       setIsLoading(false);
-    }, 750);
-
-    setTimeout(() => {
-      clearAllInputs(e.target);
-    }, 800);
-
-    setTimeout(() => {
-      alert('Липовая Регистрация завершена )))');
-    }, 1000);
+      setTimeout(() => {
+        clearAllInputs(form);
+      }, 310);
+    }
   };
 
   return (
