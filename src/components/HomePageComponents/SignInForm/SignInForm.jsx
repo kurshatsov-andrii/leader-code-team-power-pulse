@@ -1,4 +1,4 @@
-import { SignUp } from './SignUpForm.styled';
+import { SignUp } from '../SignUpForm/SignUpForm.styled';
 import { Form, Input } from 'components/Forms';
 import { Button, ButtonsList } from 'components/Buttons';
 import { Text } from 'components/Typography';
@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { clearAllInputs } from 'components/Forms/Form/FormValidation';
 
-const SignUpForm = () => {
+const SignInForm = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = (e) => {
@@ -22,14 +22,13 @@ const SignUpForm = () => {
     }, 800);
 
     setTimeout(() => {
-      alert('Липовая Регистрация завершена )))');
+      alert('Липовая логинизация завершена )))');
     }, 1000);
   };
 
   return (
     <SignUp>
       <Form onSubmit={handleSubmit} isloading={isLoading}>
-        <Input type="text" name="name" placeholder="Name" min="2" required />
         <Input type="email" name="email" placeholder="Email" required />
         <Input type="password" name="password" placeholder="Password" min="6" max="16" icon="password" required />
         <ButtonsList>
@@ -37,7 +36,7 @@ const SignUpForm = () => {
             Sign In
           </Button>
           <Text color="rgba(239, 237, 232, 0.60)" size="small">
-            Already have an account? <Link to="/signin">Sign In</Link>
+            Don`t have an account? <Link to="/signup">Sign Up</Link>
           </Text>
         </ButtonsList>
       </Form>
@@ -45,4 +44,4 @@ const SignUpForm = () => {
   );
 };
 
-export default SignUpForm;
+export default SignInForm;

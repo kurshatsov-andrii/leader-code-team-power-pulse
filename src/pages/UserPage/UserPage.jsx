@@ -1,9 +1,12 @@
 import Section from 'components/Section/Section';
+import { Title } from 'components/Typography';
 
 const UserPage = () => {
   return (
     <Section>
-      <h1>User Page</h1>
+      <Title tag="h1" size="h3">
+        Profile Settings
+      </Title>
     </Section>
   );
 };

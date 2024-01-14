@@ -8,23 +8,23 @@ export const Sidebar = styled.div`
   max-width: 100%;
 
   @media screen and (max-width: 767px) {
-    position: relative;
-    width: 86%;
-    left: 14%;
-    margin-top: 50%;
+    position: absolute;
+    width: 85%;
+    right: 20px;
+    bottom: 0px;
   }
 
   @media screen and (min-width: 768px) and (max-width: 1439px) {
-    position: relative;
+    position: absolute;
     width: 70%;
-    left: 30%;
-    margin-top: 10vh;
+    right: 20px;
+    bottom: 0px;
   }
 
   @media screen and (min-width: 1440px) {
     position: absolute;
     right: 32px;
-    bottom: 20%;
+    bottom: 5%;
     width: 45%;
     max-width: 750px;
   }
@@ -79,5 +79,9 @@ export const Cal = styled.div`
       font-size: 16px;
       line-height: 1.5;
     }
+  }
+  @media screen and (max-width: 767px) {
+    width: 120px;
+    padding: 12px 20px;
   }
 `;

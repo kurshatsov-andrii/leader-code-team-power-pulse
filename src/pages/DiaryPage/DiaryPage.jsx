@@ -1,10 +1,13 @@
-import { Container, Title } from './DiaryPage.styled';
+import Section from 'components/Section/Section';
+import { Title } from 'components/Typography';
 
 const DiaryPage = () => {
   return (
-    <Container>
-      <Title>DiaryPage</Title>
-    </Container>
+    <Section>
+      <Title tag="h1" size="h3">
+        Diary
+      </Title>
+    </Section>
   );
 };
 

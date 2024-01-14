@@ -1,7 +1,7 @@
-import { Label, LabelText, InputWrapper, InputIcon, Input, ValidateText } from './InputText.styled';
+import { Label, LabelText, InputWrapper, InputIcon, Input } from './InputText.styled';
 import Icon from 'components/Icon/Icon';
 
-const InputText = ({ type, name, value, required, placeholder, min, max, label, icon, validation, onChange }) => {
+const InputText = ({ type, name, label, value, placeholder, min, max, icon, required, onChange }) => {
   return (
     <Label>
       {label && <LabelText>{label}</LabelText>}
@@ -23,12 +23,6 @@ const InputText = ({ type, name, value, required, placeholder, min, max, label, 
           </InputIcon>
         )}
       </InputWrapper>
-      {validation && (
-        <ValidateText>
-          <Icon name="validation" />
-          {validation}
-        </ValidateText>
-      )}
     </Label>
   );
 };

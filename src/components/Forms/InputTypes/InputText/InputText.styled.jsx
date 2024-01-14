@@ -3,6 +3,28 @@ import styled from 'styled-components';
 export const Label = styled.label`
   display: block;
   width: 100%;
+  em {
+    display: inline-flex;
+    justify-content: flex-start;
+    padding-top: 4px;
+    align-items: center;
+    align-content: center;
+    position: relative;
+    gap: 4px;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: 0.12px;
+    transition: 0.3s;
+    svg {
+      width: 14px;
+      height: 14px;
+      fill: currentColor;
+      margin: 0;
+      padding: 0;
+    }
+  }
   &.invalid {
     em {
       color: var(--error-color);
@@ -100,29 +122,6 @@ export const InputIcon = styled.div`
   svg {
     width: auto;
     height: 100%;
-    fill: currentColor;
-    margin: 0;
-    padding: 0;
-  }
-`;
-
-export const ValidateText = styled.em`
-  display: inline-flex;
-  justify-content: flex-start;
-  padding-top: 4px;
-  align-items: center;
-  align-content: center;
-  position: relative;
-  gap: 4px;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1.5;
-  letter-spacing: 0.12px;
-  transition: 0.3s;
-  svg {
-    width: 14px;
-    height: 14px;
     fill: currentColor;
     margin: 0;
     padding: 0;

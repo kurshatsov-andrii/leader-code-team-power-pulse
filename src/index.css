@@ -16,11 +16,7 @@
   --error-color: #d80027;
 
   /* linear-gradient */
-  --linear-gradient: linear-gradient(
-    80deg,
-    #040404 -2.45%,
-    rgba(4, 4, 4, 0) 68.17%
-  );
+  --linear-gradient: linear-gradient(80deg, #040404 -2.45%, rgba(4, 4, 4, 0) 68.17%);
 }
 
 body {
@@ -69,4 +65,13 @@ img {
 
 button {
   cursor: pointer;
+}
+
+@keyframes spinner {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

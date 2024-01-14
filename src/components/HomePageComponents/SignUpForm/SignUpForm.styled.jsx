@@ -9,6 +9,6 @@ export const SignUp = styled.div`
     margin-top: 10px;
   }
   button {
-    margin-top: 40px;
+    margin-top: 10px;
   }
 `;

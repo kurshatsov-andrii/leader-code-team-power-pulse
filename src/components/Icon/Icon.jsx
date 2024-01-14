@@ -86,6 +86,48 @@ const Validation = ({ size = 14, color }) => (
   </svg>
 );
 
+const Password = ({ size = 20, color = 'currentColor' }) => (
+  <svg width={size} height={size} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g clipPath="url(#clip0_150_20524)">
+      <path
+        d="M14.95 14.95C13.5255 16.0358 11.7909 16.6374 10 16.6667C4.16668 16.6667 0.833344 10 0.833344 10C1.86992 8.06825 3.30762 6.38051 5.05001 5.05M8.25001 3.53333C8.82362 3.39907 9.4109 3.33195 10 3.33333C15.8333 3.33333 19.1667 10 19.1667 10C18.6608 10.9463 18.0576 11.8373 17.3667 12.6583M11.7667 11.7667C11.5378 12.0123 11.2618 12.2093 10.9551 12.3459C10.6485 12.4826 10.3174 12.556 9.98175 12.562C9.64608 12.5679 9.31265 12.5061 9.00135 12.3804C8.69006 12.2547 8.40728 12.0675 8.16988 11.8301C7.93249 11.5927 7.74534 11.31 7.6196 10.9987C7.49387 10.6874 7.43212 10.3539 7.43804 10.0183C7.44396 9.68258 7.51743 9.35154 7.65407 9.04487C7.79071 8.73821 7.98772 8.46221 8.23334 8.23333"
+        stroke={color}
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="none"
+      />
+      <path d="M0.833344 0.833313L19.1667 19.1666" stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+    </g>
+    <defs>
+      <clipPath id="clip0_150_20524">
+        <rect width="20" height="20" fill={color} />
+      </clipPath>
+    </defs>
+  </svg>
+);
+
+const PasswordOpen = ({ color = 'currentColor' }) => (
+  <svg viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M0.833344 7.99998C0.833344 7.99998 4.16668 1.33331 10 1.33331C15.8333 1.33331 19.1667 7.99998 19.1667 7.99998C19.1667 7.99998 15.8333 14.6666 10 14.6666C4.16668 14.6666 0.833344 7.99998 0.833344 7.99998Z"
+      stroke={color}
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      fill="none"
+    />
+    <path
+      d="M10 10.5C11.3807 10.5 12.5 9.38071 12.5 8C12.5 6.61929 11.3807 5.5 10 5.5C8.61929 5.5 7.5 6.61929 7.5 8C7.5 9.38071 8.61929 10.5 10 10.5Z"
+      stroke={color}
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      fill="none"
+    />
+  </svg>
+);
+
 const Icon = ({ name, color = 'currentColor', ...props }) => {
   return (
     <>
@@ -94,6 +136,8 @@ const Icon = ({ name, color = 'currentColor', ...props }) => {
       {name === 'playBig' && <PlayBig {...props} />}
       {name === 'calory' && <Calory {...props} />}
       {name === 'validation' && <Validation {...props} />}
+      {name === 'password' && <Password {...props} />}
+      {name === 'password2' && <PasswordOpen {...props} />}
     </>
   );
 };

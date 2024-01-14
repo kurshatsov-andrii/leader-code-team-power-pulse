@@ -55,6 +55,12 @@ export const ButtonElement = styled.div`
       background: var(--orange-light-color);
       border: 1px solid var(--orange-light-color);
     }
+    @media screen and (max-width: 767px) {
+      min-height: 42px;
+      font-size: 16px;
+      min-width: auto;
+      padding: 0px 30px;
+    }
   }
 
   &.border {
@@ -89,6 +95,12 @@ export const ButtonElement = styled.div`
       min-height: 56px;
       font-size: 20px;
       line-height: 1.2;
+      @media screen and (max-width: 767px) {
+        min-height: 42px;
+        font-size: 16px;
+        min-width: auto;
+        padding: 0px 30px;
+      }
     }
   }
 
@@ -99,6 +111,12 @@ export const ButtonElement = styled.div`
       line-height: 1.5;
       font-family: 'RobotoRegular';
       font-weight: 400;
+      @media screen and (max-width: 767px) {
+        min-height: 38px;
+        font-size: 14px;
+        min-width: auto;
+        padding: 0px 27px;
+      }
     }
   }
 `;

@@ -1,13 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {
-  register,
-  logIn,
-  logOut,
-  refreshUser,
-  updateUserParams,
-  getUserParams,
-  addUserData,
-} from './operations';
+import { register, logIn, logOut, refreshUser, updateUserParams, getUserParams, addUserData } from './operations';
 
 const initialState = {
   user: {
@@ -22,7 +14,7 @@ const initialState = {
     levelActivity: 2,
   },
   token: null,
-  isLoggedIn: true,
+  isLoggedIn: false,
   goToParams: false,
   isRefreshing: false,
 };

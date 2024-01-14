@@ -3,13 +3,10 @@ import styled from 'styled-components';
 export const SectionContainer = styled.section`
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  align-items: flex-start;
-  align-content: flex-start;
+  flex-direction: column;
   position: relative;
   width: 100%;
-  height: auto;
-  min-height: 100vh;
+  min-height: 100%;
   padding-bottom: 46px;
   color: var(--white-color);
   background-color: var(--black-color);
@@ -57,13 +54,11 @@ export const SectionContainer = styled.section`
 `;
 
 export const Container = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  /* position: relative; */
+  display: block;
+  flex: 1;
+  position: relative;
   width: 100%;
-  min-height: 100%;
-  align-items: center;
-  align-content: center;
+  height: 100%;
   margin: 0 auto;
 
   @media screen and (max-width: 767px) {

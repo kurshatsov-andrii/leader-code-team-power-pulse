@@ -5,10 +5,11 @@ export const ErrorContainer = styled.div`
   flex-wrap: wrap;
   align-items: center;
   align-content: center;
-
+  background: blue;
   min-width: 220px;
-  height: 100%;
-  position: relative;
+  position: absolute;
+  top: 50%;
+  transform: translate(0%, -60%);
 
   @media screen and (max-width: 767px) {
     padding-right: 20px;
