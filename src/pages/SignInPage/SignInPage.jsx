@@ -1,10 +1,15 @@
-import { Container, Title } from './SignInPage.styled';
+import { HeroContentWrapper, SignInForm } from 'components/HomePageComponents';
+import { Text, TextContent, Title } from '../../components/Typography';
 
 const SignInPage = () => {
   return (
-    <Container>
-      <Title>SignInPage</Title>
-    </Container>
+    <HeroContentWrapper>
+      <TextContent width="496" gap="16">
+        <Title size="h3">Sign In</Title>
+        <Text color="rgba(239, 237, 232, 0.30)">Welcome! Please enter your credentials to login to the platform:</Text>
+        <SignInForm />
+      </TextContent>
+    </HeroContentWrapper>
   );
 };
 

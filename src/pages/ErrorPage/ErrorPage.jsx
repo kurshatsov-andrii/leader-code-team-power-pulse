@@ -1,45 +1,31 @@
-import { useNavigate } from 'react-router';
-import sprite from '../../images/sprite.svg';
-import {
-  Content,
-  HomeBtn,
-  LeftSide,
-  Section,
-  StyledLink,
-  Svg,
-  Text404,
-  Title404,
-} from './ErrorPage.styled';
+// Зміни зміни
+
+import Section from 'components/Section/Section';
+import PageNotFound from 'components/PageNotFound/PageNotFound';
+
+//backgrounds
+import desctop from '../../images/hero-1x.jpg';
+import desctopretina from '../../images/hero-2x.jpg';
+import tablet from '../../images/hero-tablet-1x.jpg';
+import tabletretina from '../../images/hero-tablet-2x.jpg';
+import mobil from '../../images/hero-mobile-1x.jpg';
+import mobilretina from '../../images/hero-mobile-2x.jpg';
 
 const ErrorPage = () => {
-  const navigate = useNavigate();
-
-  const handleHomeBtn = () => {
-    navigate('/');
+  const errorPageBackgrounds = {
+    desctop,
+    desctopretina,
+    tablet,
+    tabletretina,
+    mobil,
+    mobilretina,
   };
-
   return (
-    <Section>
-      <StyledLink to="/">
-        <Svg>
-          <use href={`${sprite}#icon-logo-white`}></use>
-        </Svg>
-      </StyledLink>
-      <LeftSide>
-        <Content>
-          <Title404>404</Title404>
-          <Text404>
-            Sorry, you have reached a page that we could not find. It seems that
-            you are lost among the numbers and letters of our virtual space.
-            Perhaps this page went on vacation or decided to disappear into
-            another dimension. We apologize for this inconvenience.
-          </Text404>
-          <HomeBtn type="button" onClick={handleHomeBtn}>
-            Go Home
-          </HomeBtn>
-        </Content>
-      </LeftSide>
-    </Section>
+    <>
+      <Section backgrounds={errorPageBackgrounds}>
+        <PageNotFound />
+      </Section>
+    </>
   );
 };
 
