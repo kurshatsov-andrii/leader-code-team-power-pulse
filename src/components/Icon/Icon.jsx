@@ -128,6 +128,35 @@ const PasswordOpen = ({ color = 'currentColor' }) => (
   </svg>
 );
 
+const Logout = ({ size = 18, color = 'currentColor' }) => (
+  <svg width={size} height={size} viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M6.5 1.5H5.5C4.09987 1.5 3.3998 1.5 2.86502 1.77248C2.39462 2.01217 2.01217 2.39462 1.77248 2.86502C1.5 3.3998 1.5 4.09987 1.5 5.5V12.5C1.5 13.9001 1.5 14.6002 1.77248 15.135C2.01217 15.6054 2.39462 15.9878 2.86502 16.2275C3.3998 16.5 4.09987 16.5 5.5 16.5H6.5"
+      stroke={color}
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M12.3333 13.1667L16.5 9.00004M16.5 9.00004L12.3333 4.83337M16.5 9.00004H6.5"
+      stroke={color}
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
+const User = ({ size = 16, color = 'currentColor' }) => (
+  <svg width={size} height={size} viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M8 0C9.06087 0 10.0783 0.421427 10.8284 1.17157C11.5786 1.92172 12 2.93914 12 4C12 5.06087 11.5786 6.07829 10.8284 6.82843C10.0783 7.57858 9.06087 8 8 8C6.93914 8 5.92172 7.57858 5.17158 6.82843C4.42143 6.07829 4 5.06087 4 4C4 2.93914 4.42143 1.92172 5.17158 1.17157C5.92172 0.421427 6.93914 0 8 0ZM8 16C8 16 16 16 16 14C16 11.6 12.1 9.00001 8 9.00001C3.9 9.00001 0 11.6 0 14C0 16 8 16 8 16Z"
+      fill={color}
+      fillOpacity="0.1"
+    />
+  </svg>
+);
+
 const Icon = ({ name, color = 'currentColor', ...props }) => {
   return (
     <>
@@ -138,6 +167,8 @@ const Icon = ({ name, color = 'currentColor', ...props }) => {
       {name === 'validation' && <Validation {...props} />}
       {name === 'password' && <Password {...props} />}
       {name === 'password2' && <PasswordOpen {...props} />}
+      {name === 'logout' && <Logout color={color} {...props} />}
+      {name === 'user' && <User color={color} {...props} />}
     </>
   );
 };
