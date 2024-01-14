@@ -15,9 +15,11 @@ class APIService {
     return filteredList;
   };
 
-  fetchExercises = async () => {
-    const response = await instance.get('/exercises/exercises');
-    return response.data.data;
+  fetchExercises = async (bodyPart) => {
+    const response = await instance.get('/exercises/');
+    return response.data.data.filter(
+      (category) => category.bodyPart === bodyPart
+    );
   };
 }
 
