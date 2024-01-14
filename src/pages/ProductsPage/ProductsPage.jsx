@@ -8,6 +8,8 @@ import mobilretina from '../../images/products-mobil-2x.jpg';
 
 import Section from 'components/Section/Section';
 import { Title } from 'components/Typography';
+import { ProductsFilters } from '../../components/products/ProductsFilters/ProductsFilters';
+import { ProductsList } from '../../components/products/ProductsList/ProductsList';
 
 const ProductsPage = () => {
   return (
@@ -24,6 +26,8 @@ const ProductsPage = () => {
       <Title tag="h1" size="h3">
         Products
       </Title>
+      <ProductsFilters></ProductsFilters>
+      <ProductsList></ProductsList>
     </Section>
   );
 };
