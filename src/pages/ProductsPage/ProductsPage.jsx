@@ -1,10 +1,34 @@
-import { Container, Title } from './ProductsPage.styled';
+//backgrounds
+import desctop from '../../images/products-1x.jpg';
+import desctopretina from '../../images/products-2x.jpg';
+import tablet from '../../images/products-tablet-2x.jpg';
+import tabletretina from '../../images/products-tablet-2x.jpg';
+import mobil from '../../images/products-mobil-2x.jpg';
+import mobilretina from '../../images/products-mobil-2x.jpg';
+
+import Section from 'components/Section/Section';
+import { Title } from 'components/Typography';
+import { ProductsFilters } from '../../components/products/ProductsFilters/ProductsFilters';
+import { ProductsList } from '../../components/products/ProductsList/ProductsList';
 
 const ProductsPage = () => {
   return (
-    <Container>
-      <Title>ProductsPage</Title>
-    </Container>
+    <Section
+      backgrounds={{
+        desctop,
+        desctopretina,
+        tablet,
+        tabletretina,
+        mobil,
+        mobilretina,
+      }}
+    >
+      <Title tag="h1" size="h3">
+        Products
+      </Title>
+      <ProductsFilters></ProductsFilters>
+      <ProductsList></ProductsList>
+    </Section>
   );
 };
 

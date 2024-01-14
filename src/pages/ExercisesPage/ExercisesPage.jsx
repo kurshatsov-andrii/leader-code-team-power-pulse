@@ -30,6 +30,11 @@ const ExercisesPage = () => {
       <Categories subPage={subPage} onChangeSubPage={onChangeSubPage} />
       <ListCategory exercisesCategories={data} />
       {isLoading && <CustomLoader />}
+      <section>
+        <Title tag="h1" size="h3">
+          Exercises
+        </Title>
+      </section>
     </Container>
   );
 };

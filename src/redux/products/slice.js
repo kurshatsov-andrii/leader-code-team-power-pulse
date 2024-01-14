@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { productListThunk } from './operations';
+import { categoriesListThunk, productListThunk } from './operations';
 
 export const productSlice = createSlice({
   name: 'products',
@@ -7,6 +7,7 @@ export const productSlice = createSlice({
     categories: [],
     list: [],
     isLoading: false,
+    error: null,
     filter: {
       search: '',
       category: '',
@@ -20,23 +21,28 @@ export const productSlice = createSlice({
   },
   extraReducers: (builder) =>
     builder
-      .addCase(productListThunk.pending, pending)
-      .addCase(productListThunk.fulfilled, ListFulfilled)
-      .addCase(productListThunk.rejected, rejected),
+      .addCase(categoriesListThunk.pending, handlePending)
+      .addCase(categoriesListThunk.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.categories = payload;
+      })
+      .addCase(categoriesListThunk.rejected, handleRejected)
+      .addCase(productListThunk.pending, handlePending)
+      .addCase(productListThunk.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.list = payload;
+      })
+      .addCase(productListThunk.rejected, handleRejected),
 });
 
-function ListFulfilled(state, { payload }) {
-  state.list = payload;
-  state.isLoading = false;
-}
-
-function pending(state) {
+function handlePending(state) {
   state.isLoading = true;
 }
 
-function rejected(state) {
+function handleRejected(state, { payload }) {
   state.isLoading = false;
+  state.error = payload;
 }
 
 export const productsReducer = productSlice.reducer;
-export const filterReducer = productSlice.actions.setFilter;
+export const { setFilter } = productSlice.actions;
