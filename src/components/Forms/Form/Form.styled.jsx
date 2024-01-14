@@ -11,7 +11,7 @@ export const CustomForm = styled.form`
   position: relative;
   &:before {
     content: '';
-    opacity: ${(props) => (props['data-loading'] === 'true' ? 0.5 : 0)};
+    opacity: ${(props) => (props['data-loading'] === 'true' ? 1 : 0)};
     visibility: ${(props) => (props['data-loading'] === 'true' ? 'visible' : 'hidden')};
     pointer-events: ${(props) => (props['data-loading'] === 'true' ? 'all' : 'none')};
     transition: 0.3s;
