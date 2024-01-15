@@ -8,11 +8,11 @@ import { clearAllInputs } from 'components/Forms/Form/FormValidation';
 
 import { useDispatch } from 'react-redux';
 import { register } from '../../../redux/auth/operations';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 const SignUpForm = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -25,7 +25,7 @@ const SignUpForm = () => {
 
     try {
       await dispatch(register(registerationData));
-      navigate('/signin');
+      // navigate('/signin');
     } finally {
       setIsLoading(false);
       setTimeout(() => {
@@ -37,29 +37,6 @@ const SignUpForm = () => {
   return (
     <SignUp>
       <Form onSubmit={handleSubmit} isloading={isLoading}>
-        <Input type="text" name="search" placeholder="Search" icon="search" />
-        <Input
-          type="select"
-          name="count"
-          placeholder="Выбери чего-то"
-          onChange={() => console.log('Чё-то происходит при выборе варианта')}
-          options={['Опция 1', 'Опция 2', 'Опция 3', 'Опция 4', 'Опция 5', 'Опция 6', 'Опция 7', 'Опция 8', 'Опция 9', 'Опция 10']}
-        />
-        <Input
-          type="select"
-          name="count"
-          placeholder="Выбери чего-то"
-          onChange={() => console.log('Чё-то происходит при выборе варианта')}
-          options={['Опция 1', 'Опция 2', 'Опция 3', 'Опция 4', 'Опция 5', 'Опция 6', 'Опция 7', 'Опция 8', 'Опция 9', 'Опция 10']}
-        />
-        <Input
-          type="select"
-          name="count"
-          placeholder="Выбери чего-то"
-          onChange={() => console.log('Чё-то происходит при выборе варианта')}
-          options={['Опция 1', 'Опция 2', 'Опция 3', 'Опция 4', 'Опция 5', 'Опция 6', 'Опция 7', 'Опция 8', 'Опция 9', 'Опция 10']}
-        />
-
         <Input type="text" name="name" placeholder="Name" min="2" required />
         <Input type="email" name="email" placeholder="Email" required />
         <Input type="password" name="password" placeholder="Password" min={6} max={16} required />
