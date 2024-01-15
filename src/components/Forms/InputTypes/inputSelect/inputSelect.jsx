@@ -1,5 +1,5 @@
 import Icon from 'components/Icon/Icon';
-import { useState, useEffect, useRef } from 'react'; //, useRef, useEffect
+import { useState, useEffect, useRef } from 'react';
 import { LabelText, InputWrapper, Input } from '../InputText/InputText.styled';
 import { SelectLabel, SelectIcon, Area, Options } from './InputSelect.styled';
 import { validateInput } from '../../Input/InputValidation';
