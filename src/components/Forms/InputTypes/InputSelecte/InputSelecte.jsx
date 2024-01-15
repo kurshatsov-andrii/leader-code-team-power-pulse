@@ -1,7 +1,7 @@
 import Icon from 'components/Icon/Icon';
 import { useState, useEffect, useRef } from 'react';
 import { LabelText, InputWrapper, Input } from '../InputText/InputText.styled';
-import { SelectLabel, SelectIcon, Area, Options } from './InputSelect.styled';
+import { SelectLabel, SelectIcon, Area, Options } from './InputSelecte.styled';
 import { validateInput } from '../../Input/InputValidation';
 
 const InputSelect = ({ type, name, label, placeholder, required, options, onChange }) => {
