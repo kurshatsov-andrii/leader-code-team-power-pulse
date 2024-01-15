@@ -25,6 +25,7 @@ const SignUpForm = () => {
 
     try {
       await dispatch(register(registerationData));
+      // navigate('/signin');
     } finally {
       setIsLoading(false);
       setTimeout(() => {
@@ -38,10 +39,10 @@ const SignUpForm = () => {
       <Form onSubmit={handleSubmit} isloading={isLoading}>
         <Input type="text" name="name" placeholder="Name" min="2" required />
         <Input type="email" name="email" placeholder="Email" required />
-        <Input type="password" name="password" placeholder="Password" min="6" max="16" icon="password" required />
+        <Input type="password" name="password" placeholder="Password" min={6} max={16} required />
         <ButtonsList>
           <Button width="190" size="big">
-            Sign In
+            Sign Up
           </Button>
           <Text color="rgba(239, 237, 232, 0.60)" size="small">
             Already have an account? <Link to="/signin">Sign In</Link>
