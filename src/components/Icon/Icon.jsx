@@ -157,6 +157,26 @@ const User = ({ size = 16, color = 'currentColor' }) => (
   </svg>
 );
 
+const Arrow = ({ size = 12, color = 'currentColor' }) => (
+  <svg width={size} viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M1.5 1.75L6 6.25L10.5 1.75" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+  </svg>
+);
+
+const Search = ({ size = 16, color = 'currentColor' }) => (
+  <svg width={size} height={size} viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M7.25 13.25C10.5637 13.25 13.25 10.5637 13.25 7.25C13.25 3.93629 10.5637 1.25 7.25 1.25C3.93629 1.25 1.25 3.93629 1.25 7.25C1.25 10.5637 3.93629 13.25 7.25 13.25Z"
+      stroke={color}
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      fill="none"
+    />
+    <path d="M14.7498 14.75L11.4873 11.4875" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+  </svg>
+);
+
 const Icon = ({ name, color = 'currentColor', ...props }) => {
   return (
     <>
@@ -169,6 +189,8 @@ const Icon = ({ name, color = 'currentColor', ...props }) => {
       {name === 'password2' && <PasswordOpen {...props} />}
       {name === 'logout' && <Logout color={color} {...props} />}
       {name === 'user' && <User color={color} {...props} />}
+      {name === 'arrow' && <Arrow color={color} {...props} />}
+      {name === 'search' && <Search color={color} {...props} />}
     </>
   );
 };

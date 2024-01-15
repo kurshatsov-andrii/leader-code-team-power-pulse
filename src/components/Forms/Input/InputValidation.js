@@ -1,5 +1,5 @@
 const nameRegex = /[^A-zА-яЁё+ ()-]/;
-const phoneRegex = /^\+49\d{9}$/;
+const passwordRegex = /^.{6,16}$/;
 const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
 const errors = {
@@ -11,6 +11,7 @@ const errors = {
   radio: 'Select one of the values',
   max: 'Maximum is: ',
   min: 'Minimum is:',
+  password: 'Can be from 6 to 16 characters',
   maxLange: 'Field must be no more than ',
   minLange: 'Field must be at least ',
 };
@@ -18,8 +19,9 @@ const errors = {
 export const validateInput = (input) => {
   const currentInput = input;
   let validationResult = `Success ${currentInput.name}`;
-
-  const wrapper = currentInput.type === 'radio' ? currentInput.closest('fieldset') : currentInput.closest('label');
+  const fieldsetWrapper = currentInput.closest('fieldset');
+  const labelWrapper = currentInput.closest('label');
+  const wrapper = fieldsetWrapper || labelWrapper;
   wrapper.classList.remove('invalid');
   wrapper.classList.add('valid');
 
@@ -43,8 +45,6 @@ export const validateInput = (input) => {
     addErrorMarkup(text);
     wrapper.classList.remove('valid');
     wrapper.classList.add('invalid');
-
-    // return validationResult;
   };
 
   // radios in grup validate
@@ -75,6 +75,9 @@ export const validateInput = (input) => {
         addError(`${errors.max} ${currentInput.max}`);
       }
     } else {
+      if (currentInput.name === 'password' && !passwordRegex.test(currentInput.value)) {
+        addError(errors.password);
+      }
       if (currentInput.min && Number(currentInput.value.length) < currentInput.min) {
         addError(`${errors.minLange} ${currentInput.min} characters`);
       }
@@ -84,10 +87,6 @@ export const validateInput = (input) => {
       //Name
       if (currentInput.name === 'name' && nameRegex.test(currentInput.value)) {
         addError(errors.name);
-      }
-      //phone
-      if (currentInput.type === 'tel' && !phoneRegex.test(currentInput.value)) {
-        addError(errors.phone);
       }
       //email
       if (currentInput.type === 'email' && !emailRegex.test(currentInput.value)) {
