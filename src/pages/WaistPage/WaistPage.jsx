@@ -9,6 +9,8 @@ import mobilretina from '../../images/hero-mobile-2x.jpg';
 import Section from 'components/Section/Section';
 import { Title } from 'components/Typography';
 
+import { Input } from 'components/Forms';
+
 const WaistPage = () => {
   return (
     <Section
@@ -24,6 +26,20 @@ const WaistPage = () => {
       <Title tag="h1" size="h3">
         Waist
       </Title>
+
+      {/* НОВЫЕ ИНПУТЫ  ------------------------------------*/}
+
+      <Input type="text" name="search" placeholder="Search..." icon="search" onChange={() => console.log('вызываем onChange')} required />
+
+      <Input
+        type="select"
+        name="<имя>"
+        placeholder="<Выбери чего-то там>"
+        onChange={() => console.log('Чего-то происходит при выборе варианта')}
+        options={['Опция 1', 'Опция 2', 'Опция 3', 'Опция 4', 'Опция 5', 'Опция 6', 'Опция 7', 'Опция 8', 'Опция 9', 'Опция 10']}
+      />
+
+      {/* НОВЫЕ ИНПУТЫ  ------------------------------------*/}
     </Section>
   );
 };
