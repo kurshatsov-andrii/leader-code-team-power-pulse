@@ -1,7 +1,7 @@
 import Logo from '../Logo/Logo';
 import { HeaderContainer, Container } from './Header.styled';
 import { useAuth } from '../../hooks/useAuth.js';
-import { LogoutButton } from '../Buttons';
+import { NavMenu, UserMenu } from 'components/Menus';
 
 const Header = () => {
   const { isLoggedIn } = useAuth();
@@ -10,9 +10,10 @@ const Header = () => {
       <Container>
         <Logo />
         {isLoggedIn && (
-          <div>
-            <LogoutButton />
-          </div>
+          <>
+            <NavMenu />
+            <UserMenu />
+          </>
         )}
       </Container>
     </HeaderContainer>
