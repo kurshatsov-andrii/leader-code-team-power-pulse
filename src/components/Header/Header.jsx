@@ -1,12 +1,10 @@
-import {
-  HeaderContainer,
-  Navigation,
-  StyledLink,
-  IconWrapper,
-} from './Header.styled';
-import sprite from '../../images/sprite.svg';
+import Logo from '../Logo/Logo';
+import { HeaderContainer, Container } from './Header.styled';
+import { useAuth } from '../../hooks/useAuth.js';
+import { LogoutButton } from '../Buttons';
 
-export const Header = () => {
+const Header = () => {
+  const { isLoggedIn } = useAuth();
   return (
     <HeaderContainer>
       <Navigation>
@@ -32,3 +30,5 @@ export const Header = () => {
     </HeaderContainer>
   );
 };
+
+export default Header;

@@ -1,51 +1,52 @@
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-export const HeaderContainer = styled.div`
-  padding: 20px;
-`;
-
-export const Navigation = styled.nav`
+export const HeaderContainer = styled.header`
   display: flex;
-  justify-content: center;
+  flex-wrap: wrap;
   align-items: center;
-`;
+  align-content: center;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  transition: 0.3s ease-out;
+  z-index: 10;
+  border-bottom: 1px solid rgba(239, 237, 232, 0);
+  background: rgba(239, 237, 232, 0);
 
-export const StyledLink = styled(Link)`
-  padding: 8px 16px;
-  color: #ffffff; /* White text color */
-  text-shadow:
-    0 0 5px #00baff,
-    0 0 10px #00baff,
-    0 0 20px #00baff,
-    0 0 40px #00baff,
-    0 0 80px #00baff;
-  transition:
-    color 0.3s,
-    text-shadow 0.3s;
+  &.isAuth {
+    border-bottom: 1px solid rgba(239, 237, 232, 0.2);
+  }
 
-  &:hover,
-  &:focus {
-    color: #00baff; /* Blue text color on hover/focus */
-    text-shadow:
-      0 0 5px #00baff,
-      0 0 10px #00baff,
-      0 0 20px #00baff,
-      0 0 40px #00baff,
-      0 0 80px #00baff;
+  @media screen and (max-width: 767px) {
+    min-height: 60px;
+  }
+
+  @media screen and (min-width: 768px) {
+    min-height: 84px;
   }
 `;
 
-export const IconWrapper = styled.svg`
-  width: ${(props) => props.size || '12px'};
-  height: ${(props) => props.size || '12px'};
-  fill: ${(props) => props.color || '#ffffff'};
-  display: inline-block;
-  margin-right: 5px;
-  box-shadow:
-    0 0 5px #00baff,
-    0 0 10px #00baff,
-    0 0 20px #00baff,
-    0 0 40px #00baff,
-    0 0 80px #00baff;
+export const Container = styled.div`
+  display: flex;
+  width: 100%;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+
+  @media screen and (max-width: 767px) {
+    max-width: 375px;
+    padding: 0px 20px;
+  }
+
+  @media screen and (min-width: 768px) {
+    max-width: 768px;
+    padding: 0px 32px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    max-width: 1440px;
+    padding: 0px 96px;
+  }
 `;

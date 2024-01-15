@@ -52,6 +52,11 @@ const ExercisesPage = () => {
         />
       )}
       {isLoading && <CustomLoader />}
+      <section>
+        <Title tag="h1" size="h3">
+          Exercises
+        </Title>
+      </section>
     </Container>
   );
 };
