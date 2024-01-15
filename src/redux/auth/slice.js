@@ -17,7 +17,6 @@ const initialState = {
   isLoggedIn: false,
   goToParams: false,
   isRefreshing: false,
-  error: {},
 };
 
 const authSlice = createSlice({
@@ -33,10 +32,7 @@ const authSlice = createSlice({
         state.goToParams = true;
         state.error = '';
       })
-      // .addCase(register.rejected, (state) => state)
-      .addCase(register.rejected, (state, action) => {
-        state.error = action;
-      })
+      .addCase(register.rejected, (state) => state)
       .addCase(logIn.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.token = action.payload.token;

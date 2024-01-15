@@ -32,12 +32,11 @@ function App() {
           <Route path="signup" element={<SignUpPage />} />
           <Route path="signin" element={<SignInPage />} />
         </Route>
-
-        <Route path="diary" element={isLoggedIn ? <DiaryPage /> : <Navigate to="/signin" />} />
-        <Route path="profile" element={isLoggedIn ? <UserPage /> : <Navigate to="/signin" />} />
-        <Route path="products" element={isLoggedIn ? <ProductsPage /> : <Navigate to="/signin" />} />
-        <Route path="waist" element={isLoggedIn ? <WaistPage /> : <Navigate to="/signin" />} />
-        <Route path="exercises" element={isLoggedIn ? <ExercisesPage /> : <Navigate to="/signin" />} />
+        <Route path="diary" element={isLoggedIn ? <DiaryPage /> : <Navigate to="/" />} />
+        <Route path="profile" element={isLoggedIn ? <UserPage /> : <Navigate to="/" />} />
+        <Route path="products" element={isLoggedIn ? <ProductsPage /> : <Navigate to="/" />} />
+        <Route path="waist" element={isLoggedIn ? <WaistPage /> : <Navigate to="/" />} />
+        <Route path="exercises" element={isLoggedIn ? <ExercisesPage /> : <Navigate to="/" />} />
         <Route path="/404" element={<ErrorPage />} />
         <Route path="*" element={<Navigate to="404" replace />} />
       </Route>
