@@ -22,6 +22,14 @@ const ExercisesPage = () => {
     setCategorieName(newCategorieName);
   };
 
+  
+  useEffect(() => {
+    api
+      .fetchExercises(categorieName)
+      .then((response) => setData(response))
+      .finally(() => setIsLoading(false));
+  }, [categorieName]);
+
   useEffect(() => {
     api
       .fetchCategories(subPage)
@@ -29,24 +37,20 @@ const ExercisesPage = () => {
       .finally(() => setIsLoading(false));
   }, [subPage]);
 
-  useEffect(() => {
-     api
-       .fetchExercises(categorieName)
-       .then((response) => setData(response))
-       .finally(() => setIsLoading(false));
-  }, [categorieName]);
 
   console.log(data);
   return (
     <Container>
       <Title>Exercises</Title>
       <Categories subPage={subPage} onChangeSubPage={onChangeSubPage} />
-      {(
+      {categorieName ? (
+        <ExercisesList />
+      ) : (
         <ListCategory
           exercisesCategories={data}
           onCategorieClick={onCategorieClick}
         />
-      ) || <ExercisesList />}
+      )}
       {isLoading && <CustomLoader />}
     </Container>
   );
