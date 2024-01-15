@@ -4,7 +4,7 @@ import { ButtonProfileElement } from './ButtonProfile.styled';
 
 const ButtonProfile = () => {
   return (
-    <Link href="/profile">
+    <Link to="/profile">
       <ButtonProfileElement>
         <Icon name="profile" />
       </ButtonProfileElement>
