@@ -8,18 +8,13 @@ const instance = axios.create({
 
 class APIService {
   fetchCategories = async (filter) => {
-    const response = await instance.get('/exercises/categories');
-    const filteredList = response.data.data.filter(
-      (category) => category.filter === filter
-    );
-    return filteredList;
+    const response = await instance.get(`/exercises/${filter}`);
+    return response.data.data
   };
 
   fetchExercises = async (bodyPart) => {
     const response = await instance.get('/exercises/');
-    return response.data.data.filter(
-      (category) => category.bodyPart === bodyPart
-    );
+    return response.data.data.filter((category) => category.bodyPart === bodyPart);
   };
 }
 

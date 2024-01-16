@@ -9,7 +9,6 @@ const UserPage = lazy(() => import('./pages/UserPage/UserPage'));
 const ErrorPage = lazy(() => import('./pages/ErrorPage/ErrorPage'));
 const DiaryPage = lazy(() => import('./pages/DiaryPage/DiaryPage'));
 const ProductsPage = lazy(() => import('./pages/ProductsPage/ProductsPage'));
-const WaistPage = lazy(() => import('./pages/WaistPage/WaistPage'));
 const ExercisesPage = lazy(() => import('./pages/ExercisesPage/ExercisesPage'));
 
 import { useDispatch } from 'react-redux';
@@ -35,8 +34,8 @@ function App() {
         <Route path="diary" element={isLoggedIn ? <DiaryPage /> : <Navigate to="/" />} />
         <Route path="profile" element={isLoggedIn ? <UserPage /> : <Navigate to="/" />} />
         <Route path="products" element={isLoggedIn ? <ProductsPage /> : <Navigate to="/" />} />
-        <Route path="waist" element={isLoggedIn ? <WaistPage /> : <Navigate to="/" />} />
-        <Route path="exercises" element={isLoggedIn ? <ExercisesPage /> : <Navigate to="/" />} />
+        <Route path="exercises/:categorie" element={isLoggedIn ? <ExercisesPage /> : <Navigate to="/" />} />
+        <Route path="exercises/:categorie/:subcategorie" element={isLoggedIn ? <ExercisesPage /> : <Navigate to="/" />} />
         <Route path="/404" element={<ErrorPage />} />
         <Route path="*" element={<Navigate to="404" replace />} />
       </Route>

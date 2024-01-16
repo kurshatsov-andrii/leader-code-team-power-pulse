@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const Ul = styled.ul`
@@ -15,7 +16,7 @@ export const Li = styled.li`
   line-height: 18px;
 `;
 
-export const Button = styled.button`
+export const Button = styled(Link)`
   background: transparent;
   color: rgba(239, 237, 232, 0.4);
   border: none;

@@ -1,4 +1,5 @@
 import { Ul, Li, Button } from './Categories.styled';
+import { queryEditior } from '../../utils/queryEditior';
 
 export const Categories = ({ subPage, onChangeSubPage }) => {
   const categories = ['Body parts', 'Muscles', 'Equipment'];
@@ -13,8 +14,9 @@ export const Categories = ({ subPage, onChangeSubPage }) => {
         <Li key={i}>
           <Button
             $active={isActive(category)}
-            type="button"
-            onClick={() => onChangeSubPage(category)}
+            to={`/exercises/${queryEditior(category)}`}
+            // type="button"
+            // onClick={() => onChangeSubPage(category)}
           >
             {category}
           </Button>
