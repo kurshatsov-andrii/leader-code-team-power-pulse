@@ -1,4 +1,4 @@
-import{u as r,j as e}from"./index-27bf2e61.js";import{S as a}from"./Section-e4b8a557.js";import{B as i,a as n}from"./ButtonsList-e1b2e90a.js";import{T as o,a as s}from"./Text-9fdac286.js";import{T as d}from"./Text.styled-9abc4ce4.js";import{d as p,a as c,t as h,b as m,m as l,c as x}from"./hero-mobile-2x-cfd6d0a7.js";const g=r.div`
+import{u as r,j as e}from"./index-7e1af324.js";import{S as a}from"./Section-19e6ffe5.js";import{B as i,a as n}from"./ButtonsList-0625d5af.js";import{T as o,a as s}from"./Text-f87f41c6.js";import{T as d}from"./Text.styled-8c7da544.js";import{d as p,a as c,t as h,b as m,m as l,c as x}from"./hero-mobile-2x-cfd6d0a7.js";const g=r.div`
   display: flex;
   flex-wrap: wrap;
   align-items: center;
