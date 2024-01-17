@@ -14,7 +14,6 @@ class APIService {
   };
 
   fetchExercises = async (bodyPart) => {
-    console.log(bodyPart);
     if (!bodyPart) {
       return null;
     }
