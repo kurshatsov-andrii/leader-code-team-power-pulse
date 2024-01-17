@@ -1,6 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { categoriesListThunk, productListThunk } from './operations';
 
+export const recommendedOptions = [
+  { value: 'all', label: 'All' },
+  { value: 'false', label: 'Recommended' },
+  { value: 'true', label: 'Not recommended' },
+];
+
 export const productSlice = createSlice({
   name: 'products',
   initialState: {
@@ -10,13 +16,19 @@ export const productSlice = createSlice({
     error: null,
     filter: {
       search: '',
-      category: '',
-      recomended: '',
+      category: { value: 'all', label: 'Categories' },
+      recomended: recommendedOptions[0],
     },
   },
   reducers: {
-    setFilter: (state, { payload }) => {
-      state.filter = payload;
+    setFilterSearch(state, action) {
+      state.filter.search = action.payload;
+    },
+    setFilterCategory(state, action) {
+      state.filter.category = action.payload;
+    },
+    setFilterRecomended(state, action) {
+      state.filter.recomended = action.payload;
     },
   },
   extraReducers: (builder) =>
@@ -30,7 +42,7 @@ export const productSlice = createSlice({
       .addCase(productListThunk.pending, handlePending)
       .addCase(productListThunk.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.list = payload;
+        state.list = payload.products;
       })
       .addCase(productListThunk.rejected, handleRejected),
 });
@@ -45,4 +57,4 @@ function handleRejected(state, { payload }) {
 }
 
 export const productsReducer = productSlice.reducer;
-export const { setFilter } = productSlice.actions;
+export const { setFilterSearch, setFilterCategory, setFilterRecomended } = productSlice.actions;

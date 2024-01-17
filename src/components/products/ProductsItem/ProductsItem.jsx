@@ -1,35 +1,36 @@
 import { useDispatch } from 'react-redux';
 import sprite from '../../../images/sprite.svg';
+import { AddButton, CardHeader, CardInfo, CardTitle, IconRunningFigure } from './ProductsItem.styled';
 
 const openModal = () => {};
 
-export const ProductsItem = ({ id, weight, calories, category, title, isRecommended }) => {
+export const ProductsItem = ({ id, weight, calories, category, title, isRecomended }) => {
   const dispatch = useDispatch();
 
   return (
     <div>
-      <div>
+      <CardHeader>
         <p>DIET</p>
         <div>
           <div></div>
-          <p>{isRecommended ? 'Recommended' : 'Not recommended'}</p>
+          <p>{isRecomended ? 'Recommended' : 'Not recommended'}</p>
         </div>
-        <button type="button" onClick={() => dispatch(openModal(id))}>
+        <AddButton type="button" onClick={() => dispatch(openModal(id))}>
           Add
           <svg>
             <use href={`${sprite}#icon-arrow-right`}></use>
           </svg>
-        </button>
-      </div>
-      <div>
-        <div>
+        </AddButton>
+      </CardHeader>
+      <CardTitle>
+        <IconRunningFigure>
           <svg>
             <use href={`${sprite}#icon-running-figure`}></use>
           </svg>
-        </div>
+        </IconRunningFigure>
         <p>{title}</p>
-      </div>
-      <ul>
+      </CardTitle>
+      <CardInfo>
         <li>
           <p>
             Calories:<span>{calories}</span>
@@ -45,7 +46,7 @@ export const ProductsItem = ({ id, weight, calories, category, title, isRecommen
             Weight:<span>{weight}</span>
           </p>
         </li>
-      </ul>
+      </CardInfo>
     </div>
   );
 };
