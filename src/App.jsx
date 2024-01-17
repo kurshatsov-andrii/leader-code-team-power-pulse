@@ -36,7 +36,12 @@ function App() {
         <Route path="profile" element={isLoggedIn ? <UserPage /> : <Navigate to="/" />} />
         <Route path="products" element={isLoggedIn ? <ProductsPage /> : <Navigate to="/" />} />
         <Route path="waist" element={isLoggedIn ? <WaistPage /> : <Navigate to="/" />} />
-        <Route path="exercises" element={isLoggedIn ? <ExercisesPage /> : <Navigate to="/" />} />
+        <Route path="exercises/:categoryName" element={isLoggedIn ? <ExercisesPage /> : <Navigate to="/" />} />
+        <Route path="exercises/:categoryName/:subCategoryName" />
+          
+          <Route path="/:categoryName" element={}>
+            <Route path="/:subCategoryName" />
+          </Route>
         <Route path="/404" element={<ErrorPage />} />
         <Route path="*" element={<Navigate to="404" replace />} />
       </Route>

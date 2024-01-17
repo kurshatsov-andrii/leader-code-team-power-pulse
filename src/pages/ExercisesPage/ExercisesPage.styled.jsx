@@ -6,7 +6,6 @@ export const Title = styled.h1`
   padding-top: 40px;
   padding-left: 20px;
 
-  font-family: Roboto;
   font-size: 24px;
   font-style: normal;
   font-weight: 700;

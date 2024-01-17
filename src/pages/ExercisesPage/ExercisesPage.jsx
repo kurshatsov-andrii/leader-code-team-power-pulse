@@ -1,4 +1,4 @@
-import { Title } from './ExercisesPage.styled';
+import { Title } from '../../components/Typography/Title/Title.styled';
 import { Container } from '../../styles/container';
 import { Categories } from '../../components/Exercises/Categories';
 import { useEffect, useState } from 'react';
@@ -36,15 +36,12 @@ const ExercisesPage = () => {
   console.log(data);
   return (
     <Container>
-      <Title>Exercises</Title>
+      <Title tag="h1" size="h3">
+        Exercises
+      </Title>
       <Categories subPage={subPage} onChangeSubPage={onChangeSubPage} />
       {showListCategorie ? <ListCategory exercisesCategories={data} onCategorieClick={onCategorieClick} /> : <ExercisesList />}
       {isLoading && <CustomLoader />}
-      <section>
-        <Title tag="h1" size="h3">
-          Exercises
-        </Title>
-      </section>
     </Container>
   );
 };
