@@ -6,7 +6,7 @@ export const HeaderContainer = styled.header`
   flex-wrap: wrap;
   align-items: center;
   align-content: center;
-  position: fixed;
+  position: sticky;
   left: 0px;
   top: 0px;
   width: 100%;

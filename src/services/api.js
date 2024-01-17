@@ -18,7 +18,6 @@ class APIService {
       return null;
     }
     const response = await instance.get('/exercises/');
-    console.log(response);
     const decodedBodyPart = queryDecoder(bodyPart);
     return response.data.data.filter((category) => category.bodyPart === decodedBodyPart);
   };

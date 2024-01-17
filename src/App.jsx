@@ -18,7 +18,7 @@ import { refreshUser } from './redux/auth/operations';
 import { useAuth } from './hooks/useAuth';
 import ExercisesList from './components/Exercises/ExercisesList';
 import { ListCategory } from './components/Exercises/ListCategory';
-import ExerciseLayout from './components/Exercises/ExerciseLayout';
+import ExercisesPage from './pages/ExercisesPage/ExercisesPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -42,7 +42,7 @@ function App() {
           <Route path="products" element={<ProductsPage />} />
         </Route>
 
-        <Route path="/exercises" element={isLoggedIn ? <ExerciseLayout /> : <Navigate to="/" />}>
+        <Route path="/exercises" element={isLoggedIn ? <ExercisesPage /> : <Navigate to="/" />}>
           <Route path=":category" element={<ListCategory />} />
           <Route path=":category/:subcategory" element={<ExercisesList />} />
         </Route>
