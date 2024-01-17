@@ -9,7 +9,7 @@ export const HeaderContainer = styled.header`
   left: 0px;
   top: 0px;
   width: 100%;
-  transition: 0.3s ease-out;
+  transition: border-bottom 0.3s ease-out;
   z-index: 10;
   border-bottom: 1px solid rgba(239, 237, 232, 0);
   background: rgba(239, 237, 232, 0);

@@ -20,4 +20,9 @@ export const ProfileAvatar = styled.div`
     width: 50%;
     height: auto;
   }
+
+  @media screen and (max-width: 767px) {
+    width: 36px;
+    height: 36px;
+  }
 `;
