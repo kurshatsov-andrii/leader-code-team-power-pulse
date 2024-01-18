@@ -1,22 +1,38 @@
 // import { useDispatch } from 'react-redux';
 import sprite from '../../../images/sprite.svg';
+import AddProductForm from '../../AddProductForm/AddProductForm';
+import AddProductSuccess from '../../AddProductSuccess/AddProductSuccess';
 import BasicModalWindow from '../../BasicModalWindow/BasicModalWindow';
 import { AddButton, CardHeader, CardInfo, CardTitle, IconRunningFigure } from './ProductsItem.styled';
 import { useState } from 'react';
 
 export const ProductsItem = ({ weight, calories, category, title, isRecomended }) => {
-  const [isOpenModal, setIsOpenModal] = useState(false);
+  const [isModalOpen, setOpenModal] = useState(false);
+  const [showSuccessWindow, setShowSuccesWindow] = useState(false);
+
+  const toggleModal = () => {
+    setOpenModal((prevState) => !prevState);
+  };
+
+  const toggleSuccessWindow = () => {
+    setShowSuccesWindow((prevState) => !prevState);
+  };
 
   //   const dispatch = useDispatch();
 
   //item id
-  const openModal = () => {
-    setIsOpenModal(true);
-  };
+  // const openModal = () => {
+  //   setIsOpenModal(true);
+  // };
 
   return (
     <>
-      {isOpenModal && <BasicModalWindow></BasicModalWindow>}
+      {isModalOpen && (
+        <BasicModalWindow onClick={toggleModal}>
+          <AddProductForm productName={title} calories={calories} onClick={toggleModal} onClickSuccess={toggleSuccessWindow} />
+        </BasicModalWindow>
+      )}
+      {showSuccessWindow && <BasicModalWindow onClick={toggleSuccessWindow}>{<AddProductSuccess onClick={toggleSuccessWindow} />} </BasicModalWindow>}
       <div>
         <CardHeader>
           <p>DIET</p>
@@ -24,7 +40,7 @@ export const ProductsItem = ({ weight, calories, category, title, isRecomended }
             <div></div>
             <p>{isRecomended ? 'Recommended' : 'Not recommended'}</p>
           </div>
-          <AddButton type="button" onClick={openModal}>
+          <AddButton type="button" onClick={toggleModal}>
             Add
             <svg>
               <use href={`${sprite}#icon-arrow-right`}></use>

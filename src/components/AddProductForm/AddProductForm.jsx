@@ -1,4 +1,7 @@
 import { useState } from 'react';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import {
   ButtonAdd,
   ButtonCancel,
@@ -15,10 +18,37 @@ import {
   ProductFormWrapper,
 } from './AddProductForm.styled';
 
-const AddProductForm = ({ productName, calories, onClose }) => {
+const AddProductForm = ({ productName, calories, onClick, onClickSuccess }) => {
   const [quantity, setQuantity] = useState(0);
 
   const caloriesAmount = Math.round((quantity * calories) / 100);
+
+  const options = {
+    position: 'top-center',
+    autoClose: 3000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: 'dark',
+  };
+
+  const onClickBtnAdd = (e) => {
+    e.preventDefault();
+
+    if (caloriesAmount === 0) {
+      toast.error('Must be greater than 0', options);
+      return;
+    }
+
+    onClick();
+    onClickSuccess();
+  };
+
+  const onClickBtnCancel = () => {
+    onClick();
+  };
 
   return (
     <ProductFormWrapper>
@@ -35,8 +65,10 @@ const AddProductForm = ({ productName, calories, onClose }) => {
           <CaloriesAmount>{caloriesAmount}</CaloriesAmount>
         </CaloriesWrap>
         <ButtonWrap>
-          <ButtonAdd type="submit">Add to diary</ButtonAdd>
-          <ButtonCancel type="button" onClick={onClose}>
+          <ButtonAdd type="submit" onClick={onClickBtnAdd}>
+            Add to diary
+          </ButtonAdd>
+          <ButtonCancel type="button" onClick={onClickBtnCancel}>
             Cancel
           </ButtonCancel>
         </ButtonWrap>
