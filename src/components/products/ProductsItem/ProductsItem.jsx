@@ -1,4 +1,5 @@
 // import { useDispatch } from 'react-redux';
+
 import sprite from '../../../images/sprite.svg';
 import AddProductForm from '../../AddProductForm/AddProductForm';
 import AddProductSuccess from '../../AddProductSuccess/AddProductSuccess';
@@ -21,9 +22,6 @@ export const ProductsItem = ({ weight, calories, category, title, isRecomended }
   //   const dispatch = useDispatch();
 
   //item id
-  // const openModal = () => {
-  //   setIsOpenModal(true);
-  // };
 
   return (
     <>

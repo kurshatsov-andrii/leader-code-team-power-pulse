@@ -69,7 +69,7 @@ export const InputQuantity = styled.input`
 export const GramsWrap = styled.p`
   position: absolute;
   top: 10px;
-  right: 14px;
+  right: 33px;
   margin: 0;
   color: rgba(239, 237, 232, 0.4);
   font-family: 'Roboto', sans-serif;
