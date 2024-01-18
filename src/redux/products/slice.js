@@ -21,14 +21,8 @@ export const productSlice = createSlice({
     },
   },
   reducers: {
-    setFilterSearch(state, action) {
-      state.filter.search = action.payload;
-    },
-    setFilterCategory(state, action) {
-      state.filter.category = action.payload;
-    },
-    setFilterRecomended(state, action) {
-      state.filter.recomended = action.payload;
+    setFilter: (state, { payload }) => {
+      state.filter = payload;
     },
   },
   extraReducers: (builder) =>
@@ -57,4 +51,4 @@ function handleRejected(state, { payload }) {
 }
 
 export const productsReducer = productSlice.reducer;
-export const { setFilterSearch, setFilterCategory, setFilterRecomended } = productSlice.actions;
+export const { setFilter } = productSlice.actions;

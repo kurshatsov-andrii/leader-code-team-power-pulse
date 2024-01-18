@@ -25,6 +25,38 @@ export const FilterList = styled.ul`
   flex-wrap: wrap;
 `;
 
+export const InputContainer = styled.input`
+  display: flex;
+  width: 100%;
+  height: 46px;
+  padding: 14px;
+  align-items: center;
+  gap: 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(239, 237, 232, 0.3);
+  background-color: transparent;
+  color: var(--color-white);
+  font-size: 14px;
+  line-height: 18px;
+  transition: all 100ms linear;
+  cursor: pointer;
+
+  &::placeholder {
+    color: var(--color-white);
+  }
+  &:hover,
+  &:focus {
+    outline: none;
+    border-color: var(--orange-color);
+  }
+
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+    line-height: 24px;
+    height: calc(100%);
+  }
+`;
+
 export const ResetButton = styled.button`
   position: absolute;
   background-color: transparent;
@@ -131,7 +163,7 @@ export const customStyles = {
   }),
 };
 
-export const firstSelectStyles = {
+export const categorySelectStyles = {
   ...customStyles,
   control: (defaultStyles) => ({
     ...defaultStyles,
@@ -157,7 +189,7 @@ export const firstSelectStyles = {
   }),
 };
 
-export const secondSelectStyles = {
+export const recomendedSelectStyles = {
   ...customStyles,
   control: (defaultStyles) => ({
     ...defaultStyles,

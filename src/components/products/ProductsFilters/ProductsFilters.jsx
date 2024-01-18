@@ -1,13 +1,22 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { FilterContainer, FilterLabel, FilterList, ResetButton, SearchButton, firstSelectStyles, secondSelectStyles } from './ProductsFilters.styled';
+import {
+  FilterContainer,
+  FilterLabel,
+  FilterList,
+  InputContainer,
+  ResetButton,
+  SearchButton,
+  categorySelectStyles,
+  recomendedSelectStyles,
+} from './ProductsFilters.styled';
 import sprite from '../../../images/sprite.svg';
 import { categoriesListThunk } from '../../../redux/products/operations';
-import { useEffect, useState } from 'react';
-import { selectCategoriesProducts, selectCategoryFilter, selectRecomendedFilter } from '../../../redux/products/selectors';
+import { useEffect } from 'react';
+import { selectCategoriesProducts, selectFilter } from '../../../redux/products/selectors';
 import Form from '../../Forms/Form/Form';
-import Input from '../../Forms/Input/Input';
-import { recommendedOptions, setFilterCategory, setFilterRecomended, setFilterSearch } from '../../../redux/products/slice';
+import { recommendedOptions, setFilter } from '../../../redux/products/slice';
 import Select from 'react-select';
+// import Input from '../../Forms/Input/Input';
 // import InputSelect from '../../Forms/InputTypes/InputSelecte/InputSelecte';
 
 const toUpperCaseFirstLetter = (string) => {
@@ -16,18 +25,20 @@ const toUpperCaseFirstLetter = (string) => {
 };
 
 export const ProductsFilters = () => {
-  const [search, setSearch] = useState('');
-
   const dispatch = useDispatch();
 
-  const categories = useSelector(selectCategoriesProducts);
-  const category = useSelector(selectCategoryFilter);
-  const recomended = useSelector(selectRecomendedFilter);
+  const filter = useSelector(selectFilter);
+  const { search, category, recomended } = filter;
 
-  const categoriesList = categories?.map(({ category }) => ({
-    value: category,
-    label: toUpperCaseFirstLetter(category),
-  }));
+  const categories = useSelector(selectCategoriesProducts);
+
+  const categoriesList = [
+    { value: 'all', label: 'Categories' },
+    ...categories.map(({ category }) => ({
+      value: category,
+      label: toUpperCaseFirstLetter(category),
+    })),
+  ];
 
   useEffect(() => {
     dispatch(categoriesListThunk());
@@ -35,25 +46,25 @@ export const ProductsFilters = () => {
 
   // debounce
   const handleChange = ({ target: { value } }) => {
-    setSearch(value);
+    dispatch(setFilter({ ...filter, search: value }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const searchValue = e.target.elements[0].value;
-    dispatch(setFilterSearch(searchValue));
+    dispatch(setFilter({ ...filter, search: searchValue }));
   };
 
   const handleReset = () => {
-    setSearch('');
+    dispatch(setFilter({ ...filter, search: '' }));
   };
 
   const handleCategoriesSelect = (e) => {
-    dispatch(setFilterCategory(e));
+    dispatch(setFilter({ ...filter, category: e }));
   };
 
   const handleRecomendedSelect = (e) => {
-    dispatch(setFilterRecomended(e));
+    dispatch(setFilter({ ...filter, recomended: e }));
   };
 
   return (
@@ -62,12 +73,14 @@ export const ProductsFilters = () => {
       <FilterList>
         <li>
           <Form onSubmit={handleSubmit}>
-            <Input type="text" placeholder="Search" name="search" value={search} onChange={handleChange}></Input>
-            <ResetButton type="button" onClick={handleReset}>
-              <svg>
-                <use href={`${sprite}#icon-x`}></use>
-              </svg>
-            </ResetButton>
+            <InputContainer type="text" placeholder="Search" name="search" value={search} onChange={handleChange}></InputContainer>
+            {search !== '' && (
+              <ResetButton type="button" onClick={handleReset}>
+                <svg>
+                  <use href={`${sprite}#icon-x`}></use>
+                </svg>
+              </ResetButton>
+            )}
             <SearchButton type="submit">
               <svg>
                 <use href={`${sprite}#icon-search`}></use>
@@ -82,7 +95,7 @@ export const ProductsFilters = () => {
             onChange={handleCategoriesSelect}
             options={categoriesList}
             placeholder="Categories"
-            styles={firstSelectStyles}
+            styles={categorySelectStyles}
           ></Select>
         </li>
         <li>
@@ -92,11 +105,8 @@ export const ProductsFilters = () => {
             defaultValue={recommendedOptions[0]}
             options={recommendedOptions}
             onChange={handleRecomendedSelect}
-            styles={secondSelectStyles}
+            styles={recomendedSelectStyles}
           ></Select>
-          {/* <InputSelect name="category" onChange={handleCategoriesSelect} options={categoriesList} placeholder="Categories"></InputSelect>
-          <InputSelect name="recomended" options={recommendedOptions} onChange={handleRecomendedSelect}></InputSelect> */}
-          {/* {(type, name, label, placeholder, required, options, onChange)} */}
         </li>
       </FilterList>
     </FilterContainer>
