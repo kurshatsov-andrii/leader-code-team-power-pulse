@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ProductsItem } from '../ProductsItem/ProductsItem';
 import { selectUser } from '../../../redux/auth/selectors';
 import { productListThunk } from '../../../redux/products/operations';
-import { selectCategoryFilter, selectProductsList, selectRecomendedFilter, selectSearchFilter } from '../../../redux/products/selectors';
+import { selectFilter, selectProductsList } from '../../../redux/products/selectors';
 import { ProductsListContainer, ProductsListItem } from './ProductsList.styled';
 import ProductsNotFound from '../ProductsNotFound/ProductsNotFound';
 
@@ -11,12 +11,9 @@ export const ProductsList = () => {
   const dispatch = useDispatch();
 
   const list = useSelector(selectProductsList);
-
   const bloodGroup = useSelector(selectUser).blood;
-
-  const search = useSelector(selectSearchFilter);
-  const category = useSelector(selectCategoryFilter);
-  const recomended = useSelector(selectRecomendedFilter);
+  const filter = useSelector(selectFilter);
+  const { search, category, recomended } = filter;
 
   useEffect(() => {
     dispatch(
