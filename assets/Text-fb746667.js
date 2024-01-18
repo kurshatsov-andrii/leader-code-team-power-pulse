@@ -1,1 +1,0 @@
-import{j as s}from"./index-1b4966c2.js";import{b as a}from"./Text.styled-265001ab.js";const x=({color:t="inherit",size:r,children:o})=>s.jsx(a,{"data-color":t,"data-size":r,children:o});export{x as T};
