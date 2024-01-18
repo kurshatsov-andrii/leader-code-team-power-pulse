@@ -25,7 +25,7 @@ const AddProductForm = ({ productName, calories, onClick, onClickSuccess }) => {
 
   const options = {
     position: 'top-center',
-    autoClose: 3000,
+    autoClose: 2000,
     hideProgressBar: false,
     closeOnClick: true,
     pauseOnHover: true,
@@ -37,8 +37,9 @@ const AddProductForm = ({ productName, calories, onClick, onClickSuccess }) => {
   const onClickBtnAdd = (e) => {
     e.preventDefault();
 
-    if (caloriesAmount === 0) {
-      toast.error('Must be greater than 0', options);
+    if (caloriesAmount <= 0) {
+      setQuantity(0);
+      toast.error('Weight must be greater than 0', options);
       return;
     }
 
