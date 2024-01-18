@@ -8,7 +8,7 @@
   Kurshatsov **Team Lead & Full Stack Developer**
 
 - [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/BogdanK85) Bohdan Kobak
-  **& Scrum Master and Full Stack Developer**
+  **Scrum Master & Full Stack Developer**
 
 - [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/RuslanMirasov) Ruslan
   Mirasov **Full Stack Developer**
