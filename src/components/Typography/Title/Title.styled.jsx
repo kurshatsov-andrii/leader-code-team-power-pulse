@@ -116,4 +116,20 @@ export const TitleContent = styled.span`
       letter-spacing: 1.6px;
     }
   }
+
+  &.size_user {
+    font-family: 'RobotoRegular';
+    font-style: normal;
+    font-weight: 400;
+
+    @media screen and (max-width: 767px) {
+      font-size: 16px;
+      line-height: 1.111111;
+    }
+
+    @media screen and (min-width: 768px) {
+      font-size: 24px;
+      line-height: 1.333333;
+    }
+  }
 `;

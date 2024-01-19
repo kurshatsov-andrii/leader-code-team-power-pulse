@@ -1,14 +1,14 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import Icon from '../../Icon/Icon';
 import { ButtonProfileElement } from './ButtonProfile.styled';
 
 const ButtonProfile = () => {
   return (
-    <Link to="/profile">
-      <ButtonProfileElement>
+    <ButtonProfileElement>
+      <NavLink to="/profile" activeclassname="active">
         <Icon name="profile" />
-      </ButtonProfileElement>
-    </Link>
+      </NavLink>
+    </ButtonProfileElement>
   );
 };
 

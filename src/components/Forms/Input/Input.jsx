@@ -1,17 +1,22 @@
 import { useState } from 'react';
-import { InputText, InputPassword, InputHidden, InputSelecte } from 'components/Forms';
+import { InputText, InputPassword, InputHidden, InputSelecte, InputRadio, InputFile } from 'components/Forms';
 import { validateInput } from './InputValidation';
 
-const Input = ({ type, name, required, label, placeholder, value = '', min, max, icon, options, onChange }) => {
+const Input = ({ type, name, required, label, placeholder, value = '', checked = '', min, max, icon, options, onChange, disabled, avatar }) => {
   const [inputValue, setInputValue] = useState(value);
-  // const [inputChecked, setInputChecked] = useState(checked);
+  const [inputChecked, setInputChecked] = useState(checked);
 
   const handleChange = (e) => {
     if (required) {
       validateInput(e.target);
     }
+
     setInputValue(e.target.value);
-    //  setInputChecked(e.target.checked);
+
+    if (inputChecked) {
+      setInputChecked(e.target.checked);
+    }
+
     if (onChange) {
       onChange(e);
     }
@@ -21,6 +26,10 @@ const Input = ({ type, name, required, label, placeholder, value = '', min, max,
     <>
       {type === 'hidden' ? (
         <InputHidden type={type} name={name} value={inputValue} />
+      ) : type === 'radio' ? (
+        <InputRadio type={type} name={name} label={label} value={inputValue} required={required} onChange={handleChange} />
+      ) : type === 'file' ? (
+        <InputFile type={type} name={name} value={inputValue} onChange={onChange} avatar={avatar} />
       ) : type === 'password' ? (
         <InputPassword
           type={type}
@@ -30,6 +39,7 @@ const Input = ({ type, name, required, label, placeholder, value = '', min, max,
           placeholder={placeholder}
           required={required}
           onChange={handleChange}
+          disabled={disabled}
         />
       ) : type === 'select' ? (
         <InputSelecte
@@ -41,6 +51,7 @@ const Input = ({ type, name, required, label, placeholder, value = '', min, max,
           required={required}
           options={options}
           onChange={onChange}
+          disabled={disabled}
         />
       ) : (
         <InputText
@@ -54,6 +65,7 @@ const Input = ({ type, name, required, label, placeholder, value = '', min, max,
           max={max}
           icon={icon}
           onChange={handleChange}
+          disabled={disabled}
         />
       )}
     </>

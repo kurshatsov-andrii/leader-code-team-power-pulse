@@ -44,6 +44,20 @@ export const Menu = styled.nav`
   transform: translate(100%, 0%);
   overflow-x: hidden;
   overflow-y: scroll;
+  &::-webkit-scrollbar {
+    /* Скрыть полосы прокрутки веб-страницы в Chrome, Safari и других браузерах, поддерживающих вендорные префиксы */
+    width: 4px; /* Ширина вертикальной полосы прокрутки */
+  }
+
+  &::-webkit-scrollbar-thumb {
+    /* Цвет вертикальной полосы прокрутки */
+    background-color: var(--orange-light-color);
+  }
+
+  &::-webkit-scrollbar-track {
+    /* Цвет фона полосы прокрутки */
+    background-color: var(--orange-color);
+  }
 
   &:after {
     content: '';

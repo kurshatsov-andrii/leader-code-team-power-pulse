@@ -1,20 +1,18 @@
 import Section from 'components/Section/Section';
 import { Title, TitleWrapper } from 'components/Typography';
-import { ProfileWrapper, ProfileMain, ProfileSidebar, ProfileInfoForm } from 'components/ProfilePageComponents';
+import { ProfileWrapper } from 'components/ProfilePageComponents';
+import { Calendar } from 'components/Forms';
 
 const UserPage = () => {
   return (
     <Section>
       <TitleWrapper>
         <Title tag="h1" size="h3">
-          Profile Settings
+          Calendar
         </Title>
       </TitleWrapper>
       <ProfileWrapper>
-        <ProfileMain>
-          <ProfileInfoForm />
-        </ProfileMain>
-        <ProfileSidebar />
+        <Calendar />
       </ProfileWrapper>
     </Section>
   );

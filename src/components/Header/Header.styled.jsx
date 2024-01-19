@@ -9,12 +9,19 @@ export const HeaderContainer = styled.header`
   left: 0px;
   top: 0px;
   width: 100%;
-  transition: border-bottom 0.3s ease-out;
+  transition:
+    border-bottom 0.3s ease-out,
+    background-color 0.3s ease-out;
   z-index: 10;
   border-bottom: 1px solid rgba(239, 237, 232, 0);
-  background: rgba(239, 237, 232, 0);
+  background-color: rgba(239, 237, 232, 0);
 
   &.isAuth {
+    border-bottom: 1px solid rgba(239, 237, 232, 0.2);
+  }
+
+  &.fix {
+    background-color: var(--black-color);
     border-bottom: 1px solid rgba(239, 237, 232, 0.2);
   }
 
