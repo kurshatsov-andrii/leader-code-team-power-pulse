@@ -77,6 +77,8 @@ export const Input = styled.input`
   height: 52px;
   padding-left: 14px;
   padding-right: ${(props) => (props['data-icon'] ? `48px` : '14px')};
+  opacity: ${(props) => (props['disabled'] ? 0.5 : 1)};
+  pointer-events: ${(props) => (props['disabled'] ? 'none' : 'all')};
   font-size: 16px;
   line-height: 1;
   user-select: none;
@@ -106,7 +108,8 @@ export const Input = styled.input`
     }
   }
   &:hover {
-    border: 1px solid var(--orange-color);
+    /* border: 1px solid var(--orange-color); */
+    border: ${(props) => !props['disabled'] && '1px solid var(--orange-color)'};
   }
 `;
 

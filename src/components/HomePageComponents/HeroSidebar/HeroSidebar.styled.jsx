@@ -55,7 +55,7 @@ export const Video = styled.div`
   }
 
   @media screen and (min-width: 768px) {
-    width: 190px;
+    width: 200px;
     padding: 14px 24px;
     gap: 12px;
   }

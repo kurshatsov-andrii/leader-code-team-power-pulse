@@ -207,22 +207,79 @@ const Avatar = ({ size = 16, color = 'currentColor' }) => (
   </svg>
 );
 
+const Calendar = ({ color = 'currentColor' }) => (
+  <svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M13.25 3H2.75C1.92157 3 1.25 3.67157 1.25 4.5V15C1.25 15.8284 1.92157 16.5 2.75 16.5H13.25C14.0784 16.5 14.75 15.8284 14.75 15V4.5C14.75 3.67157 14.0784 3 13.25 3Z"
+      stroke={color}
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      fill="none"
+    />
+    <path d="M11 1.5V4.5" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+    <path d="M5 1.5V4.5" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+    <path d="M1.25 7.5H14.75" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+  </svg>
+);
+
+const AvatarPlus = ({ color = 'currentColor' }) => (
+  <svg width="33" height="32" viewBox="0 0 33 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M11.2382 0.427845L15.9284 1.78405C16.2674 1.88208 16.6272 1.88283 16.9666 1.78621L21.7966 0.411303C22.6418 0.170715 23.5409 0.546916 23.963 1.31768L26.4694 5.89504C26.6375 6.20214 26.888 6.45626 27.1927 6.62883L31.1787 8.88671C31.9497 9.32347 32.3117 10.2389 32.0479 11.0849L30.6672 15.513C30.554 15.876 30.5534 16.2648 30.6655 16.6282L32.06 21.1493C32.3177 21.9849 31.9661 22.8879 31.2113 23.3292L26.768 25.9266C26.4649 26.1039 26.2173 26.3624 26.0534 26.673L23.9399 30.6768C23.531 31.4515 22.6418 31.8417 21.7948 31.6181L16.9314 30.3344C16.6141 30.2507 16.2804 30.2513 15.9635 30.3363L11.2488 31.6004C10.3822 31.8328 9.47213 31.4213 9.07421 30.6172L6.96789 26.3608C6.79108 26.0035 6.50542 25.7116 6.15206 25.5271L1.84775 23.2796C1.06147 22.869 0.668508 21.9652 0.904481 21.1102L2.1597 16.562C2.24855 16.24 2.25014 15.9002 2.16431 15.5775L0.876636 10.735C0.655154 9.90215 1.02762 9.02522 1.7808 8.60629L6.20271 6.1468C6.52438 5.96789 6.78654 5.69859 6.95674 5.37222L9.04628 1.36568C9.4606 0.571256 10.3774 0.178965 11.2382 0.427845Z"
+      fill={color}
+    />
+    <path d="M16.5 10.75V21.25" stroke="#EFEDE8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M11.25 16H21.75" stroke="#EFEDE8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
+const Alarm = ({ size = 24 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="12" cy="12" r="12" fill="#EFA082" />
+    <path d="M12 19V19.01M12 15V5" stroke="#EFEDE8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
+const Knife = () => (
+  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M14.9998 2.5C15.2039 2.50003 15.401 2.57496 15.5535 2.7106C15.706 2.84623 15.8035 3.03312 15.8273 3.23583L15.8332 3.33333V16.6667C15.8329 16.8791 15.7516 17.0834 15.6058 17.2378C15.46 17.3923 15.2607 17.4852 15.0487 17.4976C14.8366 17.5101 14.6279 17.4411 14.465 17.3048C14.3021 17.1685 14.1974 16.9751 14.1723 16.7642L14.1665 16.6667V12.5H13.3332C13.1291 12.5 12.9321 12.425 12.7795 12.2894C12.627 12.1538 12.5296 11.9669 12.5057 11.7642L12.4998 11.6667V6.66667C12.4998 4.825 13.7498 2.5 14.9998 2.5ZM9.99984 2.5C10.2039 2.50003 10.401 2.57496 10.5535 2.7106C10.706 2.84623 10.8035 3.03312 10.8273 3.23583L10.8332 3.33333V7.5C10.8331 8.23906 10.5875 8.95715 10.135 9.54148C9.68248 10.1258 9.04869 10.5433 8.33317 10.7283V16.6667C8.33294 16.8791 8.25161 17.0834 8.1058 17.2378C7.95999 17.3923 7.76071 17.4852 7.54868 17.4976C7.33664 17.5101 7.12785 17.4411 6.96498 17.3048C6.8021 17.1685 6.69742 16.9751 6.67234 16.7642L6.6665 16.6667V10.7283C5.97938 10.5507 5.36684 10.1585 4.91797 9.60876C4.4691 9.05903 4.20731 8.38043 4.17067 7.67167L4.1665 7.5V3.33333C4.16674 3.12093 4.24807 2.91664 4.39388 2.76219C4.53969 2.60775 4.73896 2.5148 4.951 2.50236C5.16303 2.48991 5.37182 2.5589 5.5347 2.69522C5.69758 2.83155 5.80225 3.02492 5.82734 3.23583L5.83317 3.33333V7.5C5.83318 7.79255 5.91019 8.07995 6.05647 8.33331C6.20275 8.58667 6.41315 8.79706 6.6665 8.94333V3.33333C6.66674 3.12093 6.74807 2.91664 6.89388 2.76219C7.03969 2.60775 7.23897 2.5148 7.451 2.50236C7.66303 2.48991 7.87182 2.5589 8.0347 2.69522C8.19758 2.83155 8.30225 3.02492 8.32734 3.23583L8.33317 3.33333L8.334 8.94333C8.56656 8.80891 8.76317 8.62027 8.90711 8.39349C9.05104 8.1667 9.13804 7.90848 9.16067 7.64083L9.1665 7.5V3.33333C9.1665 3.11232 9.2543 2.90036 9.41058 2.74408C9.56686 2.5878 9.77882 2.5 9.99984 2.5Z"
+      fill="#EF8964"
+    />
+  </svg>
+);
+
+const Dumbbell = () => (
+  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M3.25 5H1.75C1.33438 5 1 5.33437 1 5.75V9H0.25C0.1125 9 0 9.1125 0 9.25V10.75C0 10.8875 0.1125 11 0.25 11H1V14.25C1 14.6656 1.33438 15 1.75 15H3.25C3.66563 15 4 14.6656 4 14.25V5.75C4 5.33437 3.66563 5 3.25 5ZM19.75 9H19V5.75C19 5.33437 18.6656 5 18.25 5H16.75C16.3344 5 16 5.33437 16 5.75V14.25C16 14.6656 16.3344 15 16.75 15H18.25C18.6656 15 19 14.6656 19 14.25V11H19.75C19.8875 11 20 10.8875 20 10.75V9.25C20 9.1125 19.8875 9 19.75 9ZM14.25 3H12.75C12.3344 3 12 3.33437 12 3.75V9H8V3.75C8 3.33437 7.66563 3 7.25 3H5.75C5.33437 3 5 3.33437 5 3.75V16.25C5 16.6656 5.33437 17 5.75 17H7.25C7.66563 17 8 16.6656 8 16.25V11H12V16.25C12 16.6656 12.3344 17 12.75 17H14.25C14.6656 17 15 16.6656 15 16.25V3.75C15 3.33437 14.6656 3 14.25 3Z"
+      fill="#EF8964"
+    />
+  </svg>
+);
+
 const Icon = ({ name, color = 'currentColor', ...props }) => {
   return (
     <>
+      {name === 'avatar_plus' && <AvatarPlus color={color} {...props} />}
+      {name === 'validation' && <Validation {...props} />}
+      {name === 'password2' && <PasswordOpen {...props} />}
+      {name === 'password' && <Password {...props} />}
+      {name === 'calendar' && <Calendar color={color} {...props} />}
+      {name === 'playBig' && <PlayBig {...props} />}
+      {name === 'profile' && <Profile color={color} {...props} />}
+      {name === 'logout' && <Logout color={color} {...props} />}
+      {name === 'search' && <Search color={color} {...props} />}
+      {name === 'calory' && <Calory {...props} />}
+      {name === 'avatar' && <Avatar color={color} {...props} />}
+      {name === 'arrow' && <Arrow color={color} {...props} />}
+      {name === 'alarm' && <Alarm {...props} />}
+      {name === 'knife' && <Knife {...props} />}
+      {name === 'dumbbell' && <Dumbbell {...props} />}
+      {name === 'user' && <User color={color} {...props} />}
       {name === 'logo' && <Logo color={color} {...props} />}
       {name === 'line' && <Line color={color} {...props} />}
-      {name === 'playBig' && <PlayBig {...props} />}
-      {name === 'calory' && <Calory {...props} />}
-      {name === 'validation' && <Validation {...props} />}
-      {name === 'password' && <Password {...props} />}
-      {name === 'password2' && <PasswordOpen {...props} />}
-      {name === 'logout' && <Logout color={color} {...props} />}
-      {name === 'user' && <User color={color} {...props} />}
-      {name === 'arrow' && <Arrow color={color} {...props} />}
-      {name === 'search' && <Search color={color} {...props} />}
-      {name === 'profile' && <Profile color={color} {...props} />}
-      {name === 'avatar' && <Avatar color={color} {...props} />}
     </>
   );
 };

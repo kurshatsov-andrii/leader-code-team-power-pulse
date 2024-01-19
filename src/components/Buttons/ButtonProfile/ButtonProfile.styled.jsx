@@ -5,7 +5,8 @@ export const ButtonProfileElement = styled.span`
   color: rgba(239, 237, 232, 0.3);
   transition: 0.3s;
   &:hover,
-  &:focus {
+  &:focus,
+  .active {
     color: var(--orange-light-color);
   }
 `;

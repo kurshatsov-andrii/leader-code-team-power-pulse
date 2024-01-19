@@ -1,14 +1,7 @@
-// import { useState, useEffect } from 'react';
 import { CustomForm } from './Form.styled';
 import { validateForm } from './FormValidation';
 
 const Form = ({ isloading, enctype, children, onSubmit }) => {
-  // const [isLoading, setIsLoading] = useState(isloading);
-  // console.log(isLoading);
-  // useEffect(() => {
-  //   setIsLoading(isloading);
-  // }, [isloading]);
-
   const handleSubmit = (e) => {
     e.preventDefault();
     const formErrors = validateForm(e.target);

@@ -1,34 +1,25 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useMenu } from '../../../hooks/useMenu';
 
 const Nav = () => {
   const { menuClose } = useMenu();
 
-  const handlePageChange = (e) => {
-    // const href = e.target.href;
-    // const currentPath = window.location.pathname;
-    console.log(e.target);
-    // console.log(currentPath);
-
-    menuClose();
-  };
-
   return (
     <ul>
       <li>
-        <Link to="/diary" onClick={handlePageChange}>
+        <NavLink to="/diary" onClick={menuClose} activeclassname="active">
           Diary
-        </Link>
+        </NavLink>
       </li>
       <li>
-        <Link to="/products" onClick={handlePageChange}>
+        <NavLink to="/products" onClick={menuClose} activeclassname="active">
           Products
-        </Link>
+        </NavLink>
       </li>
       <li>
-        <Link to="/exercises" onClick={handlePageChange}>
+        <NavLink to="/exercises" onClick={menuClose} activeclassname="active">
           Exercises
-        </Link>
+        </NavLink>
       </li>
     </ul>
   );

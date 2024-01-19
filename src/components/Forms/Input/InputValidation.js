@@ -20,8 +20,8 @@ export const validateInput = (input) => {
   const currentInput = input;
   let validationResult = `Success ${currentInput.name}`;
   const fieldsetWrapper = currentInput.closest('fieldset');
-  const labelWrapper = currentInput.closest('label');
-  const wrapper = fieldsetWrapper || labelWrapper;
+  const labelWrapper = currentInput.type === 'radio' ? fieldsetWrapper : currentInput.closest('label');
+  const wrapper = labelWrapper || fieldsetWrapper;
   wrapper.classList.remove('invalid');
   wrapper.classList.add('valid');
 
@@ -48,20 +48,20 @@ export const validateInput = (input) => {
   };
 
   // radios in grup validate
-  // const radiosValidate = () => {
-  //   const allRadios = inputWrapper.querySelectorAll('input[type="radio"]');
-  //   const checkedRadios = inputWrapper.querySelectorAll('input[type="radio"]:checked');
+  const radiosValidate = () => {
+    const allRadios = wrapper.querySelectorAll('input[type="radio"]');
+    const checkedRadios = wrapper.querySelectorAll('input[type="radio"]:checked');
 
-  //   if (checkedRadios.length) {
-  //     allRadios.forEach((radio) => {
-  //       radio.classList.remove('invalid');
-  //       radio.removeAttribute('required');
-  //     });
-  //     deleteErrorText();
-  //     return;
-  //   }
-  //   addError(errors.radio);
-  // };
+    if (checkedRadios.length) {
+      allRadios.forEach((radio) => {
+        radio.classList.remove('invalid');
+        radio.removeAttribute('required');
+      });
+      wrapper.querySelector('em').remove();
+      return;
+    }
+    addError(errors.radio);
+  };
 
   // validate inputs by type
   if (!currentInput.value.length) {
@@ -91,6 +91,10 @@ export const validateInput = (input) => {
       //email
       if (currentInput.type === 'email' && !emailRegex.test(currentInput.value)) {
         addError(errors.email);
+      }
+      //radio
+      if (currentInput.type === 'radio') {
+        radiosValidate();
       }
     }
   }
