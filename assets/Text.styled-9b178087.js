@@ -1,4 +1,4 @@
-import{u as i,j as t}from"./index-26aa3830.js";const d=i.div`
+import{u as i,j as t}from"./index-5d03c4a8.js";const p=i.div`
   display: inline-flex;
   flex-wrap: wrap;
   width: 100%;
@@ -6,10 +6,30 @@ import{u as i,j as t}from"./index-26aa3830.js";const d=i.div`
   position: relative;
   justify-content: ${e=>e["data-justify"]};
   align-items: center;
-  align-content: center;
+  align-content: flex-start;
   gap: ${e=>e["data-gap"]+"px"};
   opacity: ${e=>e.visibility==="true"?1:0};
   transition: opacity 0.6s ease-out;
+`,d=i.div`
+  display: inline-flex;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: ${e=>e["data-width"]?e["data-width"]+"px":"100%"};
+  position: relative;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  gap: 32px;
+
+  @media screen and (max-width: 767px) {
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+
+  @media screen and (min-width: 768px) {
+    margin-top: 72px;
+    margin-bottom: 32px;
+  }
 `,s=i.span`
   display: inline-block;
   position: relative;
@@ -126,15 +146,39 @@ import{u as i,j as t}from"./index-26aa3830.js";const d=i.div`
       letter-spacing: 1.6px;
     }
   }
-`,h=({tag:e,size:n,children:o})=>{const a=e||"strong";return t.jsx(a,{children:t.jsx(s,{className:`size_${n||"h1"}`,children:o})})},r=i.p`
+
+  &.size_user {
+    font-family: 'RobotoRegular';
+    font-style: normal;
+    font-weight: 400;
+
+    @media screen and (max-width: 767px) {
+      font-size: 16px;
+      line-height: 1.111111;
+    }
+
+    @media screen and (min-width: 768px) {
+      font-size: 24px;
+      line-height: 1.333333;
+    }
+  }
+`,r=({tag:e,size:n,children:a})=>{const o=e||"strong";return t.jsx(o,{children:t.jsx(s,{className:`size_${n||"h1"}`,children:a})})},x=i.p`
   display: block;
+  position: relative;
   font-family: inherit;
   font-weight: 400;
   font-style: normal;
   width: 100%;
   white-space: pre-line;
+  padding-left: ${e=>e["data-icon"]&&"36px"||"0px"};
   color: ${e=>e["data-color"]};
-
+  text-align: ${e=>e["data-center"]==="center"?"center":"left"};
+  svg {
+    display: block;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+  }
   a {
     color: var(--white-color);
     border-bottom: 1px solid var(--white-color);
@@ -149,10 +193,16 @@ import{u as i,j as t}from"./index-26aa3830.js";const d=i.div`
   @media screen and (max-width: 767px) {
     font-size: ${e=>e["data-size"]==="small"?"12px":"14px"};
     line-height: 1.2857;
+
+    padding-left: ${e=>e["data-icon"]&&"28px"||"0px"};
+    svg {
+      width: 16px;
+      height: 16px;
+    }
   }
 
   @media screen and (min-width: 768px) {
-    font-size: ${e=>e["data-size"]==="small"?"12px":"16px"};
+    font-size: ${e=>e["data-size"]==="small"?"12px":"18px"};
     line-height: 1.5;
   }
-`;export{h as T,d as a,r as b};
+`;export{r as T,p as a,x as b,d as c};
