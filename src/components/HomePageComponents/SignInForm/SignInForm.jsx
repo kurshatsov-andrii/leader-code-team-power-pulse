@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { clearAllInputs } from 'components/Forms/Form/FormValidation';
 
 import { useDispatch } from 'react-redux';
-import { logIn } from '../../../redux/auth/operations';
+import { loginUser } from '../../../redux/auth/operations';
 
 const SignInForm = () => {
   const dispatch = useDispatch();
@@ -22,7 +22,7 @@ const SignInForm = () => {
 
     try {
       setIsLoading(true);
-      await dispatch(logIn(loginData));
+      await dispatch(loginUser(loginData));
     } catch (error) {
       console.log(error);
     } finally {

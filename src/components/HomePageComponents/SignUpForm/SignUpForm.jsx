@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { clearAllInputs } from 'components/Forms/Form/FormValidation';
 
 import { useDispatch } from 'react-redux';
-import { register } from '../../../redux/auth/operations';
+import { registerUser } from '../../../redux/auth/operations';
 // import { useNavigate } from 'react-router-dom';
 
 const SignUpForm = () => {
@@ -24,7 +24,7 @@ const SignUpForm = () => {
     });
 
     try {
-      await dispatch(register(registerationData));
+      await dispatch(registerUser(registerationData));
       // navigate('/signin');
     } finally {
       setIsLoading(false);

@@ -1,97 +1,115 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-axios.defaults.baseURL = 'https://leader-code-team-power-pulse-back-end.onrender.com/';
-
-const setAuthHeader = (token) => {
-  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+const toastError = (text) => {
+  toast.error(text, {
+    position: 'top-center',
+    autoClose: 70000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: 'dark',
+  });
 };
 
-const clearAuthHeader = () => {
-  axios.defaults.headers.common.Authorization = '';
+export const instance = axios.create({
+  baseURL: 'https://leader-code-team-power-pulse-back-end.onrender.com/api/',
+});
+
+export const token = {
+  set: (token) => {
+    instance.defaults.headers['Authorization'] = `Bearer ${token}`;
+  },
+  clear: () => {
+    instance.defaults.headers['Authorization'] = '';
+  },
 };
 
-/*
- * POST @ /api/auth/register
- * body: { name, email, password }
- */
-export const register = createAsyncThunk('auth/register', async (credentials, thunkAPI) => {
+export const registerUser = createAsyncThunk('auth/registerUser', async (dataUser, thunkApi) => {
   try {
-    const res = await axios.post('/api/auth/register', credentials);
-    // After successful registration, add the token to the HTTP header
-    setAuthHeader(res.data.token);
-    return res.data;
+    const { data } = await instance.post('auth/register', dataUser);
+    token.set(data.token);
+
+    return data;
   } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+    toastError(`Oops! Something was wrong... ${error.response.data.message}`);
+    return thunkApi.rejectWithValue(error.message);
   }
 });
 
-/*
- * POST @ /api/auth/login
- * body: { email, password }
- */
-export const logIn = createAsyncThunk('auth/login', async (credentials, thunkAPI) => {
+export const loginUser = createAsyncThunk('auth/loginUser', async (dataUser, thunkApi) => {
   try {
-    const res = await axios.post('/api/auth/login', credentials);
-    setAuthHeader(res.data.token);
-    return res.data;
+    const { data } = await instance.post('auth/login', dataUser);
+    token.set(data.token);
+
+    return data;
   } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+    toastError(`Oops! Something was wrong... ${error.response.data.message}`);
+    return thunkApi.rejectWithValue(error.message);
   }
 });
 
-/*
- * POST @ /api/auth/logout
- * headers: Authorization: Bearer token
- */
-export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
+export const logOutUser = createAsyncThunk('auth/logOutUser', async (_, thunkApi) => {
   try {
-    await axios.post('/api/auth/logout');
-    clearAuthHeader();
+    await instance.post('auth/logout');
+    token.clear();
+
+    return;
   } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+    toastError(`Oops! Something was wrong... ${error.response.data.message}`);
+    return thunkApi.rejectWithValue(error.message);
   }
 });
 
-/*
- * GET @ /api/auth/current
- * headers: Authorization: Bearer token
- */
-export const refreshUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
-  // Reading the token from the state via getState()
-  const state = thunkAPI.getState();
-  const persistedToken = state.auth.token;
+export const refreshUser = createAsyncThunk(
+  'auth/refreshUser',
+  async (_, thunkApi) => {
+    try {
+      const state = thunkApi.getState();
 
-  if (persistedToken === null) {
-    // If there is no token, exit without performing any request
-    return thunkAPI.rejectWithValue('Unable to fetch user');
+      const userToken = state.auth.token;
+      token.set(userToken);
+      const { data } = await instance.get('auth/current');
+      return data;
+    } catch (error) {
+      toastError(`Oops! Something was wrong... ${error.response.data.message}`);
+      return thunkApi.rejectWithValue(error.message);
+    }
+  },
+  {
+    condition: (_, { getState }) => {
+      const state = getState();
+      const token = state.auth.token;
+      if (!token) {
+        return false;
+      }
+    },
   }
+);
 
+export const updateUser = createAsyncThunk('auth/updateUser', async (newData, thunkApi) => {
   try {
-    // If there is a token, add it to the HTTP header and perform the request
-    setAuthHeader(persistedToken);
-    const res = await axios.get('/api/auth/current');
+    const res = await instance.patch('users', newData);
     return res.data;
   } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+    toastError(`Oops! Something was wrong... ${error.response.data.message}`);
+    return thunkApi.rejectWithValue(error.message);
   }
 });
 
-export const updateUserParams = createAsyncThunk('auth/params', async (params, thunkAPI) => {
+export const updateAvatar = createAsyncThunk('auth/updateAvatar', async (file, thunkApi) => {
   try {
-    const res = await axios.patch('/api/auth/params', params);
+    const formData = new FormData();
+    formData.append('avatar', file);
+    const res = await instance.patch('users/avatars', formData);
     return res.data;
   } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
-  }
-});
-
-export const addUserData = createAsyncThunk('auth/data', async (params, thunkAPI) => {
-  try {
-    const res = await axios.patch('/api/auth', params);
-    return res.data;
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+    toastError(`Oops! Something was wrong... ${error.response.data.message}`);
+    return thunkApi.rejectWithValue(error.message);
   }
 });
 
@@ -107,21 +125,7 @@ export const getUserParams = createAsyncThunk('auth/getparams', async (_, thunkA
     const res = await axios.get('/api/auth/getuser');
     return res.data;
   } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
-  }
-});
-
-export const updateAvatar = createAsyncThunk('auth/avatar', async (file, thunkAPI) => {
-  try {
-    const formData = new FormData();
-    formData.append('avatar', file);
-
-    const res = await axios.patch('/api/auth/avatars', formData, {
-      headers: { 'content-type': 'multipart/form-data' },
-    });
-
-    return res.data;
-  } catch (error) {
+    toastError(`Oops! Something was wrong... ${error.response.data.message}`);
     return thunkAPI.rejectWithValue(error.message);
   }
 });

@@ -1,21 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { register, logIn, logOut, refreshUser, updateUserParams, getUserParams, addUserData } from './operations';
+import { registerUser, logOutUser, loginUser, refreshUser, updateUser, updateAvatar } from './operations';
 
 const initialState = {
-  user: {
-    name: null,
-    email: null,
-    height: 160,
-    currentWeight: 60,
-    desiredWeight: 55,
-    birthday: '08.01.1987',
-    blood: 1,
-    sex: 'male',
-    levelActivity: 2,
-  },
+  userData: null,
   token: null,
+  isLoading: false,
+  authenticated: false,
+  error: null,
   isLoggedIn: false,
-  goToParams: false,
   isRefreshing: false,
 };
 
@@ -24,65 +16,83 @@ const authSlice = createSlice({
   initialState,
   extraReducers: (builder) =>
     builder
-      .addCase(register.pending, (state) => state)
-      .addCase(register.fulfilled, (state, action) => {
-        state.user = action.payload.user;
+      // -----------Register------------
+      .addCase(registerUser.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.authenticated = true;
         state.token = action.payload.token;
-        state.isLoggedIn = false;
-        state.goToParams = true;
-        state.error = '';
+        state.userData = action.payload.user;
+        state.error = null;
       })
-      .addCase(register.rejected, (state) => state)
-      .addCase(logIn.fulfilled, (state, action) => {
-        state.user = action.payload.user;
+      // -----------Login----------
+      .addCase(loginUser.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.authenticated = true;
         state.token = action.payload.token;
+        state.userData = action.payload.user;
         state.isLoggedIn = true;
+        state.error = null;
       })
-      .addCase(logOut.fulfilled, (state) => {
-        state.user = initialState.user;
-        state.token = null;
+      // ---------------Log Out------------------
+      .addCase(logOutUser.pending, (state) => {
         state.isLoggedIn = false;
+        state.isLoading = true;
+        state.authenticated = false;
+        state.userData = null;
+        state.token = null;
+        state.error = null;
+      })
+      .addCase(logOutUser.fulfilled, (state) => {
+        state.isLoggedIn = false;
+        state.isLoading = false;
+        state.authenticated = false;
+        state.userData = null;
+        state.token = null;
+        state.error = null;
+      })
+      // ------------Update User------------
+      .addCase(updateUser.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.userData = action.payload;
+        state.isLoggedIn = true;
+        state.isRefreshing = false;
+        state.error = null;
+      })
+      // ------------Update Avatar------------
+      .addCase(updateAvatar.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.userData.avatarURL = action.payload.avatarURL;
+        state.isRefreshing = false;
+        state.error = null;
+      })
+      // ------------Refresh------------------
+      .addCase(refreshUser.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.authenticated = true;
+        state.userData = action.payload;
+        state.isLoggedIn = true;
+        state.isRefreshing = false;
+        state.error = null;
       })
       .addCase(refreshUser.pending, (state) => {
         state.isRefreshing = true;
       })
-      .addCase(refreshUser.fulfilled, (state, action) => {
-        state.user = action.payload;
-        state.isLoggedIn = true;
-        state.isRefreshing = false;
-      })
-      .addCase(refreshUser.rejected, (state) => {
-        state.isRefreshing = false;
-      })
-      .addCase(updateUserParams.pending, (state) => state)
-      .addCase(updateUserParams.fulfilled, (state, action) => {
-        state.user = action.payload;
-        state.isLoggedIn = true;
-        state.goToParams = false;
-        state.token = action.payload.token;
-      })
-      .addCase(updateUserParams.rejected, (state) => {
-        state.isLoggedIn = true;
-        state.goToParams = false;
-      })
-      .addCase(getUserParams.pending, (state) => state)
-      .addCase(getUserParams.fulfilled, (state, action) => {
-        state.user = action.payload;
-        state.isLoggedIn = true;
-        state.token = action.payload.token;
-      })
-      .addCase(getUserParams.rejected, (state) => state)
-      .addCase(addUserData.pending, (state) => state)
-      .addCase(addUserData.fulfilled, (state, action) => {
-        state.user = action.payload;
-        state.isLoggedIn = true;
-        state.goToParams = false;
-        state.token = action.payload.token;
-      })
-      .addCase(addUserData.rejected, (state) => {
-        state.isLoggedIn = true;
-        state.goToParams = false;
-      }),
+      .addMatcher(
+        (action) => action.type.endsWith('/pending'),
+        (state) => {
+          state.isLoading = true;
+
+          state.error = null;
+        }
+      )
+      .addMatcher(
+        (action) => action.type.endsWith('/rejected'),
+        (state, action) => {
+          state.isLoading = false;
+          state.isRefreshing = false;
+          state.error = action.payload;
+        }
+      ),
 });
 
 export const authReducer = authSlice.reducer;
