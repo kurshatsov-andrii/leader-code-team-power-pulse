@@ -9,18 +9,18 @@ export const ExercisesListWrapper = styled.ul`
 export const ExerciseWrapper = styled.li`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   width: 335px;
   min-height: 141px;
   padding: 16px;
   border-radius: 12px;
-  border: 1px solid rgba(239, 237, 232, 0.2);
+  border: 1px solid ${(props) => props.theme.cardBorderColor};
   background: ${(props) => props.theme.cardColor};
 `;
 
 export const ExerciseHeaderWrapper = styled.div`
   display: flex;
   justify-content: space-between;
+  margin-bottom: 33px;
 `;
 
 export const CardHeaderTypeWrapper = styled.p`
@@ -32,6 +32,9 @@ export const CardHeaderTypeWrapper = styled.p`
 `;
 
 export const CardHeaderButtonWrapper = styled.button`
+  display: flex;
+  align-items: center;
+  gap: 8px;
   color: ${(props) => props.theme.orangeColor};
   font-size: 14px;
   font-weight: 400;
@@ -39,9 +42,18 @@ export const CardHeaderButtonWrapper = styled.button`
   background: transparent;
 `;
 
+export const NameWrapper = styled.div`
+  display: flex;
+  gap: 16px;
+  margin-bottom: 8px;
+`;
+
 export const Name = styled.p`
   font-size: 20px;
   line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
   &::first-letter {
     text-transform: capitalize;
   }
@@ -54,7 +66,7 @@ export const PropertiesWrapper = styled.ul`
 `;
 
 export const PropertyName = styled.p`
-  color: ${(props) => props.theme.normalColor};
+  color: ${(props) => props.theme.prpertyNameColort};
   font-size: 12px;
   font-style: normal;
   line-height: 1.5;

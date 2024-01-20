@@ -8,12 +8,13 @@ import {
   ExerciseWrapper,
   ExercisesListWrapper,
   Name,
+  NameWrapper,
   PropertiesWrapper,
   Property,
   PropertyName,
 } from './ExercisesList.styled';
-import Icon from '../Icon/Icon';
-
+import { Arrow } from './Arrow';
+import { ExerciseIcon } from './ExerciseIcon';
 
 export const ExercisesList = () => {
   const [data, setData] = useState(null);
@@ -46,15 +47,15 @@ export const ExercisesList = () => {
                 <CardHeaderTypeWrapper>WORKOUT</CardHeaderTypeWrapper>
                 <CardHeaderButtonWrapper>
                   <p>Start</p>
-                  <Icon color="orangeColor" name="arrowright" />
+                  <Arrow />
                 </CardHeaderButtonWrapper>
               </ExerciseHeaderWrapper>
 
               <div>
-                <div>
-                  {/* <svg></svg> */}
+                <NameWrapper>
+                  <ExerciseIcon />
                   <Name>{name}</Name>
-                </div>
+                </NameWrapper>
 
                 <PropertiesWrapper>
                   <li>
