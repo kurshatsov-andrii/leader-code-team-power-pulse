@@ -1,0 +1,1 @@
+import{j as a,I as n}from"./index-9872a3c4.js";import{b as x}from"./Text.styled-e68562d2.js";const d=({color:r="inherit",size:e,align:s,icon:t,children:o})=>a.jsxs(x,{"data-color":r,"data-size":e,"data-center":s,"data-icon":t,children:[t&&a.jsx(n,{name:t}),o]});export{d as T};
