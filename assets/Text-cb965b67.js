@@ -1,1 +1,0 @@
-import{j as a,I as n}from"./index-cf4acdef.js";import{b as x}from"./Text.styled-3143626a.js";const c=({color:e="inherit",size:r,align:s,icon:t,iconSize:o,children:i})=>a.jsxs(x,{"data-color":e,"data-size":r,"data-center":s,"data-icon":t,children:[t&&a.jsx(n,{name:t,size:o}),i]});export{c as T};
