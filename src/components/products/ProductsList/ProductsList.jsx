@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ProductsItem } from '../ProductsItem/ProductsItem';
-import { selectUser } from '../../../redux/auth/selectors';
+import { selectUsers } from '../../../redux/auth/selectors';
 import { productListThunk } from '../../../redux/products/operations';
 import { selectFilter, selectProductsList } from '../../../redux/products/selectors';
 import { ProductsListContainer, ProductsListItem } from './ProductsList.styled';
@@ -11,7 +11,7 @@ export const ProductsList = () => {
   const dispatch = useDispatch();
 
   const list = useSelector(selectProductsList);
-  const bloodGroup = useSelector(selectUser).blood;
+  const bloodGroup = useSelector(selectUsers).blood;
   const filter = useSelector(selectFilter);
   const { search, category, recomended } = filter;
 
