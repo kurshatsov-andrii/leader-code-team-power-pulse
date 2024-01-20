@@ -6,6 +6,9 @@ export const SelectLabel = styled.fieldset`
   margin: 0;
   display: block;
   width: 100%;
+  input {
+    color: ${(props) => (props['data-selected'] === true ? `rgba(0,0,0,0)` : 'var(--white-color)')};
+  }
   menu {
     transform: translate(0px, 10px);
     transition: 0.4s;
@@ -81,13 +84,19 @@ export const SelectIcon = styled.i`
 `;
 
 export const Area = styled.div`
-  display: block;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+  padding: 5px 14px;
   position: absolute;
   left: 0px;
   top: 0px;
   width: 100%;
   height: 100%;
   border-radius: 12px;
+
   cursor: pointer;
   z-index: 2;
   pointer-events: all;
