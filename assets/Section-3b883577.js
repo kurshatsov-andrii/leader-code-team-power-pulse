@@ -1,4 +1,4 @@
-import{u as d,r as e,j as n}from"./index-9872a3c4.js";const c=d.section`
+import{u as d,r as e,j as n}from"./index-cf4acdef.js";const c=d.section`
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;

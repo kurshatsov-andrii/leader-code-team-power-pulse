@@ -1,4 +1,4 @@
-import{j as t,u as e}from"./index-9872a3c4.js";import{c as p}from"./Text.styled-e68562d2.js";const o=({width:a,justify:i="flex-start",gap:r="20",children:n})=>t.jsx(p,{"data-width":a,"data-justify":i,"data-gap":r,children:n}),d=e.div`
+import{j as t,u as e}from"./index-cf4acdef.js";import{c as p}from"./Text.styled-3143626a.js";const o=({width:a,justify:i="flex-start",gap:r="20",children:n})=>t.jsx(p,{"data-width":a,"data-justify":i,"data-gap":r,children:n}),d=e.div`
   display: flex;
   flex-wrap: wrap;
   position: relative;
