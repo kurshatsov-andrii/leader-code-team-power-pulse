@@ -6,12 +6,26 @@ import 'react-toastify/dist/ReactToastify.css';
 const toastError = (text) => {
   toast.error(text, {
     position: 'top-center',
-    autoClose: 70000,
+    autoClose: 5000,
     hideProgressBar: false,
     closeOnClick: true,
     pauseOnHover: true,
     draggable: true,
     progress: undefined,
+    theme: 'dark',
+  });
+};
+
+const toastInfo = (text) => {
+  toast.info(text, {
+    position: 'top-center',
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    type: 'success',
     theme: 'dark',
   });
 };
@@ -33,7 +47,7 @@ export const registerUser = createAsyncThunk('auth/registerUser', async (dataUse
   try {
     const { data } = await instance.post('auth/register', dataUser);
     token.set(data.token);
-
+    toastInfo('A new user has been successfully registered!');
     return data;
   } catch (error) {
     toastError(`Oops! Something was wrong... ${error.response.data.message}`);
@@ -91,10 +105,12 @@ export const refreshUser = createAsyncThunk(
 
 export const updateUser = createAsyncThunk('auth/updateUser', async (newData, thunkApi) => {
   try {
-    const res = await instance.patch('users', newData);
+    const res = await instance.patch('auth/profile', newData);
+    toastInfo('The form has been submitted successfully!');
     return res.data;
   } catch (error) {
     toastError(`Oops! Something was wrong... ${error.response.data.message}`);
+
     return thunkApi.rejectWithValue(error.message);
   }
 });
@@ -103,7 +119,7 @@ export const updateAvatar = createAsyncThunk('auth/updateAvatar', async (file, t
   try {
     const formData = new FormData();
     formData.append('avatar', file);
-    const res = await instance.patch('users/avatars', formData);
+    const res = await instance.patch('auth/avatar', formData);
     return res.data;
   } catch (error) {
     toastError(`Oops! Something was wrong... ${error.response.data.message}`);

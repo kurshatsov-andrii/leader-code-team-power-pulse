@@ -38,7 +38,6 @@ function App() {
       await dispatch(getUserProfile());
     };
     fetchData();
-    // dispatch(getUserProfile());
     dispatch(refreshUser());
   }, [dispatch]);
 
@@ -69,8 +68,14 @@ function App() {
           path="/exercises"
           element={isLoggedIn && isFilled ? <ExercisesPage /> : isLoggedIn ? <Navigate to="/profile" replace /> : <Navigate to="/signin" replace />}
         />
-        <Route path="/products" element={isLoggedIn ? <ProductsPage /> : <Navigate to="/signin" replace />} />
-        <Route path="/waist" element={isLoggedIn ? <WaistPage /> : <Navigate to="/signin" replace />} />
+        <Route
+          path="/products"
+          element={isLoggedIn && isFilled ? <ProductsPage /> : isLoggedIn ? <Navigate to="/profile" replace /> : <Navigate to="/signin" replace />}
+        />
+        <Route
+          path="/waist"
+          element={isLoggedIn && isFilled ? <WaistPage /> : isLoggedIn ? <Navigate to="/profile" replace /> : <Navigate to="/signin" replace />}
+        />
         <Route path="/profile" element={isLoggedIn ? <UserPage /> : <Navigate to="/signin" replace />} />
         <Route path="/test" element={<TestPage />} />
         <Route path="/404" element={<ErrorPage />} />

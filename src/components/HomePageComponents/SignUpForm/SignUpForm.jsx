@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { clearAllInputs } from 'components/Forms/Form/FormValidation';
 import { useDispatch } from 'react-redux';
-import { registerUser } from '../../../redux/auth/operations';
+import { registerUser, loginUser } from '../../../redux/auth/operations';
 
 const SignUpForm = () => {
   const dispatch = useDispatch();
@@ -16,12 +16,16 @@ const SignUpForm = () => {
     setIsLoading(true);
     const form = e.target;
     const registerationData = {};
+    const loginData = {};
     new FormData(form).forEach((value, key) => {
       registerationData[key] = value;
+      if (key === 'email' || key === 'password') {
+        loginData[key] = value;
+      }
     });
-
     try {
       await dispatch(registerUser(registerationData));
+      await dispatch(loginUser(loginData));
     } finally {
       setIsLoading(false);
       setTimeout(() => {

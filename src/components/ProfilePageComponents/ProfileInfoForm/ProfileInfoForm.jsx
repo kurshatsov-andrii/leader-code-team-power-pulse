@@ -1,9 +1,13 @@
 import { Form, Fieldset, Input } from 'components/Forms';
 import { Button, ButtonsList } from 'components/Buttons';
-import { useSelector } from 'react-redux';
-// import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useState, useEffect } from 'react';
+import { updateUser, refreshUser } from '../../../redux/auth/operations';
 
 const ProfileInfoForm = () => {
+  const dispatch = useDispatch();
+
+  const [isLoading, setIsLoading] = useState(false);
   // const [userName, setUserName] = useState();
   const { profile } = useSelector((state) => state.profile);
   // useEffect(() => {
@@ -12,28 +16,47 @@ const ProfileInfoForm = () => {
   //   }
   // }, [profile]);
 
-  const handleSubmit = (e) => {
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
+
+  const handleSubmit = async (e) => {
+    setIsLoading(true);
     const form = e.target;
-    const formData = new FormData(form);
-    const formDataObject = {};
-    formData.forEach((value, key) => {
-      formDataObject[key] = value;
+    const updateData = {};
+    new FormData(form).forEach((value, key) => {
+      updateData[key] = value;
     });
+
+    try {
+      await dispatch(updateUser(updateData));
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit} isloading={isLoading}>
       <Fieldset col="2" colTablet="2" colMobil="1">
-        <Input type="text" name="name" label="Name" value={profile.name ? profile.name : ''} placeholder="Name" required />
-        <Input type="email" name="email" label="Email" value={profile.email ? profile.email : ''} placeholder="E-mail" disabled />
+        <Input type="text" name="name" label="Name" value={profile && profile.name ? profile.name : ''} placeholder="Name" required />
+        <Input type="email" name="email" label="Email" value={profile && profile.email ? profile.email : ''} placeholder="E-mail" disabled />
       </Fieldset>
       <Fieldset col="4" colTablet="4" colMobil="2">
-        <Input type="number" name="height" label="Height" placeholder="0" value={profile && profile.height > 0 ? profile.height : ''} required />
+        <Input
+          type="number"
+          name="height"
+          label="Height"
+          placeholder="0"
+          min="35"
+          value={profile && profile.height > 0 ? profile.height : ''}
+          required
+        />
         <Input
           type="number"
           name="currentWeight"
           label="Current Weight"
           placeholder="0"
+          min="35"
           value={profile && profile.currentWeight > 0 ? profile.currentWeight : ''}
           required
         />
@@ -42,6 +65,7 @@ const ProfileInfoForm = () => {
           name="desiredWeight"
           label="Desired Weight"
           placeholder="0"
+          min="35"
           value={profile && profile.desiredWeight > 0 ? profile.desiredWeight : ''}
           required
         />

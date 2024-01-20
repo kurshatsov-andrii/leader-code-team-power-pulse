@@ -59,6 +59,9 @@ const authSlice = createSlice({
         state.error = null;
       })
       // ------------Update Avatar------------
+      .addCase(updateAvatar.pending, (state) => {
+        state.isLoading = true;
+      })
       .addCase(updateAvatar.fulfilled, (state, action) => {
         state.isLoading = false;
         state.userData.avatarURL = action.payload.avatarURL;
