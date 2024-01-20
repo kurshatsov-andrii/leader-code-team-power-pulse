@@ -238,5 +238,5 @@ export const Circle = styled.div`
   width: 14px;
   height: 14px;
   border-radius: 10px;
-  background: ${(props) => (props.color === 'false' ? 'green' : 'red')};
+  background: ${(props) => (props.color === 'false' ? 'var(--indicator-green)' : 'var(--indicator-red)')};
 `;
