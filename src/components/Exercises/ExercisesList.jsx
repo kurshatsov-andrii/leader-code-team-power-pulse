@@ -1,7 +1,19 @@
 import { useEffect, useState } from 'react';
 import api from '../../services/api';
 import { useParams } from 'react-router-dom';
-import { ExerciseWrapper, ExercisesListWrapper, Name, PropertiesWrapper, Property, PropertyName } from './ExercisesList.styled';
+import {
+  CardHeaderButtonWrapper,
+  CardHeaderTypeWrapper,
+  ExerciseHeaderWrapper,
+  ExerciseWrapper,
+  ExercisesListWrapper,
+  Name,
+  PropertiesWrapper,
+  Property,
+  PropertyName,
+} from './ExercisesList.styled';
+import Icon from '../Icon/Icon';
+
 
 export const ExercisesList = () => {
   const [data, setData] = useState(null);
@@ -30,22 +42,20 @@ export const ExercisesList = () => {
         data.map(({ _id, name, bodyPart, target, burnedCalories }) => {
           return (
             <ExerciseWrapper key={_id}>
-             <div>
-               <p>
-                 <strong>WORKOUT</strong>
-               </p>
-               <button>
-                 <p>Start</p>
-                 {/* <svg></svg> */}
-               </button>
-             </div>
+              <ExerciseHeaderWrapper>
+                <CardHeaderTypeWrapper>WORKOUT</CardHeaderTypeWrapper>
+                <CardHeaderButtonWrapper>
+                  <p>Start</p>
+                  <Icon color="orangeColor" name="arrowright" color="orangeColor" />
+                </CardHeaderButtonWrapper>
+              </ExerciseHeaderWrapper>
 
               <div>
                 <div>
                   {/* <svg></svg> */}
                   <Name>{name}</Name>
                 </div>
-                
+
                 <PropertiesWrapper>
                   <li>
                     <PropertyName>

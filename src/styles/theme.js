@@ -7,6 +7,7 @@ export const theme = {
 
   /* accent colors */
   normalColor: "rgba(239, 237, 232, 0.3)",
+  cardColor: "rgba(239, 237, 232, 0.05)",
   hoverColor: "#e6533c",
   successColor: "#3cbf61",
   errorColor: "#d80027",

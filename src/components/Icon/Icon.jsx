@@ -198,6 +198,12 @@ const Profile = ({ size = 26, color = 'currentColor' }) => (
   </svg>
 );
 
+const ArrowRight = ({ size = 16, color = 'orangeColor' }) => {
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 16 16" fill="none">
+    <path d="M7.5 14L14 7.5M14 7.5L7.5 1M14 7.5H1" fill={color} stroke={color} strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>;
+};
+
 const Avatar = ({ size = 16, color = 'currentColor' }) => (
   <svg width={size} height={size} viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path
@@ -210,6 +216,7 @@ const Avatar = ({ size = 16, color = 'currentColor' }) => (
 const Icon = ({ name, color = 'currentColor', ...props }) => {
   return (
     <>
+      {name === 'arrowright' && <ArrowRight color={color} {...props} />}
       {name === 'logo' && <Logo color={color} {...props} />}
       {name === 'line' && <Line color={color} {...props} />}
       {name === 'playBig' && <PlayBig {...props} />}
