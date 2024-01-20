@@ -1,19 +1,30 @@
+import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 import Icon from '../Icon/Icon';
 import { ProfileAvatar } from './Avatar.styled';
 import { NavLink } from 'react-router-dom';
+import { refreshUser } from '../../redux/auth/operations';
 
-const Avatar = ({ foto = '' }) => {
-  const [isAvatar, setIsAvatar] = useState('');
+const Avatar = () => {
+  const dispatch = useDispatch();
+  const { userData } = useSelector((state) => state.auth);
+  const [loading] = useState(false);
+  const [imageURL, setImageURL] = useState('');
 
   useEffect(() => {
-    setIsAvatar(foto);
-  }, [foto]);
+    dispatch(refreshUser());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (userData) {
+      setImageURL(userData.avatarURL);
+    }
+  }, [userData]);
 
   return (
-    <ProfileAvatar data-avatar={isAvatar}>
+    <ProfileAvatar data-avatar={imageURL} data-loading={loading}>
       <NavLink to="/profile" activeclassname="active">
-        {!isAvatar && <Icon name="avatar" />}
+        {!imageURL && <Icon name="avatar" />}
       </NavLink>
     </ProfileAvatar>
   );
