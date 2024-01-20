@@ -11,6 +11,7 @@ const DiaryPage = lazy(() => import('./pages/DiaryPage/DiaryPage'));
 const ProductsPage = lazy(() => import('./pages/ProductsPage/ProductsPage'));
 // const ExercisesPage = lazy(() => import('./pages/ExercisesPage/ExercisesPage'));
 
+const TestPage = lazy(() => import('./pages/TestPage/TestPage'));
 
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
@@ -48,6 +49,7 @@ function App() {
         </Route>
 
         <Route path="/404" element={<ErrorPage />} />
+        <Route path="/test" element={<TestPage />} />
         <Route path="*" element={<Navigate to="404" replace />} />
       </Route>
     </Routes>

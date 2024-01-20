@@ -2,40 +2,50 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ProductsItem } from '../ProductsItem/ProductsItem';
 import { selectUser } from '../../../redux/auth/selectors';
-import ProductsNotFound from '../ProductsNotFound/ProductsNotFound';
 import { productListThunk } from '../../../redux/products/operations';
-import { selectFilteredProducts } from '../../../redux/products/selectors';
+import { selectFilter, selectProductsList } from '../../../redux/products/selectors';
+import { ProductsListContainer, ProductsListItem } from './ProductsList.styled';
+import ProductsNotFound from '../ProductsNotFound/ProductsNotFound';
 
 export const ProductsList = () => {
   const dispatch = useDispatch();
-  const filteredProducts = useSelector(selectFilteredProducts);
-  const user = useSelector(selectUser);
-  const bloodGroup = user.blood;
+
+  const list = useSelector(selectProductsList);
+  const bloodGroup = useSelector(selectUser).blood;
+  const filter = useSelector(selectFilter);
+  const { search, category, recomended } = filter;
 
   useEffect(() => {
-    dispatch(productListThunk());
-  }, [dispatch]);
+    dispatch(
+      productListThunk({
+        recomended: recomended.value,
+        category: category.value,
+        search,
+      })
+    );
+  }, [dispatch, recomended, category, search]);
 
   return (
     <div>
-      {filteredProducts.length === 0 ? (
+      {list.length === 0 ? (
         <ProductsNotFound />
       ) : (
-        <ul>
-          {filteredProducts.map(({ id, weight, calories, category, title, groupBloodNotAllowed }) => {
+        <ProductsListContainer>
+          {list.map(({ _id, weight, calories, category, title, groupBloodNotAllowed }) => {
             return (
-              <ProductsItem
-                key={id}
-                id={id}
-                weight={weight}
-                calories={calories}
-                category={category}
-                title={title}
-                isRecommended={!groupBloodNotAllowed[bloodGroup]}
-              />
+              <ProductsListItem key={_id}>
+                <ProductsItem
+                  id={_id}
+                  weight={weight}
+                  calories={calories}
+                  category={category}
+                  title={title}
+                  isRecomended={!groupBloodNotAllowed[bloodGroup]}
+                />
+              </ProductsListItem>
             );
           })}
-        </ul>
+        </ProductsListContainer>
       )}
     </div>
   );

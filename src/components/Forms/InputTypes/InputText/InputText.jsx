@@ -1,7 +1,7 @@
 import { Label, LabelText, InputWrapper, InputIcon, Input } from './InputText.styled';
 import Icon from 'components/Icon/Icon';
 
-const InputText = ({ type, name, label, value, placeholder, min, max, icon, required, onChange }) => {
+const InputText = ({ type, name, label, value, placeholder, min, max, icon, required, onChange, disabled }) => {
   return (
     <Label>
       {label && <LabelText>{label}</LabelText>}
@@ -16,6 +16,7 @@ const InputText = ({ type, name, label, value, placeholder, min, max, icon, requ
           max={max}
           data-icon={icon}
           onChange={onChange}
+          disabled={disabled}
         />
         {icon && (
           <InputIcon>

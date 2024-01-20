@@ -1,51 +1,76 @@
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
+
 import sprite from '../../../images/sprite.svg';
+import AddProductForm from '../../AddProductForm/AddProductForm';
+import AddProductSuccess from '../../AddProductSuccess/AddProductSuccess';
+import BasicModalWindow from '../../BasicModalWindow/BasicModalWindow';
+import { AddButton, CardHeader, CardInfo, CardTitle, IconRunningFigure } from './ProductsItem.styled';
+import { useState } from 'react';
 
-const openModal = () => {};
+export const ProductsItem = ({ weight, calories, category, title, isRecomended }) => {
+  const [isModalOpen, setOpenModal] = useState(false);
+  const [showSuccessWindow, setShowSuccesWindow] = useState(false);
 
-export const ProductsItem = ({ id, weight, calories, category, title, isRecommended }) => {
-  const dispatch = useDispatch();
+  const toggleModal = () => {
+    setOpenModal((prevState) => !prevState);
+  };
+
+  const toggleSuccessWindow = () => {
+    setShowSuccesWindow((prevState) => !prevState);
+  };
+
+  //   const dispatch = useDispatch();
+
+  //item id
 
   return (
-    <div>
+    <>
+      {isModalOpen && (
+        <BasicModalWindow onClick={toggleModal}>
+          <AddProductForm productName={title} calories={calories} onClick={toggleModal} onClickSuccess={toggleSuccessWindow} />
+        </BasicModalWindow>
+      )}
+      {showSuccessWindow && <BasicModalWindow onClick={toggleSuccessWindow}>{<AddProductSuccess onClick={toggleSuccessWindow} />} </BasicModalWindow>}
       <div>
-        <p>DIET</p>
-        <div>
-          <div></div>
-          <p>{isRecommended ? 'Recommended' : 'Not recommended'}</p>
-        </div>
-        <button type="button" onClick={() => dispatch(openModal(id))}>
-          Add
-          <svg>
-            <use href={`${sprite}#icon-arrow-right`}></use>
-          </svg>
-        </button>
+        <CardHeader>
+          <p>DIET</p>
+          <div>
+            <div></div>
+            <p>{isRecomended ? 'Recommended' : 'Not recommended'}</p>
+          </div>
+          <AddButton type="button" onClick={toggleModal}>
+            Add
+            <svg>
+              <use href={`${sprite}#icon-arrow-right`}></use>
+            </svg>
+          </AddButton>
+        </CardHeader>
+        <CardTitle>
+          <IconRunningFigure>
+            <svg>
+              <use href={`${sprite}#icon-running-figure`}></use>
+            </svg>
+          </IconRunningFigure>
+          <p>{title}</p>
+        </CardTitle>
+        <CardInfo>
+          <li>
+            <p>
+              Calories:<span>{calories}</span>
+            </p>
+          </li>
+          <li>
+            <p>
+              Category:<span>{category}</span>
+            </p>
+          </li>
+          <li>
+            <p>
+              Weight:<span>{weight}</span>
+            </p>
+          </li>
+        </CardInfo>
       </div>
-      <div>
-        <div>
-          <svg>
-            <use href={`${sprite}#icon-running-figure`}></use>
-          </svg>
-        </div>
-        <p>{title}</p>
-      </div>
-      <ul>
-        <li>
-          <p>
-            Calories:<span>{calories}</span>
-          </p>
-        </li>
-        <li>
-          <p>
-            Category:<span>{category}</span>
-          </p>
-        </li>
-        <li>
-          <p>
-            Weight:<span>{weight}</span>
-          </p>
-        </li>
-      </ul>
-    </div>
+    </>
   );
 };

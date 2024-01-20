@@ -1,20 +1,27 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import { useMenu } from '../../../hooks/useMenu';
 
 const Nav = () => {
+  const { menuClose } = useMenu();
+
   return (
-    <nav>
-      <ul>
-        <li>
-          <Link to="/diary">Diary</Link>
-        </li>
-        <li>
-          <Link to="/products">Products</Link>
-        </li>
-        <li>
-          <Link to="/exercises/body-parts">Exercises</Link>
-        </li>
-      </ul>
-    </nav>
+    <ul>
+      <li>
+        <NavLink to="/diary" onClick={menuClose} activeclassname="active">
+          Diary
+        </NavLink>
+      </li>
+      <li>
+        <NavLink to="/products" onClick={menuClose} activeclassname="active">
+          Products
+        </NavLink>
+      </li>
+      <li>
+        <NavLink to="/exercises" onClick={menuClose} activeclassname="active">
+          Exercises
+        </NavLink>
+      </li>
+    </ul>
   );
 };
 

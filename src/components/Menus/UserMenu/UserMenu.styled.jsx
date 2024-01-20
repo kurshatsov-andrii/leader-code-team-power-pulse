@@ -6,6 +6,7 @@ export const UserMenuWrapper = styled.div`
   align-items: center;
   align-content: center;
   gap: 16px;
+  margin-left: auto;
   svg {
     display: block;
     margin: 0;

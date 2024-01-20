@@ -1,6 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { categoriesListThunk, productListThunk } from './operations';
 
+export const recommendedOptions = [
+  { value: 'all', label: 'All' },
+  { value: 'false', label: 'Recommended' },
+  { value: 'true', label: 'Not recommended' },
+];
+
 export const productSlice = createSlice({
   name: 'products',
   initialState: {
@@ -10,8 +16,8 @@ export const productSlice = createSlice({
     error: null,
     filter: {
       search: '',
-      category: '',
-      recomended: '',
+      category: { value: 'all', label: 'Categories' },
+      recomended: recommendedOptions[0],
     },
   },
   reducers: {
@@ -30,7 +36,7 @@ export const productSlice = createSlice({
       .addCase(productListThunk.pending, handlePending)
       .addCase(productListThunk.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.list = payload;
+        state.list = payload.products;
       })
       .addCase(productListThunk.rejected, handleRejected),
 });

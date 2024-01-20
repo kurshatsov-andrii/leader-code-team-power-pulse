@@ -21,6 +21,7 @@
     "@vitejs/plugin-react-swc": "^3.3.2",
     "axios": "^1.6.5",
     "formik": "^2.4.5",
+    "lodash.debounce": "^4.0.8",
     "lodash.throttle": "^4.1.1",
     "modern-normalize": "^2.0.0",
     "normalize.css": "^8.0.1",
@@ -39,7 +40,8 @@
     "redux": "^5.0.1",
     "redux-persist": "^6.0.0",
     "styled-components": "^6.0.7",
-    "uuid": "^9.0.1",    
+    "use-debounce": "^10.0.0",
+    "uuid": "^9.0.1",
     "yup": "^1.3.3"
   },
   "devDependencies": {
