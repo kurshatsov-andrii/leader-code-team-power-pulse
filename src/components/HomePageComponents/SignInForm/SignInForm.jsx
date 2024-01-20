@@ -5,15 +5,16 @@ import { Text } from 'components/Typography';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { clearAllInputs } from 'components/Forms/Form/FormValidation';
-
 import { useDispatch } from 'react-redux';
 import { loginUser } from '../../../redux/auth/operations';
+import { getUserProfile } from '../../../redux/userProfile/operations.js';
 
 const SignInForm = () => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e) => {
+    setIsLoading(true);
     const form = e.target;
     const loginData = {};
     new FormData(form).forEach((value, key) => {
@@ -21,10 +22,8 @@ const SignInForm = () => {
     });
 
     try {
-      setIsLoading(true);
       await dispatch(loginUser(loginData));
-    } catch (error) {
-      console.log(error);
+      await dispatch(getUserProfile());
     } finally {
       setIsLoading(false);
       setTimeout(() => {

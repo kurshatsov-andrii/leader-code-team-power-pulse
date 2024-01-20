@@ -45,7 +45,6 @@ export const loginUser = createAsyncThunk('auth/loginUser', async (dataUser, thu
   try {
     const { data } = await instance.post('auth/login', dataUser);
     token.set(data.token);
-
     return data;
   } catch (error) {
     toastError(`Oops! Something was wrong... ${error.response.data.message}`);
@@ -70,7 +69,6 @@ export const refreshUser = createAsyncThunk(
   async (_, thunkApi) => {
     try {
       const state = thunkApi.getState();
-
       const userToken = state.auth.token;
       token.set(userToken);
       const { data } = await instance.get('auth/current');

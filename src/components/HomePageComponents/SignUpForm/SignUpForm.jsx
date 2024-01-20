@@ -5,14 +5,11 @@ import { Text } from 'components/Typography';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { clearAllInputs } from 'components/Forms/Form/FormValidation';
-
 import { useDispatch } from 'react-redux';
 import { registerUser } from '../../../redux/auth/operations';
-// import { useNavigate } from 'react-router-dom';
 
 const SignUpForm = () => {
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -25,7 +22,6 @@ const SignUpForm = () => {
 
     try {
       await dispatch(registerUser(registerationData));
-      // navigate('/signin');
     } finally {
       setIsLoading(false);
       setTimeout(() => {

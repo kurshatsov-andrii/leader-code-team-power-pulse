@@ -35,7 +35,7 @@ export const getUserProfile = createAsyncThunk('profile/getUserProfile', async (
     const userToken = state.auth.token;
     if (userToken) {
       token.set(userToken);
-      const { data } = await instance.get('profiles');
+      const { data } = await instance.get('auth/current');
       return data;
     }
     return;

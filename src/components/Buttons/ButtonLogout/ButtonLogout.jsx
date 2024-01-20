@@ -2,10 +2,14 @@ import { useDispatch } from 'react-redux';
 import { logOutUser } from '../../../redux/auth/operations';
 import Icon from '../../Icon/Icon';
 import { Logout } from './ButtonLogout.styled';
+import { bodyUnlock } from '../../../helpers/menuFunctions';
 
 const ButtonLogout = () => {
   const dispatch = useDispatch();
-  const handleLogOut = () => dispatch(logOutUser());
+  const handleLogOut = () => {
+    bodyUnlock();
+    dispatch(logOutUser());
+  };
 
   return (
     <Logout onClick={handleLogOut}>
