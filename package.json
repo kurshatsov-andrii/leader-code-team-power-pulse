@@ -20,6 +20,7 @@
     "@table-library/react-table-library": "^4.1.7",
     "@vitejs/plugin-react-swc": "^3.3.2",
     "axios": "^1.6.5",
+    "date-fns": "^3.3.0",
     "formik": "^2.4.5",
     "lodash.debounce": "^4.0.8",
     "lodash.throttle": "^4.1.1",
