@@ -46,7 +46,7 @@ export const ExercisesList = () => {
                 <CardHeaderTypeWrapper>WORKOUT</CardHeaderTypeWrapper>
                 <CardHeaderButtonWrapper>
                   <p>Start</p>
-                  <Icon color="orangeColor" name="arrowright" color="orangeColor" />
+                  <Icon color="orangeColor" name="arrowright" />
                 </CardHeaderButtonWrapper>
               </ExerciseHeaderWrapper>
 
