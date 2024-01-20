@@ -14,6 +14,8 @@
   --hover-color: #e6533c;
   --success-color: #3cbf61;
   --error-color: #d80027;
+  --indicator-green: #419B09;
+  --indicator-red: #E9101D;
 
   /* linear-gradient */
   --linear-gradient: linear-gradient(80deg, #040404 -2.45%, rgba(4, 4, 4, 0) 68.17%);
