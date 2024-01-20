@@ -8,7 +8,7 @@ import { refreshUser } from '../../redux/auth/operations';
 const Avatar = () => {
   const dispatch = useDispatch();
   const { userData } = useSelector((state) => state.auth);
-  const [loading] = useState(false);
+  const loading = useSelector((state) => state.auth.isLoading);
   const [imageURL, setImageURL] = useState('');
 
   useEffect(() => {
