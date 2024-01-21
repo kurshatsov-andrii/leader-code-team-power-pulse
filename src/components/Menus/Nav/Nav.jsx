@@ -17,7 +17,7 @@ const Nav = () => {
         </NavLink>
       </li>
       <li>
-        <NavLink to="/exercises" onClick={menuClose} activeclassname="active">
+        <NavLink to="/exercises/body-part" onClick={menuClose} activeclassname="active">
           Exercises
         </NavLink>
       </li>
