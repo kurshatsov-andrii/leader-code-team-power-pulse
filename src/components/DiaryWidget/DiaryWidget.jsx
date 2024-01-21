@@ -2,27 +2,8 @@ import { StatisticsItem, UserStatistics, TextEl, StatisticsItemLable, AlarmWrapp
 import { Title } from 'components/Typography';
 import Icon from '../Icon/Icon';
 import MediaQuery from 'react-responsive';
-// import { useEffect, useState } from 'react';
 
-const DiaryWidgets = () => {
-  // const [diary, setDiary] = useState();
-
-  // const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   const fetchDiaryList = async () => {
-  //     try {
-  //       const data = await dispatch(getDiaryList('17-01-2024'));
-  //       setDiary(data.payload);
-  //       console.log(data.payload);
-  //     } catch (error) {
-  //       console.error('Error fetching diary:', error);
-  //     }
-  //   };
-
-  //   fetchDiaryList();
-  // }, [dispatch]);
-
+const DiaryWidgets = ({ bmr, targetTime }) => {
   return (
     <StatisticsSection>
       <UserStatistics>
@@ -32,7 +13,7 @@ const DiaryWidgets = () => {
             <TextEl color="rgba(239, 237, 232, 0.80)">Daily calorie intake</TextEl>
           </StatisticsItemLable>
 
-          <Title size="h4">0</Title>
+          <Title size="h4">{bmr}</Title>
         </StatisticsItem>
 
         <StatisticsItem color="var(--orange-color)">
@@ -41,7 +22,7 @@ const DiaryWidgets = () => {
             <TextEl color="rgba(239, 237, 232, 0.80)">Daily physical activity</TextEl>
           </StatisticsItemLable>
 
-          <Title size="h4">0 min</Title>
+          <Title size="h4">{targetTime} min</Title>
         </StatisticsItem>
 
         <StatisticsItem color="rgba(239, 237, 232, 0.05)">

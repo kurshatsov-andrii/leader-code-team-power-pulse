@@ -3,6 +3,7 @@ import MediaQuery from 'react-responsive';
 import { useSelector } from 'react-redux';
 import sprite from '../../../images/sprite.svg';
 import { selectDiaryProducts } from '../../../redux/diary/selectors';
+import { selectUsers } from '../../../redux/auth/selectors';
 import { ProductItem } from '../ProductsItem';
 import {
   DiarySections,
@@ -18,6 +19,7 @@ import {
 
 export const DiaryProducts = () => {
   const products = useSelector(selectDiaryProducts);
+  const user = useSelector(selectUsers);
 
   return (
     <DiarySections>
@@ -56,7 +58,7 @@ export const DiaryProducts = () => {
           <DiaryLists>
             {' '}
             {products.map((product) => (
-              <ProductItem product={product} key={product._id} />
+              <ProductItem product={product} key={product._id} blood={user.blood} />
             ))}{' '}
           </DiaryLists>
         </>

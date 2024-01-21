@@ -4,17 +4,12 @@ import { useDispatch } from 'react-redux';
 import { deleteProduct } from '../../redux/diary/operations';
 import { DiaryCard, DescriptionItem, DiarySupTitle, ValueBox, WrapLastDescrBox, TrashIconWrapper, DiaryTrashButton, Circle } from './Diary.styled';
 
-export const ProductItem = ({ product }) => {
+export const ProductItem = ({ product, blood }) => {
   const {
     _id,
-    product: {
-      title,
-      category: { name },
-      groupBloodNotAllowed,
-    },
-    profile: { blood },
+    productId: { title, category, groupBloodNotAllowed },
     calories,
-    weight,
+    amount,
   } = product;
   const [points, setPoints] = useState(window.innerWidth);
   const handleResize = () => setPoints(window.innerWidth);
@@ -38,7 +33,7 @@ export const ProductItem = ({ product }) => {
       </DescriptionItem>
       <DescriptionItem>
         <DiarySupTitle>Category</DiarySupTitle>
-        <ValueBox width={points < 1440 && points >= 768 ? '128px' : points >= 1440 ? '166px' : '100%'}>{name}</ValueBox>
+        <ValueBox width={points < 1440 && points >= 768 ? '128px' : points >= 1440 ? '166px' : '100%'}>{category}</ValueBox>
       </DescriptionItem>
       <WrapLastDescrBox>
         <DescriptionItem>
@@ -50,7 +45,7 @@ export const ProductItem = ({ product }) => {
         <DescriptionItem>
           <DiarySupTitle>Weight</DiarySupTitle>
           <ValueBox $maxwidth="80px" width={points < 1440 && points >= 768 ? '90px' : points >= 1440 ? '105px' : '100%'}>
-            {weight}
+            {amount}
           </ValueBox>
         </DescriptionItem>
         <DescriptionItem>

@@ -5,7 +5,7 @@ import { instance } from '../auth/operations';
 
 const options = {
   position: 'top-center',
-  autoClose: 3000,
+  autoClose: 5000,
   hideProgressBar: false,
   closeOnClick: true,
   pauseOnHover: true,
@@ -24,7 +24,7 @@ export const toastSuccess = (text) => {
 
 export const getDiaryList = createAsyncThunk('getDiaryList', async (date, thunkAPI) => {
   try {
-    const { data } = await instance.get(`/diary/getDiary?date=${date}`);
+    const { data } = await instance.get(`/diary/getDiary/${date}`);
     return data;
   } catch (error) {
     toastError(`Oops! Something was wrong.... ${error.message}`);

@@ -8,24 +8,7 @@ const initialState = {
   burnedCalories: 0,
   consumedCalories: 0,
   doneExercisesTime: 0,
-  products: [
-    {
-      _id: '1323478ywekfjdnsk',
-      product: {
-        title: 'rice',
-        category: { name: 'flour' },
-        groupBloodNotAllowed: {
-          1: true,
-          2: true,
-          3: false,
-          4: false,
-        },
-      },
-      profile: { blood: 3 },
-      calories: 100,
-      weight: 50,
-    },
-  ],
+  products: [],
   exercises: [],
 };
 
