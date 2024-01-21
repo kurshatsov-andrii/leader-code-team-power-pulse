@@ -73,7 +73,7 @@ const ProfileInfoForm = () => {
           type="date"
           name="birthday"
           label="Date of birth"
-          value={profile && profile.birthday ? profile.birthday : ''}
+          value={profile && profile.birthday ? profile.birthday : new Date()}
           required
           icon="calendar"
         />
