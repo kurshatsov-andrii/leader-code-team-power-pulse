@@ -73,7 +73,7 @@ const ProfileInfoForm = () => {
           type="date"
           name="birthday"
           label="Date of birth"
-          value={profile && profile.birthday ? profile.birthday.split('T')[0] : ''}
+          value={profile && profile.birthday ? profile.birthday : ''}
           required
           icon="calendar"
         />
