@@ -34,4 +34,20 @@
 - [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/DariusBlac) Mykhailo
   Ryzhak **Full Stack Developer**
 
-# Technology
+## Technologies
+
+- React
+- Redux
+- React Router
+- Axios (for API requests)
+- Vite
+
+## API
+
+The application utilizes a backend developed by our team. Feel free to familiarize yourself with it
+[here](https://github.com/kurshatsov-andrii/leader-code-team-power-pulse-back-end)
+
+## Redux State
+
+The Redux store manages the application's state, encompassing tokens, user information such as name, email, avatar image, and the account creation
+date.
