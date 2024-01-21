@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchSpecialCategories, fetchSpecialExercises } from './operations';
+import { changePageNumber, fetchSpecialCategories, fetchSpecialExercises } from './operations';
 
 const handlePending = (state) => {
   state.isLoading = true;
@@ -24,7 +24,7 @@ const exercisesSlice = createSlice({
     builder
       .addCase(fetchSpecialExercises.pending, handlePending)
       .addCase(fetchSpecialExercises.fulfilled, (state, action) => {
-        console.log(action)
+        console.log(action);
         state.isLoading = false;
         state.error = null;
         state.data = action.payload;
@@ -35,7 +35,14 @@ const exercisesSlice = createSlice({
         state.error = null;
         state.data = action.payload;
       })
-      .addCase(fetchSpecialCategories.rejected, handleRejected),
+      .addCase(fetchSpecialCategories.rejected, handleRejected)
+      .addCase(changePageNumber.pending, handlePending)
+      .addCase(changePageNumber.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.currentPage = action.pageNumber;
+      })
+      .addCase(changePageNumber.rejected, handleRejected),
 });
 
 export const exercisesReducer = exercisesSlice.reducer;
