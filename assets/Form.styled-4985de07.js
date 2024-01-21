@@ -1,4 +1,4 @@
-import{u as t}from"./index-2215233b.js";const e=t.form`
+import{u as t}from"./index-07870b95.js";const e=t.form`
   display: flex;
   flex-wrap: wrap;
   width: 100%;
@@ -19,7 +19,8 @@ import{u as t}from"./index-2215233b.js";const e=t.form`
     top: 0px;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 85%);
+    background: rgba(0, 0, 0, 0);
+    backdrop-filter: grayscale(100%);
     z-index: 2;
   }
   &:after {
