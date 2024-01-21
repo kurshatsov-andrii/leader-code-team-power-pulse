@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { InputText, InputPassword, InputHidden, InputSelecte, InputRadio, InputFile } from 'components/Forms';
+import { InputText, InputPassword, InputHidden, InputSelecte, InputRadio, InputFile, InputDate } from 'components/Forms';
 import { validateInput } from './InputValidation';
 
 const Input = ({ type, name, required, label, placeholder, value = '', checked = false, min, max, icon, options, onChange, disabled }) => {
@@ -63,6 +63,8 @@ const Input = ({ type, name, required, label, placeholder, value = '', checked =
           onChange={onChange}
           disabled={disabled}
         />
+      ) : type === 'date' ? (
+        <InputDate label={label} name={name} value={value} onChange={onChange} />
       ) : (
         <InputText
           type={type}

@@ -55,6 +55,16 @@ const UserPage = () => {
           <Input type="select" name="recomended" options={recomended} placeholder="Recomendet" onChange={handleChange} />
         </Fieldset>
       </TitleWrapper>
+      <TitleWrapper>
+        <Title tag="h1" size="h3">
+          Datepeaker
+        </Title>
+        <Fieldset col="3" colTablet="3" colMobil="1">
+          <Input type="text" name="test1" placeholder="test1" />
+          <Input type="text" name="test2" placeholder="test2" />
+          <Input type="date" name="birthday" value="1985-12-11T00:00:00.000Z" />
+        </Fieldset>
+      </TitleWrapper>
     </Section>
   );
 };
