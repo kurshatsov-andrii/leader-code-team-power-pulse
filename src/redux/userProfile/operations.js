@@ -29,21 +29,33 @@ export const token = {
   },
 };
 
-export const getUserProfile = createAsyncThunk('profile/getUserProfile', async (_, thunkApi) => {
-  try {
-    const state = thunkApi.getState();
-    const userToken = state.auth.token;
-    if (userToken) {
-      token.set(userToken);
-      const { data } = await instance.get('auth/current');
-      return data;
+export const getUserProfile = createAsyncThunk(
+  'profile/getUserProfile',
+  async (_, thunkApi) => {
+    try {
+      const state = thunkApi.getState();
+      const userToken = state.auth.token;
+      if (userToken) {
+        token.set(userToken);
+        const { data } = await instance.get('auth/current');
+        return data;
+      }
+      return;
+    } catch (error) {
+      toastError(`Oops! Something was wrong... ${error.response.data.message}`);
+      return thunkApi.rejectWithValue(error.message);
     }
-    return;
-  } catch (error) {
-    toastError(`Oops! Something was wrong... ${error.response.data.message}`);
-    return thunkApi.rejectWithValue(error.message);
+  },
+  {
+    condition: (_, { getState }) => {
+      const state = getState();
+      const token = state.auth.token;
+      if (!token) {
+        return false;
+      }
+    },
   }
-});
+);
 
 export const updateUserProfile = createAsyncThunk('profile/updateUserProfile', async (newData, thunkApi) => {
   try {

@@ -2,7 +2,7 @@ import { SignUp } from '../SignUpForm/SignUpForm.styled';
 import { Form, Input } from 'components/Forms';
 import { Button, ButtonsList } from 'components/Buttons';
 import { Text } from 'components/Typography';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { clearAllInputs } from 'components/Forms/Form/FormValidation';
 import { useDispatch } from 'react-redux';
@@ -11,6 +11,7 @@ import { getUserProfile } from '../../../redux/userProfile/operations.js';
 
 const SignInForm = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -20,15 +21,15 @@ const SignInForm = () => {
     new FormData(form).forEach((value, key) => {
       loginData[key] = value;
     });
-
     try {
       await dispatch(loginUser(loginData));
       await dispatch(getUserProfile());
     } finally {
       setIsLoading(false);
+      clearAllInputs(form);
       setTimeout(() => {
-        clearAllInputs(form);
-      }, 310);
+        navigate('/diary');
+      }, 10);
     }
   };
 
