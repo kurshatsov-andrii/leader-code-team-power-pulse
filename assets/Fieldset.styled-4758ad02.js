@@ -1,4 +1,4 @@
-import{u as e,w as i}from"./index-5c64609a.js";e.div`
+import{u as e,w as i}from"./index-cdfc87f0.js";e.div`
   padding: 6px 12px;
   color: #ffffff;
   background: #3e85f3;
