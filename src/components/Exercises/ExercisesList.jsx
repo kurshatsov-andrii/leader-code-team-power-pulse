@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import {
   CardHeaderButtonWrapper,
@@ -17,11 +17,15 @@ import { ExerciseIcon } from './ExerciseIcon';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchSpecialExercises } from '../../redux/exercises/operations';
 import { selectData, selectLoading } from '../../redux/exercises/selectors';
+import BasicModalWindow from '../BasicModalWindow/BasicModalWindow';
+import ModalTask from './modals/ModalTask';
 
 export const ExercisesList = () => {
   const data = useSelector(selectData);
   const isLoading = useSelector(selectLoading);
   const dispatch = useDispatch();
+
+  const [selectTask, setSelectTask] = useState(null);
 
   console.log(data)
 
@@ -35,48 +39,63 @@ export const ExercisesList = () => {
     return 'loading';
   }
 
+  const onShowModal = (i) => {
+    console.log(data[i]);
+    setSelectTask(data[i]);
+  };
+  const onClick = () => {
+    setSelectTask(null);
+  };
+
   return (
-    <ExercisesListWrapper>
-      {data &&
-        data.map(({ _id, name, bodyPart, target, burnedCalories }) => {
-          return (
-            <ExerciseWrapper key={_id}>
-              <ExerciseHeaderWrapper>
-                <CardHeaderTypeWrapper>WORKOUT</CardHeaderTypeWrapper>
-                <CardHeaderButtonWrapper>
-                  <p>Start</p>
-                  <Arrow />
-                </CardHeaderButtonWrapper>
-              </ExerciseHeaderWrapper>
+    <>
+      {data && selectTask && (
+        <BasicModalWindow onClick={onClick}>
+          <ModalTask exerciseTask={selectTask} />
+        </BasicModalWindow>
+      )}
+      <ExercisesListWrapper>
+        {data &&
+          data.map(({ _id, name, bodyPart, target, burnedCalories }, i) => {
+            return (
+              <ExerciseWrapper key={_id}>
+                <ExerciseHeaderWrapper>
+                  <CardHeaderTypeWrapper>WORKOUT</CardHeaderTypeWrapper>
+                  <CardHeaderButtonWrapper onClick={() => onShowModal(i)}>
+                    <p>Start</p>
+                    <Arrow />
+                  </CardHeaderButtonWrapper>
+                </ExerciseHeaderWrapper>
 
-              <div>
-                <NameWrapper>
-                  <ExerciseIcon />
-                  <Name>{name}</Name>
-                </NameWrapper>
+                <div>
+                  <NameWrapper>
+                    <ExerciseIcon />
+                    <Name>{name}</Name>
+                  </NameWrapper>
 
-                <PropertiesWrapper>
-                  <li>
-                    <PropertyName>
-                      Burned calories: <Property>{burnedCalories}</Property>
-                    </PropertyName>
-                  </li>
-                  <li>
-                    <PropertyName>
-                      Body part: <Property>{bodyPart}</Property>
-                    </PropertyName>
-                  </li>
-                  <li>
-                    <PropertyName color="black">
-                      Target: <Property>{target}</Property>
-                    </PropertyName>
-                  </li>
-                </PropertiesWrapper>
-              </div>
-            </ExerciseWrapper>
-          );
-        })}
-    </ExercisesListWrapper>
+                  <PropertiesWrapper>
+                    <li>
+                      <PropertyName>
+                        Burned calories: <Property>{burnedCalories}</Property>
+                      </PropertyName>
+                    </li>
+                    <li>
+                      <PropertyName>
+                        Body part: <Property>{bodyPart}</Property>
+                      </PropertyName>
+                    </li>
+                    <li>
+                      <PropertyName color="black">
+                        Target: <Property>{target}</Property>
+                      </PropertyName>
+                    </li>
+                  </PropertiesWrapper>
+                </div>
+              </ExerciseWrapper>
+            );
+          })}
+      </ExercisesListWrapper>
+    </>
   );
 };
 

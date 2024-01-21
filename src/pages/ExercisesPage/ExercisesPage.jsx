@@ -16,11 +16,10 @@ function ExercisesPage() {
   return (
     <Container>
       <section>
-        <TitleContent tag="h1" size="h3">
+        <TitleContent $tag="h1" size="h3">
           Exercises
         </TitleContent>
       </section>
-
       <Categories />
       <Outlet />
     </Container>
