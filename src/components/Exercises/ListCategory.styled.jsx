@@ -11,8 +11,8 @@ export const Img = styled.div`
     url(${(props) => props.$imageURL}),
     lightgray -38.124px 0px / 139.843% 99.51% no-repeat;
   background-position: center;
-  padding: 45px 105px;
   background-size: cover;
+  padding: 45px 105px;
 
   display: flex;
   flex-direction: column;
