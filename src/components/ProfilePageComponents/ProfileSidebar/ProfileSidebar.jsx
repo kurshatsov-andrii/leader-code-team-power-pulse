@@ -1,26 +1,56 @@
+import { useSelector, useDispatch } from 'react-redux';
+import { useState, useEffect } from 'react';
 import { Sidebar, SidebarContent, Username, UserStatistic, StatisticItem } from './ProfileSidebar.styled';
 import { Form, Input } from 'components/Forms';
 import { Text, Title, TextContent } from 'components/Typography';
 import { ButtonLogout } from 'components/Buttons';
-
-const testAvatar = ''; //https://fotobam.ru/gallery/VF1A80295.jpg
+import { updateAvatar } from '../../../redux/auth/operations';
 
 const ProfileSidebar = () => {
-  const handleAvatarChange = (e) => {
-    const form = e.target;
-    console.log(form);
+  const dispatch = useDispatch();
+  const { profile } = useSelector((state) => state.profile);
+  const [userName, setUserName] = useState('User Name');
+  const [imageURL, setImageURL] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (profile) {
+      setUserName(profile.name);
+    }
+  }, [profile]);
+
+  const fileReader = new FileReader();
+  fileReader.onloadend = () => {
+    setImageURL(fileReader.result);
+  };
+
+  const uploadPhoto = async (e) => {
+    e.preventDefault();
+    const file = e.target.files[0];
+    fileReader.readAsDataURL(file);
+    setLoading(true);
+
+    try {
+      await dispatch(updateAvatar(file));
+    } catch (error) {
+      if (error.response && error.response.status === 404) {
+        setImageURL(null);
+      }
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <Sidebar>
       <SidebarContent>
-        <Form onSubmit={handleAvatarChange}>
-          <Input type="file" name="avatar" avatar={testAvatar} />
+        <Form>
+          <Input type="file" name="avatar" isLoading={loading} avatar={imageURL} onChange={uploadPhoto} />
         </Form>
 
         <Username>
           <Title tag="h3" size="user">
-            Mirasov Ruslan
+            {userName}
           </Title>
           <Text align="center" color="rgba(239, 237, 232, 0.30)">
             User
