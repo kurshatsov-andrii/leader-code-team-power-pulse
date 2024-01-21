@@ -1,23 +1,13 @@
-import { Ul, Li, Button } from './Categories.styled';
-import { queryCoder } from '../../utils/queryEditior';
+import { Ul, Li, LinkTo } from './Categories.styled';
 
-export const Categories = ({ subPage,  }) => {
+export const Categories = () => {
   const categories = ['Body parts', 'Muscles', 'Equipment'];
-
-  const isActive = (nameCategory) => {
-    return nameCategory === subPage;
-  };
 
   return (
     <Ul>
       {categories.map((category, i) => (
         <Li key={i}>
-          <Button
-            $active={isActive(category)}
-            to={`/exercises/${queryCoder(category)}`}
-          >
-            {category}
-          </Button>
+          <LinkTo to={`/exercises/${category}`}>{category}</LinkTo>
         </Li>
       ))}
     </Ul>

@@ -1,22 +1,20 @@
 import { Ul, Img, Title, SubTitle } from './ListCategory.styled';
-import { Button } from './Categories.styled';
-import { useParams } from 'react-router-dom';
-import { queryCoder } from '../../utils/queryEditior';
-import { useEffect, useState } from 'react';
-import api from '../../services/api';
+import { Link, useParams } from 'react-router-dom';
+import { useEffect,  } from 'react';
+import { fetchSpecialCategories } from '../../redux/exercises/operations';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectData, selectLoading, selectPage } from '../../redux/exercises/selectors';
 
 export const ListCategory = () => {
-  const [exercisesCategories, setExercisesCategories] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-
-  const { category } = useParams();
+  const isLoading = useSelector(selectLoading);
+  const currentPage = useSelector(selectPage);
+  const exercisesCategories = useSelector(selectData);
+  const dispatch = useDispatch();
+  const { category, subcategory } = useParams();
 
   useEffect(() => {
-    api
-      .fetchCategories(category)
-      .then((response) => setExercisesCategories(response))
-      .finally(() => setIsLoading(false));
-  }, [category]);
+    dispatch(fetchSpecialCategories({ filter: category, page: currentPage }));
+  }, [category, subcategory, dispatch, currentPage]);
 
   if (isLoading) {
     return 'loading';
@@ -25,15 +23,15 @@ export const ListCategory = () => {
   return (
     <Ul>
       {exercisesCategories &&
-        exercisesCategories.map(({name, filter, imgURL, _id}) => {
+        exercisesCategories.map(({ name, filter, imgURL, _id }) => {
           return (
             <li key={_id}>
-              <Button to={`/exercises/${category}/${queryCoder(name)}`}>
+              <Link to={`/exercises/${category}/${name}`}>
                 <Img $imageURL={imgURL} alt={name}>
                   <Title>{name}</Title>
                   <SubTitle>{filter}</SubTitle>
                 </Img>
-              </Button>
+              </Link>
             </li>
           );
         })}

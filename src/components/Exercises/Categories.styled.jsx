@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-import styled from "styled-components";
+import { NavLink } from 'react-router-dom';
+import styled from 'styled-components';
 
 export const Ul = styled.ul`
   display: flex;
@@ -16,27 +16,25 @@ export const Li = styled.li`
   line-height: 18px;
 `;
 
-export const Button = styled(Link)`
+export const LinkTo = styled(NavLink)`
   background: transparent;
   color: rgba(239, 237, 232, 0.4);
   border: none;
   height: 28px;
-  ${(props) =>
-    props.$active === true &&
-    `
-  color: #EFEDE8;
-  & {
+  &.active {
+    color: #efede8;
+    & {
       position: relative;
     }
-  &:after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -4px;
-    width: 100%;
-    height: 4px;
-    border-radius: 2px;
-    background-color: #EF8964;
+    &:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 100%;
+      height: 4px;
+      border-radius: 2px;
+      background-color: #ef8964;
+    }
   }
-  `}
 `;

@@ -1,9 +1,8 @@
 import axios from 'axios';
-import { queryDecoder } from '../utils/queryEditior';
 
 const API_URL = 'http://localhost:3002/';
 
-const instance = axios.create({
+export const instance = axios.create({
   baseURL: API_URL,
 });
 
@@ -13,13 +12,12 @@ class APIService {
     return response.data.data;
   };
 
-  fetchExercises = async (bodyPart) => {
+  fetchExercises = async (fiter, bodyPart) => {
     if (!bodyPart) {
       return null;
     }
-    const response = await instance.get('/exercises/');
-    const decodedBodyPart = queryDecoder(bodyPart);
-    return response.data.data.filter((category) => category.bodyPart === decodedBodyPart);
+    const response = await instance.get(`/exercises/${fiter}/${bodyPart}`);
+    return response.data.data;
   };
 }
 

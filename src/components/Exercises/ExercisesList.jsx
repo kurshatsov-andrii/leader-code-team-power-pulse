@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react';
-import api from '../../services/api';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import {
   CardHeaderButtonWrapper,
@@ -15,27 +14,26 @@ import {
 } from './ExercisesList.styled';
 import { Arrow } from './Arrow';
 import { ExerciseIcon } from './ExerciseIcon';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchSpecialExercises } from '../../redux/exercises/operations';
+import { selectData, selectLoading } from '../../redux/exercises/selectors';
 
 export const ExercisesList = () => {
-  const [data, setData] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const data = useSelector(selectData);
+  const isLoading = useSelector(selectLoading);
+  const dispatch = useDispatch();
 
-  const { subcategory } = useParams();
+  console.log(data)
+
+  const { category, subcategory } = useParams();
 
   useEffect(() => {
-    api
-      .fetchExercises(subcategory)
-      .then((response) => setData(response))
-      .finally(() => setIsLoading(false));
-  }, [subcategory]);
+    dispatch(fetchSpecialExercises({ category, subcategory }));
+  }, [dispatch, category, subcategory]);
 
   if (isLoading) {
     return 'loading';
   }
-
-  // equipment: 'barbell';
-  // gifUrl: 'https://ftp.goit.study/img/power-pulse/gifs/0049.gif';
-  // time: 3;
 
   return (
     <ExercisesListWrapper>
