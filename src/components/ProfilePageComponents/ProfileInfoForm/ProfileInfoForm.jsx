@@ -6,20 +6,14 @@ import { updateUser, refreshUser } from '../../../redux/auth/operations';
 
 const ProfileInfoForm = () => {
   const dispatch = useDispatch();
-
   const [isLoading, setIsLoading] = useState(false);
-  // const [userName, setUserName] = useState();
   const { profile } = useSelector((state) => state.profile);
-  // useEffect(() => {
-  //   if (profile) {
-  //     setUserName(profile.name);
-  //   }
-  // }, [profile]);
 
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
 
+  // НИЖЕ НЕ ТРОГАЕМ ===========================================================================
   const handleSubmit = async (e) => {
     setIsLoading(true);
     const form = e.target;
@@ -27,7 +21,6 @@ const ProfileInfoForm = () => {
     new FormData(form).forEach((value, key) => {
       updateData[key] = value;
     });
-
     try {
       await dispatch(updateUser(updateData));
     } finally {

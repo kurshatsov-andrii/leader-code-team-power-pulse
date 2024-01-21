@@ -21,7 +21,8 @@ export const CustomForm = styled.form`
     top: 0px;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 85%);
+    background: rgba(0, 0, 0, 0);
+    backdrop-filter: grayscale(100%);
     z-index: 2;
   }
   &:after {
