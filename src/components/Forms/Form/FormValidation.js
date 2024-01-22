@@ -1,4 +1,4 @@
-import { validateInput } from '../Input/InputValidation';
+import { validateInput, clearErrorInputs } from '../Input/InputValidation';
 
 export const validateForm = (form) => {
   let errorsCount = 0;
@@ -22,6 +22,15 @@ export const clearAllInputs = (form) => {
       const errorText = wrapper.querySelector('em');
       wrapper.classList.remove('valid', 'invalid');
       errorText && errorText.remove();
+    }
+  });
+};
+
+export const clearAllValidations = (form) => {
+  const formData = form.querySelectorAll('input');
+  formData.forEach((input) => {
+    if (input.type !== 'hidden') {
+      clearErrorInputs(input);
     }
   });
 };

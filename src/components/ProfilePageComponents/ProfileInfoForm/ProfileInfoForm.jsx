@@ -1,10 +1,11 @@
+import { clearAllValidations } from '../../Forms/Form/FormValidation.js';
 import { Form, Fieldset, Input } from 'components/Forms';
 import { Button, ButtonsList } from 'components/Buttons';
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { updateUser } from '../../../redux/auth/operations';
-import { getUserProfile } from '../../../redux/userProfile/operations';
 import { refreshUser } from '../../../redux/auth/operations';
+import { getUserProfile } from '../../../redux/userProfile/operations';
 
 const ProfileInfoForm = () => {
   const dispatch = useDispatch();
@@ -46,6 +47,7 @@ const ProfileInfoForm = () => {
       await dispatch(getUserProfile());
       await dispatch(refreshUser());
     } finally {
+      clearAllValidations(form);
       setIsLoading(false);
     }
   };
@@ -57,9 +59,25 @@ const ProfileInfoForm = () => {
         <Input type="email" name="email" label="Email" value={userEmail} placeholder="E-mail" disabled />
       </Fieldset>
       <Fieldset col="4" colTablet="4" colMobil="2">
-        <Input type="number" name="height" label="Height" placeholder="0" min="35" value={userHeight} required />
-        <Input type="number" name="currentWeight" label="Current Weight" placeholder="0" min="35" value={userCurrentWeight} required />
-        <Input type="number" name="desiredWeight" label="Desired Weight" placeholder="0" min="35" value={userDesiredWeight} required />
+        <Input type="number" name="height" label="Height" placeholder="0" min="35" value={userHeight === 0 ? '' : userHeight} required />
+        <Input
+          type="number"
+          name="currentWeight"
+          label="Current Weight"
+          placeholder="0"
+          min="35"
+          value={userCurrentWeight === 0 ? '' : userCurrentWeight}
+          required
+        />
+        <Input
+          type="number"
+          name="desiredWeight"
+          label="Desired Weight"
+          placeholder="0"
+          min="35"
+          value={userDesiredWeight === 0 ? '' : userDesiredWeight}
+          required
+        />
         <Input type="date" name="birthday" label="Date of birth" value={userBirthday} required icon="calendar" />
       </Fieldset>
       <Fieldset col="3" colTablet="3" colMobil="1">

@@ -99,17 +99,18 @@ export const validateInput = (input) => {
     }
   }
 
-  // //password
-  // if (currentInput.type === 'password' && !passwordRegex.test(currentInput.value)) {
-  //   addError(errors.password);
-  // }
-  // //checkboxes
-  // if (currentInput.type === 'checkbox' && currentInput.checked === false) {
-  //   addError(errors.checkbox);
-  // }
-  //radio
-  // if (currentInput.type === 'radio') {
-  //   radiosValidate();
-  // }
   return validationResult;
+};
+
+export const clearErrorInputs = (input) => {
+  const currentInput = input;
+  const fieldsetWrapper = currentInput.closest('fieldset');
+  const labelWrapper = currentInput.type === 'radio' ? fieldsetWrapper : currentInput.closest('label');
+  const wrapper = labelWrapper || fieldsetWrapper;
+  const errorMarkup = wrapper.querySelector('em');
+  wrapper.classList.remove('invalid');
+  wrapper.classList.remove('valid');
+  if (errorMarkup) {
+    errorMarkup.remove();
+  }
 };
