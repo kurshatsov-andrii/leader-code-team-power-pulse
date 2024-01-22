@@ -4,10 +4,11 @@ import { Button, ButtonsList } from 'components/Buttons';
 import { Text } from 'components/Typography';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import { clearAllInputs } from 'components/Forms/Form/FormValidation';
+// import { clearAllInputs } from 'components/Forms/Form/FormValidation';
 import { useDispatch } from 'react-redux';
 import { loginUser } from '../../../redux/auth/operations';
-import { getUserProfile } from '../../../redux/userProfile/operations.js';
+import { getUserProfile } from '../../../redux/userProfile/operations';
+import { refreshUser } from '../../../redux/auth/operations';
 
 const SignInForm = () => {
   const dispatch = useDispatch();
@@ -24,9 +25,9 @@ const SignInForm = () => {
     try {
       await dispatch(loginUser(loginData));
       await dispatch(getUserProfile());
+      await dispatch(refreshUser());
     } finally {
       setIsLoading(false);
-      clearAllInputs(form);
       setTimeout(() => {
         navigate('/diary');
       }, 10);

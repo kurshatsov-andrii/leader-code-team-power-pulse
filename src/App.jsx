@@ -24,18 +24,19 @@ const TestPage = lazy(() => import('./pages/TestPage/TestPage'));
 function App() {
   const dispatch = useDispatch();
   const { isLoggedIn } = useAuth();
-  const blood = useSelector((state) => state.profile.profile.blood) || 0;
+  const birthday = useSelector((state) => state.profile.profile.birthday) || null;
 
   useEffect(() => {
     const fetchData = async () => {
+      await dispatch(getUserProfile());
       await dispatch(refreshUser());
     };
     fetchData();
-    dispatch(getUserProfile());
   }, [dispatch]);
 
-  const isFilled = Number(blood) > 0 ? true : false;
+  const isFilled = birthday ? true : false;
   console.log(isFilled);
+
   return (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
