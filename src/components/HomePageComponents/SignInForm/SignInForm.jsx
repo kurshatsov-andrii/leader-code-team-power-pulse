@@ -2,34 +2,35 @@ import { SignUp } from '../SignUpForm/SignUpForm.styled';
 import { Form, Input } from 'components/Forms';
 import { Button, ButtonsList } from 'components/Buttons';
 import { Text } from 'components/Typography';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import { clearAllInputs } from 'components/Forms/Form/FormValidation';
-
+// import { clearAllInputs } from 'components/Forms/Form/FormValidation';
 import { useDispatch } from 'react-redux';
-import { logIn } from '../../../redux/auth/operations';
+import { loginUser } from '../../../redux/auth/operations';
+import { getUserProfile } from '../../../redux/userProfile/operations';
+import { refreshUser } from '../../../redux/auth/operations';
 
 const SignInForm = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e) => {
+    setIsLoading(true);
     const form = e.target;
     const loginData = {};
     new FormData(form).forEach((value, key) => {
       loginData[key] = value;
     });
-
     try {
-      setIsLoading(true);
-      await dispatch(logIn(loginData));
-    } catch (error) {
-      console.log(error);
+      await dispatch(loginUser(loginData));
+      await dispatch(getUserProfile());
+      await dispatch(refreshUser());
     } finally {
       setIsLoading(false);
       setTimeout(() => {
-        clearAllInputs(form);
-      }, 310);
+        navigate('/diary');
+      }, 10);
     }
   };
 

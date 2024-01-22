@@ -7,7 +7,7 @@ export const Sidebar = styled.aside`
   align-content: flex-start;
   flex-wrap: wrap;
   position: relative;
-  z-index: 1;
+  z-index: 2;
 
   @media screen and (min-width: 1440px) {
     border-left: 1px solid rgba(239, 237, 232, 0.2);

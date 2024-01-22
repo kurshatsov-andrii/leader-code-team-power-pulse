@@ -1,29 +1,29 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ProductsItem } from '../ProductsItem/ProductsItem';
-import { selectUser } from '../../../redux/auth/selectors';
 import { productListThunk } from '../../../redux/products/operations';
 import { selectFilter, selectProductsList } from '../../../redux/products/selectors';
-import { ProductsListContainer, ProductsListItem } from './ProductsList.styled';
+import { ProductCard, ProductsListContainer } from './ProductsList.styled';
 import ProductsNotFound from '../ProductsNotFound/ProductsNotFound';
+import { selectUserBlood } from '../../../redux/userProfile/selectors';
 
 export const ProductsList = () => {
   const dispatch = useDispatch();
 
   const list = useSelector(selectProductsList);
-  const bloodGroup = useSelector(selectUser).blood;
+  const bloodGroup = useSelector(selectUserBlood);
   const filter = useSelector(selectFilter);
   const { search, category, recomended } = filter;
 
   useEffect(() => {
     dispatch(
       productListThunk({
-        recomended: recomended.value,
-        category: category.value,
         search,
+        category: category.value,
+        recomended: recomended.value,
       })
     );
-  }, [dispatch, recomended, category, search]);
+  }, [dispatch, search, category, recomended]);
 
   return (
     <div>
@@ -33,16 +33,16 @@ export const ProductsList = () => {
         <ProductsListContainer>
           {list.map(({ _id, weight, calories, category, title, groupBloodNotAllowed }) => {
             return (
-              <ProductsListItem key={_id}>
+              <ProductCard key={_id}>
                 <ProductsItem
                   id={_id}
                   weight={weight}
                   calories={calories}
                   category={category}
                   title={title}
-                  isRecomended={!groupBloodNotAllowed[bloodGroup]}
+                  isRecomended={!groupBloodNotAllowed[bloodGroup] ? true : false}
                 />
-              </ProductsListItem>
+              </ProductCard>
             );
           })}
         </ProductsListContainer>

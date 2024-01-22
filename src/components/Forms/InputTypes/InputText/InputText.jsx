@@ -15,7 +15,7 @@ const InputText = ({ type, name, label, value, placeholder, min, max, icon, requ
           min={min}
           max={max}
           data-icon={icon}
-          onChange={onChange}
+          onChange={onChange} // Важно использовать onChange, чтобы обновлять значение внешнего компонента
           disabled={disabled}
         />
         {icon && (
