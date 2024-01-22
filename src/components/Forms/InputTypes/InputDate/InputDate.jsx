@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
 import Icon from '../../../Icon/Icon';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -6,6 +6,10 @@ import { CalendarGlobalStyles, Label, InputWrapper, InputIcon, LabelText } from 
 
 const InputDate = ({ label, name, value }) => {
   const [startDate, setStartDate] = useState(new Date(value));
+
+  useEffect(() => {
+    setStartDate(new Date(value));
+  }, [value]);
 
   return (
     <>
