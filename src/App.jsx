@@ -24,16 +24,9 @@ const ExercisesList = lazy(() => import('./components/Exercises/ExerciseList'));
 
 const TestPage = lazy(() => import('./pages/TestPage/TestPage'));
 
-
-import { useDispatch } from 'react-redux';
-import { refreshUser } from './redux/auth/operations';
-import { useAuth } from './hooks/useAuth';
-
-
 function App() {
   const dispatch = useDispatch();
   const { goToParams, isLoggedIn } = useAuth();
-
 
   useEffect(() => {
     const fetchData = async () => {
@@ -43,7 +36,7 @@ function App() {
     fetchData();
   }, [dispatch]);
 
-  const isFilled = birthday ? true : false;
+  const isFilled = false;
 
   return (
     <Routes>
@@ -62,7 +55,6 @@ function App() {
           />
         </Route>
 
-
         <Route path="/" element={isLoggedIn ? <Outlet /> : <Navigate to="/" />}>
           <Route path="diary" element={<DiaryPage />} />
           <Route path="profile" element={<UserPage />} />
@@ -77,8 +69,6 @@ function App() {
         <Route path="/404" element={<ErrorPage />} />
         <Route path="/test" element={<TestPage />} />
         <Route path="*" element={<Navigate to="404" replace />} />
-
-        
       </Route>
       <Route path="*" element={<Navigate to="404" replace />} />
     </Routes>
