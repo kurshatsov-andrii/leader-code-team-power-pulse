@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { getCalories } from '../../redux/diary/selectors';
+import { selectCalories } from '../../redux/diary/selectors';
 
 import sprite from '../../images/sprite.svg';
 import avocado from '../../images/avocado.png';
@@ -17,7 +17,7 @@ import {
 } from './AddProductSuccess.styled';
 
 const AddProductSuccess = ({ onClick }) => {
-  const consumedCalories = useSelector(getCalories);
+  const consumedCalories = useSelector(selectCalories);
 
   return (
     <AddProductSuccessWrap>
