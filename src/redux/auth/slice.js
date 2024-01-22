@@ -8,6 +8,7 @@ const initialState = {
   authenticated: false,
   error: null,
   isLoggedIn: false,
+  isAvatarLoading: false,
   isRefreshing: false,
 };
 
@@ -60,10 +61,10 @@ const authSlice = createSlice({
       })
       // ------------Update Avatar------------
       .addCase(updateAvatar.pending, (state) => {
-        state.isLoading = true;
+        state.isAvatarLoading = true;
       })
       .addCase(updateAvatar.fulfilled, (state, action) => {
-        state.isLoading = false;
+        state.isAvatarLoading = false;
         state.userData.avatarURL = action.payload.avatarURL;
         state.isRefreshing = false;
         state.error = null;

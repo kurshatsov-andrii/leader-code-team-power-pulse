@@ -1,10 +1,18 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { InputText, InputPassword, InputHidden, InputSelecte, InputRadio, InputFile, InputDate } from 'components/Forms';
 import { validateInput } from './InputValidation';
 
 const Input = ({ type, name, required, label, placeholder, value = '', checked = false, min, max, icon, options, onChange, disabled }) => {
   const [inputValue, setInputValue] = useState(value);
   const [inputChecked, setInputChecked] = useState(checked);
+
+  useEffect(() => {
+    setInputValue(value);
+  }, [value]);
+
+  useEffect(() => {
+    setInputChecked(checked);
+  }, [checked]);
 
   const handleChange = (e) => {
     if (required) {
