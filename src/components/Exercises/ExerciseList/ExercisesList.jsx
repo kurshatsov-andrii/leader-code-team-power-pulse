@@ -12,13 +12,13 @@ import {
   Property,
   PropertyName,
 } from './ExercisesList.styled';
-import { Arrow } from './Arrow';
-import { ExerciseIcon } from './ExerciseIcon';
+import { Arrow } from '../Arrow';
+import { ExerciseIcon } from '../ExerciseIcon';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchSpecialExercises } from '../../redux/exercises/operations';
-import { selectData, selectLoading } from '../../redux/exercises/selectors';
-import BasicModalWindow from '../BasicModalWindow/BasicModalWindow';
-import ModalTask from './modals/ModalTask';
+import { fetchSpecialExercises } from '../../../redux/exercises/operations';
+import { selectData, selectLoading } from '../../../redux/exercises/selectors';
+import BasicModalWindow from '../../BasicModalWindow/BasicModalWindow';
+import ModalTask from '../modals/ModalTask';
 
 export const ExercisesList = () => {
   const dispatch = useDispatch();

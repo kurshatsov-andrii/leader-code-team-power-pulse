@@ -1,13 +1,13 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-import { device } from '../../styles/device';
+import { device } from '../../../styles/device';
 
 export const Ul = styled.ul`
   display: flex;
   gap: 28px;
   margin-top: 20px;
   height: 28px;
-  @media(${device.tablet}) {
+  @media (${device.tablet}) {
     margin-top: 0;
     margin-right: 32px;
   }

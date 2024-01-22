@@ -1,8 +1,8 @@
 import { useDispatch } from 'react-redux';
 import { Ul, Li, LinkTo } from './Categories.styled';
-import { changePageNumber } from '../../redux/exercises/operations';
+import { changePageNumber } from '../../../redux/exercises/operations';
 
-export const Categories = () => {
+const Categories = () => {
   const categories = ['Body parts', 'Muscles', 'Equipment'];
   const dispatch = useDispatch();
 
@@ -18,3 +18,5 @@ export const Categories = () => {
     </Ul>
   );
 };
+
+export default Categories

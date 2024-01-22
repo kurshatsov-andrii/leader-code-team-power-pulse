@@ -9,7 +9,9 @@ const UserPage = lazy(() => import('./pages/UserPage/UserPage'));
 const ErrorPage = lazy(() => import('./pages/ErrorPage/ErrorPage'));
 const DiaryPage = lazy(() => import('./pages/DiaryPage/DiaryPage'));
 const ProductsPage = lazy(() => import('./pages/ProductsPage/ProductsPage'));
-// const ExercisesPage = lazy(() => import('./pages/ExercisesPage/ExercisesPage'));
+const ExercisesPage = lazy(() => import('./pages/ExercisesPage/ExercisesPage'));
+const ListCategory = lazy(() => import('./components/Exercises/ListCategory'));
+const ExercisesList = lazy(() => import('./components/Exercises/ExerciseList'));
 
 const TestPage = lazy(() => import('./pages/TestPage/TestPage'));
 
@@ -17,9 +19,6 @@ import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { refreshUser } from './redux/auth/operations';
 import { useAuth } from './hooks/useAuth';
-import ExercisesList from './components/Exercises/ExercisesList';
-import { ListCategory } from './components/Exercises/ListCategory';
-import ExercisesPage from './pages/ExercisesPage/ExercisesPage';
 
 function App() {
   const dispatch = useDispatch();

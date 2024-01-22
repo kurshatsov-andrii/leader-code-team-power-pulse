@@ -1,12 +1,12 @@
 import { Ul, Img, Title, SubTitle, SectionCategories } from './ListCategory.styled';
 import { Link, useLocation, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
-import { fetchSpecialCategories } from '../../redux/exercises/operations';
+import { fetchSpecialCategories } from '../../../redux/exercises/operations';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectData, selectLoading, selectMaxPages, selectPage } from '../../redux/exercises/selectors';
-import Pagination from './Pagination';
+import { selectData, selectLoading, selectMaxPages, selectPage } from '../../../redux/exercises/selectors';
+import Pagination from '../Pagination/Pagination';
 
-export const ListCategory = () => {
+const ListCategory = () => {
   const isLoading = useSelector(selectLoading);
   const exercisesCategories = useSelector(selectData);
   const currentPage = useSelector(selectPage);
@@ -30,7 +30,7 @@ export const ListCategory = () => {
           exercisesCategories.map(({ name, filter, imgURL, _id }) => {
             return (
               <li key={_id}>
-                <Link to={`/exercises/${category}/${name}`} state={{from:  location }}>
+                <Link to={`/exercises/${category}/${name}`} state={{ from: location }}>
                   <Img $imageURL={imgURL} alt={name}>
                     <Title>{name}</Title>
                     <SubTitle>{filter}</SubTitle>
@@ -44,3 +44,5 @@ export const ListCategory = () => {
     </SectionCategories>
   );
 };
+
+export default ListCategory

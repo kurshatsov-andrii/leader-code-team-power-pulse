@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { device } from '../../styles/device';
+import { device } from '../../../styles/device';
 
 export const ExercisesListWrapper = styled.ul`
   display: flex;
