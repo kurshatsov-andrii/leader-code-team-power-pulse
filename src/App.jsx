@@ -1,4 +1,4 @@
-import { lazy } from 'react';
+import { lazy, useEffect } from 'react';
 import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
 
 import SharedLayout from './components/SharedLayout/SharedLayout';
@@ -28,7 +28,6 @@ function App() {
   const dispatch = useDispatch();
   const { goToParams, isLoggedIn } = useAuth();
 
-
   useEffect(() => {
     const fetchData = async () => {
       await dispatch(getUserProfile());
@@ -37,7 +36,7 @@ function App() {
     fetchData();
   }, [dispatch]);
 
-  const isFilled = birthday ? true : false;
+  const isFilled = false;
 
   return (
     <Routes>
@@ -56,7 +55,6 @@ function App() {
           />
         </Route>
 
-
         <Route path="/" element={isLoggedIn ? <Outlet /> : <Navigate to="/" />}>
           <Route path="diary" element={<DiaryPage />} />
           <Route path="profile" element={<UserPage />} />
@@ -71,8 +69,6 @@ function App() {
         <Route path="/404" element={<ErrorPage />} />
         <Route path="/test" element={<TestPage />} />
         <Route path="*" element={<Navigate to="404" replace />} />
-
-        
       </Route>
       <Route path="*" element={<Navigate to="404" replace />} />
     </Routes>
