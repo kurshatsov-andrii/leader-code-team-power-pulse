@@ -24,7 +24,6 @@ const ExercisesList = lazy(() => import('./components/Exercises/ExerciseList'));
 
 const TestPage = lazy(() => import('./pages/TestPage/TestPage'));
 
-
 function App() {
   const dispatch = useDispatch();
   const { goToParams, isLoggedIn } = useAuth();
