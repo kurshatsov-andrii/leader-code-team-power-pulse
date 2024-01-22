@@ -1,1 +1,0 @@
-import{j as e}from"./index-270038b6.js";import{S as r}from"./Section-1e31d191.js";import{T as s}from"./Text.styled-08cea61d.js";const a=()=>e.jsx(r,{children:e.jsx(s,{tag:"h1",size:"h3",children:"Exercises"})});export{a as default};
