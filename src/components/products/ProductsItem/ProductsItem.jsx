@@ -16,7 +16,7 @@ import {
 } from './ProductsItem.styled';
 import { useState } from 'react';
 
-export const ProductsItem = ({ weight, calories, category, title, isRecomended }) => {
+export const ProductsItem = ({ id, weight, calories, category, title, isRecomended }) => {
   const [isModalOpen, setOpenModal] = useState(false);
   const [showSuccessWindow, setShowSuccesWindow] = useState(false);
 
@@ -28,14 +28,31 @@ export const ProductsItem = ({ weight, calories, category, title, isRecomended }
     setShowSuccesWindow((prevState) => !prevState);
   };
 
+  const [consumedCalories, setConsumedCalories] = useState('');
+
+  const getCaloriesAmount = (caloriesAmount) => {
+    setConsumedCalories(caloriesAmount);
+  };
+
   return (
     <>
       {isModalOpen && (
         <BasicModalWindow onClick={toggleModal}>
-          <AddProductForm productName={title} calories={calories} onClick={toggleModal} onClickSuccess={toggleSuccessWindow} />
+          <AddProductForm
+            id={id}
+            productName={title}
+            calories={calories}
+            onClick={toggleModal}
+            onClickSuccess={toggleSuccessWindow}
+            transferCaloriesAmount={getCaloriesAmount}
+          />
         </BasicModalWindow>
       )}
-      {showSuccessWindow && <BasicModalWindow onClick={toggleSuccessWindow}>{<AddProductSuccess onClick={toggleSuccessWindow} />} </BasicModalWindow>}
+      {showSuccessWindow && (
+        <BasicModalWindow onClick={toggleSuccessWindow}>
+          {<AddProductSuccess onClick={toggleSuccessWindow} calories={consumedCalories} />}{' '}
+        </BasicModalWindow>
+      )}
       <CardHeader>
         <DietWrapper>
           <p>Diet</p>
