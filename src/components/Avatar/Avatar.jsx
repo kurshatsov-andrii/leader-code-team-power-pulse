@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 
 const Avatar = () => {
   const { userData } = useSelector((state) => state.auth);
-  const loading = useSelector((state) => state.auth.isLoading);
+  const loading = useSelector((state) => state.auth.isAvatarLoading);
   const [imageURL, setImageURL] = useState('');
 
   useEffect(() => {
