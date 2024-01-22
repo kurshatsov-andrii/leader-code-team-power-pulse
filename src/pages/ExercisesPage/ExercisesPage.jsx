@@ -2,7 +2,7 @@ import { useNavigate, Outlet, useParams, useLocation } from 'react-router-dom';
 import { Container } from '../../styles/container';
 import { Categories } from '../../components/Exercises/Categories';
 import { Title } from 'components/Typography';
-import { useEffect,  useState } from 'react';
+import { useEffect, useState } from 'react';
 import desktop from '../../images/waist-1x.jpg';
 import desktopretina from '../../images/waist-2x.jpg';
 import { SectionPage, SectionBackground, BackButtonWrapper } from './ExercisesPage.styled';
