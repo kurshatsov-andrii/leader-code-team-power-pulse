@@ -7,9 +7,9 @@ import { DiaryCard, DescriptionItem, DiarySupTitle, ValueBox, WrapLastDescrBox, 
 export const ExercisesItem = ({ workout }) => {
   const {
     _id,
-    burnedCalories,
+    calories,
     time,
-    exercise_id: { bodyPart, equipment, name, target },
+    exerciseId: { bodyPart, equipment, name, target },
   } = workout;
   const [points, setPoints] = useState(window.innerWidth);
   const handleResize = () => setPoints(window.innerWidth);
@@ -49,7 +49,7 @@ export const ExercisesItem = ({ workout }) => {
         <DescriptionItem>
           <DiarySupTitle size="80px">Burned Calories</DiarySupTitle>
           <ValueBox $maxwidth="80px" width={points < 1440 && points >= 768 ? '78px' : points >= 1440 ? '91px' : '100%'}>
-            {burnedCalories}
+            {calories}
           </ValueBox>
         </DescriptionItem>
         <DescriptionItem>

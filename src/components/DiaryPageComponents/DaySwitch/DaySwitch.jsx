@@ -66,8 +66,8 @@ const DaySwitch = ({ onDateChange }) => {
   return (
     <>
       <DatePicker
-        minDate={new Date()}
-        maxDate={new Date()}
+        // minDate={new Date()}
+        // maxDate={new Date()}
         selected={startDate}
         onChange={(date) => {
           setStartDate(date);

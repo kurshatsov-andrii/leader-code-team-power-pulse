@@ -35,7 +35,6 @@ function App() {
   }, [dispatch]);
 
   const isFilled = birthday ? true : false;
-  console.log(isFilled);
 
   return (
     <Routes>

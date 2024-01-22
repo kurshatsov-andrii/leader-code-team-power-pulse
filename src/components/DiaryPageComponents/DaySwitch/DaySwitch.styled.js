@@ -1,6 +1,17 @@
 import styled, { createGlobalStyle } from 'styled-components';
 
 export const CalendarGlobalStyles = createGlobalStyle`
+.react-datepicker-wrapper {
+  @media screen and (min-width: 768px) {
+    position: absolute;
+    right: 30px;
+    top: 52px;
+  }
+   @media screen and (min-width: 1440px) {  
+    right: 100px;
+  
+  }
+}
 
   .react-datepicker__wrapper {
     position: relative;
