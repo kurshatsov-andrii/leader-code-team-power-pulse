@@ -18,8 +18,14 @@ import {
   ProductFormWrapper,
 } from './AddProductForm.styled';
 
-const AddProductForm = ({ productName, calories, onClick, onClickSuccess }) => {
-  const [quantity, setQuantity] = useState(0);
+import { format } from 'date-fns';
+import { useDispatch } from 'react-redux';
+import { addDiaryProduct } from '../../redux/diary/operations';
+
+const AddProductForm = ({ id, productName, calories, onClick, onClickSuccess, transferCaloriesAmount }) => {
+  const dispatch = useDispatch();
+
+  const [quantity, setQuantity] = useState('');
 
   const caloriesAmount = Math.round((quantity * calories) / 100);
 
@@ -34,6 +40,12 @@ const AddProductForm = ({ productName, calories, onClick, onClickSuccess }) => {
     theme: 'dark',
   };
 
+  const productData = {
+    productId: id,
+    amount: quantity,
+    date: format(new Date(), 'dd-MM-yyyy'),
+  };
+
   const onClickBtnAdd = (e) => {
     e.preventDefault();
 
@@ -43,8 +55,11 @@ const AddProductForm = ({ productName, calories, onClick, onClickSuccess }) => {
       return;
     }
 
+    dispatch(addDiaryProduct(productData));
+
     onClick();
     onClickSuccess();
+    transferCaloriesAmount(caloriesAmount);
   };
 
   const onClickBtnCancel = () => {
@@ -58,7 +73,7 @@ const AddProductForm = ({ productName, calories, onClick, onClickSuccess }) => {
           <InputName type="text" value={productName} name="productName" disabled />
         </LabelName>
         <LabelQuantity>
-          <InputQuantity type="number" value={quantity} name="productQuantity" onChange={(e) => setQuantity(e.target.value)} />
+          <InputQuantity type="number" value={quantity} name="productQuantity" onChange={(e) => setQuantity(e.target.value)} placeholder="0" />
           <GramsWrap>grams</GramsWrap>
         </LabelQuantity>
         <CaloriesWrap>

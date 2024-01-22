@@ -10,6 +10,7 @@ import Section from 'components/Section/Section';
 import { Title } from 'components/Typography';
 import { ProductsFilters } from '../../components/products/ProductsFilters/ProductsFilters';
 import { ProductsList } from '../../components/products/ProductsList/ProductsList';
+import { ProductsTitleWrapper } from './ProductsPage.styled';
 
 const ProductsPage = () => {
   return (
@@ -23,9 +24,11 @@ const ProductsPage = () => {
         mobilretina,
       }}
     >
-      <Title tag="h1" size="h3">
-        Products
-      </Title>
+      <ProductsTitleWrapper>
+        <Title tag="h1" size="h3">
+          Products
+        </Title>
+      </ProductsTitleWrapper>
       <ProductsFilters></ProductsFilters>
       <ProductsList></ProductsList>
     </Section>

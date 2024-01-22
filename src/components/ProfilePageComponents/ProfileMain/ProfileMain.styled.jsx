@@ -5,7 +5,7 @@ export const Main = styled.main`
   flex-wrap: wrap;
   align-items: flex-start;
   position: relative;
-  z-index: 1;
+  z-index: 3;
 
   @media screen and (max-width: 1439px) {
     width: 100%;
