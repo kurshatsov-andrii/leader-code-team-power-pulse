@@ -2,11 +2,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   FilterContainer,
   FilterLabel,
+  FilterList,
   InputContainer,
-  ProductsFormWrapper,
   ResetButton,
   SearchButton,
-  SelectWrapper,
   categorySelectStyles,
   recomendedSelectStyles,
 } from './ProductsFilters.styled';
@@ -14,7 +13,7 @@ import sprite from '../../../images/sprite.svg';
 import { categoriesListThunk } from '../../../redux/products/operations';
 import { useEffect, useState } from 'react';
 import { selectCategoriesProducts, selectFilter } from '../../../redux/products/selectors';
-import { Form } from 'components/Forms';
+import Form from '../../Forms/Form/Form';
 import { recommendedOptions, setFilter } from '../../../redux/products/slice';
 import Select from 'react-select';
 import { useDebouncedCallback } from 'use-debounce';
@@ -47,6 +46,7 @@ export const ProductsFilters = () => {
     dispatch(categoriesListThunk());
   }, [dispatch]);
 
+  // debounce
   const debouncedSearch = useDebouncedCallback((value) => {
     dispatch(setFilter({ ...filter, search: value }));
   }, 300);
@@ -76,10 +76,10 @@ export const ProductsFilters = () => {
   };
 
   return (
-    <>
+    <FilterContainer>
       <FilterLabel>Filters</FilterLabel>
-      <FilterContainer>
-        <ProductsFormWrapper>
+      <FilterList>
+        <li>
           <Form onSubmit={handleSubmit}>
             <InputContainer type="text" placeholder="Search" name="search" value={search} onChange={handleChange}></InputContainer>
             {search !== '' && (
@@ -95,8 +95,8 @@ export const ProductsFilters = () => {
               </svg>
             </SearchButton>
           </Form>
-        </ProductsFormWrapper>
-        <SelectWrapper>
+        </li>
+        <li>
           <Select
             name="category"
             value={category}
@@ -105,6 +105,8 @@ export const ProductsFilters = () => {
             placeholder="Categories"
             styles={categorySelectStyles}
           ></Select>
+        </li>
+        <li>
           <Select
             name="recomended"
             value={recomended}
@@ -113,8 +115,8 @@ export const ProductsFilters = () => {
             onChange={handleRecomendedSelect}
             styles={recomendedSelectStyles}
           ></Select>
-        </SelectWrapper>
-      </FilterContainer>
-    </>
+        </li>
+      </FilterList>
+    </FilterContainer>
   );
 };

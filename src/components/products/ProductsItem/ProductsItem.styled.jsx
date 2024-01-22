@@ -45,15 +45,57 @@ export const RecomendedWrapper = styled.div`
     margin: auto 0;
     color: var(--white-color);
     font-size: 12px;
-    line-height: 1.5;
+    line-height: 18px;
   }
+`;
+
+export const CardTitle = styled.div`
+  margin-bottom: 8px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+
+  p {
+    font-size: 20px;
+    line-height: 24px;
+    margin: 0;
+  }
+
+  @media screen and (min-width: 768px) {
+    p {
+      font-size: 24px;
+      line-height: 32px;
+    }
+  }
+`;
+
+export const IconRunningFigure = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  background-color: var(--beige-color);
+  border-radius: 50%;
+
+  svg {
+    width: 14px;
+    height: 16px;
+    fill: #efede8;
+    stroke: #efede8;
+  }
+`;
+
+export const CardInfo = styled.ul`
+  display: flex;
+  gap: 16px;
 `;
 
 export const AddButton = styled.button`
   color: var(--orange-color);
   background-color: inherit;
   font-size: 14px;
-  line-height: 1.29;
+  line-height: 18px;
   display: flex;
   align-items: center;
   padding: 1px 0;
@@ -77,96 +119,6 @@ export const AddButton = styled.button`
   @media screen and (min-width: 768px) {
     padding: 4px 0;
     font-size: 16px;
-    line-height: 1.5;
-  }
-`;
-
-export const CardTitle = styled.div`
-  margin-bottom: 8px;
-  display: flex;
-  gap: 16px;
-  align-items: center;
-
-  div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-width: 24px;
-    height: 24px;
-    background-color: var(--beige-color);
-    border-radius: 50%;
-
-    svg {
-      width: 14px;
-      height: 16px;
-      fill: var(--white-color);
-    }
-  }
-
-  p {
-    width: 100%;
-    margin-right: 5px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-size: 20px;
-    line-height: 1.2;
-    text-transform: capitalize;
-  }
-
-  @media screen and (min-width: 768px) {
-    p {
-      font-size: 24px;
-      line-height: 1.33;
-    }
-  }
-
-  @media screen and (min-width: 1440px) {
-    p {
-      margin-right: 0;
-    }
-  }
-`;
-
-// export const IconRunningFigure = styled.div`
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   width: 24px;
-//   height: 24px;
-//   background-color: var(--beige-color);
-//   border-radius: 50%;
-
-//   svg {
-//     width: 14px;
-//     height: 16px;
-//     fill: #efede8;
-//     stroke: #efede8;
-//   }
-// `;
-
-export const CardInfo = styled.ul`
-  display: flex;
-  gap: 16px;
-
-  li p {
-    font-size: 12px;
-    line-height: 1.5;
-    color: rgba(239, 237, 232, 0.4);
-    text-transform: capitalize;
-    span {
-      margin-left: 4px;
-      color: var(--white-color);
-    }
-  }
-`;
-
-export const CategoryWrapper = styled.p`
-  display: flex;
-  span {
-    max-width: 76px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    line-height: 24px;
   }
 `;

@@ -1,28 +1,12 @@
 import styled from 'styled-components';
 
-export const FilterContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-
-  @media screen and (min-width: 768px) {
-    flex-direction: row;
-  }
-
-  @media screen and (min-width: 1440px) {
-    justify-content: flex-end;
-  }
-`;
-
-export const ProductsFormWrapper = styled.div``;
+export const FilterContainer = styled.div``;
 
 export const FilterLabel = styled.p`
-  @media screen and (max-width: 1439px) {
-    display: none;
-  }
+  // @media screen and (max-width: 1439px) {
+  //   display: none;
+  // }
 
-  text-align: right;
-  margin-bottom: 8px;
   visibility: hidden;
   display: none;
   color: rgba(239, 237, 232, 0.5);
@@ -36,10 +20,10 @@ export const FilterLabel = styled.p`
   }
 `;
 
-// export const FilterList = styled.ul`
-//   display: flex;
-//   flex-wrap: wrap;
-// `;
+export const FilterList = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+`;
 
 export const InputContainer = styled.input`
   display: flex;
@@ -117,11 +101,6 @@ export const SearchButton = styled.button`
   @media screen and (min-width: 768px) {
     bottom: 17px;
   }
-`;
-
-export const SelectWrapper = styled.div`
-  display: flex;
-  gap: 16px;
 `;
 
 // ** ------------------------ ** //
