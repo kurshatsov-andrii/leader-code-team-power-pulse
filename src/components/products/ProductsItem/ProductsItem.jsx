@@ -10,11 +10,12 @@ import {
   CardHeaderWrapper,
   CardInfo,
   CardTitle,
+  CategoryWrapper,
   DietWrapper,
-  IconRunningFigure,
   RecomendedWrapper,
 } from './ProductsItem.styled';
 import { useState } from 'react';
+// import { ExerciseIcon } from 'components/Exercises';
 
 export const ProductsItem = ({ id, weight, calories, category, title, isRecomended }) => {
   const [isModalOpen, setOpenModal] = useState(false);
@@ -73,11 +74,13 @@ export const ProductsItem = ({ id, weight, calories, category, title, isRecomend
         </CardHeaderWrapper>
       </CardHeader>
       <CardTitle>
-        <IconRunningFigure>
+        <div>
+          {/* <ExerciseIcon/> */}
           <svg>
             <use href={`${sprite}#icon-running-figure`}></use>
           </svg>
-        </IconRunningFigure>
+          {/* {title} */}
+        </div>
         <p>{title}</p>
       </CardTitle>
       <CardInfo>
@@ -87,9 +90,9 @@ export const ProductsItem = ({ id, weight, calories, category, title, isRecomend
           </p>
         </li>
         <li>
-          <p>
+          <CategoryWrapper>
             Category:<span>{category}</span>
-          </p>
+          </CategoryWrapper>
         </li>
         <li>
           <p>
