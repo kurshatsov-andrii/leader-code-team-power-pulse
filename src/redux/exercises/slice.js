@@ -25,7 +25,6 @@ const exercisesSlice = createSlice({
     builder
       .addCase(fetchSpecialExercises.pending, handlePending)
       .addCase(fetchSpecialExercises.fulfilled, (state, action) => {
-        console.log(action);
         state.isLoading = false;
         state.error = null;
         state.data = action.payload;

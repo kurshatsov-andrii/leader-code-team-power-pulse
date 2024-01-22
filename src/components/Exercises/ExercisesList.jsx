@@ -26,7 +26,6 @@ export const ExercisesList = () => {
   const isLoading = useSelector(selectLoading);
   const [selectTask, setSelectTask] = useState(null);
 
-
   const { category, subcategory } = useParams();
 
   useEffect(() => {

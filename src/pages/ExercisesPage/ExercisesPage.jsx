@@ -1,9 +1,8 @@
 import { useNavigate, Outlet, useParams, useLocation } from 'react-router-dom';
 import { Container } from '../../styles/container';
-import {  Categories } from '../../components/Exercises';
+import { Categories } from '../../components/Exercises';
 import { Title } from 'components/Typography';
-import { useEffect } from 'react';
-// import Section from 'components/Section/Section';
+import { useEffect, useRef, useState } from 'react';
 import desktop from '../../images/waist-1x.jpg';
 import desktopretina from '../../images/waist-2x.jpg';
 import { SectionPage, SectionBackground, BackButtonWrapper } from './ExercisesPage.styled';
@@ -12,14 +11,19 @@ import BackButtonIcon from '../../components/Exercises/BackButton';
 function ExercisesPage() {
   const navigate = useNavigate();
   const { category = 'Body parts', subcategory } = useParams();
-  const location = useLocation()
+  const location = useLocation();
 
-  console.log(location)
+  const [backLocation, setBackLocation] = useState('/exercise');
+
+  console.log(backLocation);
 
   useEffect(() => {
+    if (location.state?.from) {
+      setBackLocation(location.state.from);
+    }
     const navigatePath = subcategory ? `${category}/${subcategory}` : category;
     navigate(navigatePath, { replace: true });
-  }, [navigate, category, subcategory]);
+  }, [navigate, category, subcategory, location.state?.from]);
 
   return (
     <>
@@ -32,9 +36,11 @@ function ExercisesPage() {
       >
         <Container>
           <SectionPage>
-            {subcategory && <BackButtonWrapper>
-              <BackButtonIcon /> Back
-            </BackButtonWrapper>}
+            {subcategory && (
+              <BackButtonWrapper to={backLocation}>
+                <BackButtonIcon /> Back
+              </BackButtonWrapper>
+            )}
             <Title tag="h1" size="h3">
               {subcategory ? subcategory : 'Exercises'}
             </Title>

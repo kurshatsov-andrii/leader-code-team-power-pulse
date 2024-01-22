@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { device } from '../../styles/device';
+import { Link } from 'react-router-dom';
 
 export const SectionBackground = styled.div`
   position: relative;
@@ -39,6 +40,7 @@ export const Title = styled.h1`
 export const SectionPage = styled.div`
   display: flex;
   flex-direction: column;
+  position: relative;
   gap: 20px;
   margin-top: 40px;
   margin-left: 20px;
@@ -57,9 +59,10 @@ export const SectionPage = styled.div`
   }
 `;
 
-export const BackButtonWrapper = styled.button`
+export const BackButtonWrapper = styled(Link)`
   width: fit-content;
   background: transparent;
+  position: absolute;
   padding: 0;
   display: flex;
   gap: 8px;
@@ -67,4 +70,10 @@ export const BackButtonWrapper = styled.button`
   color: rgba(239, 237, 232, 0.4);
   font-size: 16px;
   line-height: 1.5;
+
+  top: -30px;
+
+  @media (${device.tablet}) {
+    top: -46px;
+  }
 `;

@@ -25,9 +25,7 @@ function Pagination({ currentPage, pagesCount }) {
       pages.push(i);
     }
   }
-
-  console.log(pages);
-
+  
   return (
     <PaginationDotsWrapper>
       {pages.map((number) => {
