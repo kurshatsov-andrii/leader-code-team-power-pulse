@@ -1,19 +1,13 @@
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import Icon from '../Icon/Icon';
 import { ProfileAvatar } from './Avatar.styled';
 import { NavLink } from 'react-router-dom';
-import { refreshUser } from '../../redux/auth/operations';
 
 const Avatar = () => {
-  const dispatch = useDispatch();
   const { userData } = useSelector((state) => state.auth);
   const loading = useSelector((state) => state.auth.isLoading);
   const [imageURL, setImageURL] = useState('');
-
-  useEffect(() => {
-    dispatch(refreshUser());
-  }, [dispatch]);
 
   useEffect(() => {
     if (userData) {

@@ -1,25 +1,23 @@
 import { Form, Fieldset, Input } from 'components/Forms';
 import { Button, ButtonsList } from 'components/Buttons';
 import { useSelector, useDispatch } from 'react-redux';
-import { useState, useEffect } from 'react';
-import { updateUser, refreshUser } from '../../../redux/auth/operations';
+import { useState } from 'react';
+import { updateUser } from '../../../redux/auth/operations';
+// import { useEffect } from 'react';
+// import {  refreshUser } from '../../../redux/auth/operations';
+// import { getUserProfile } from '../../../redux/userProfile/operations';
 
 const ProfileInfoForm = () => {
   const dispatch = useDispatch();
-
   const [isLoading, setIsLoading] = useState(false);
-  // const [userName, setUserName] = useState();
-  const { profile } = useSelector((state) => state.profile);
+  const profile = useSelector((state) => state.auth.userData);
+
   // useEffect(() => {
-  //   if (profile) {
-  //     setUserName(profile.name);
-  //   }
-  // }, [profile]);
+  //   dispatch(refreshUser());
+  //   dispatch(getUserProfile());
+  // }, [dispatch]);
 
-  useEffect(() => {
-    dispatch(refreshUser());
-  }, [dispatch]);
-
+  // НИЖЕ НЕ ТРОГАЕМ ===========================================================================
   const handleSubmit = async (e) => {
     setIsLoading(true);
     const form = e.target;
@@ -27,7 +25,6 @@ const ProfileInfoForm = () => {
     new FormData(form).forEach((value, key) => {
       updateData[key] = value;
     });
-
     try {
       await dispatch(updateUser(updateData));
     } finally {
@@ -73,7 +70,7 @@ const ProfileInfoForm = () => {
           type="date"
           name="birthday"
           label="Date of birth"
-          value={profile && profile.birthday ? profile.birthday.split('T')[0] : ''}
+          value={profile && profile.birthday ? profile.birthday : new Date()}
           required
           icon="calendar"
         />

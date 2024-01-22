@@ -1,5 +1,5 @@
 //react imports
-import { lazy, useState, useEffect } from 'react';
+import { lazy, useEffect } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import SharedLayout from './components/SharedLayout/SharedLayout';
 
@@ -24,24 +24,18 @@ const TestPage = lazy(() => import('./pages/TestPage/TestPage'));
 function App() {
   const dispatch = useDispatch();
   const { isLoggedIn } = useAuth();
-  const [userBlood, setUserBlood] = useState('0');
-  const { profile } = useSelector((state) => state.profile);
-
-  useEffect(() => {
-    if (profile) {
-      setUserBlood(profile.blood);
-    }
-  }, [profile]);
+  const birthday = useSelector((state) => state.profile.profile.birthday) || null;
 
   useEffect(() => {
     const fetchData = async () => {
       await dispatch(getUserProfile());
+      await dispatch(refreshUser());
     };
     fetchData();
-    dispatch(refreshUser());
   }, [dispatch]);
 
-  const isFilled = Number(userBlood) > 0 ? true : false;
+  const isFilled = birthday ? true : false;
+  console.log(isFilled);
 
   return (
     <Routes>
@@ -61,24 +55,23 @@ function App() {
         </Route>
         <Route
           path="diary"
-          element={isLoggedIn && isFilled ? <DiaryPage /> : isLoggedIn ? <Navigate to="/profile" replace /> : <Navigate to="/signin" replace />}
-        />
-
-        <Route
-          path="/exercises"
-          element={isLoggedIn && isFilled ? <ExercisesPage /> : isLoggedIn ? <Navigate to="/profile" replace /> : <Navigate to="/signin" replace />}
+          element={!isLoggedIn ? <Navigate to="/signin" replace /> : isLoggedIn && !isFilled ? <Navigate to="/profile" replace /> : <DiaryPage />}
         />
         <Route
-          path="/products"
-          element={isLoggedIn && isFilled ? <ProductsPage /> : isLoggedIn ? <Navigate to="/profile" replace /> : <Navigate to="/signin" replace />}
+          path="exercises"
+          element={!isLoggedIn ? <Navigate to="/signin" replace /> : isLoggedIn && !isFilled ? <Navigate to="/profile" replace /> : <ExercisesPage />}
         />
         <Route
-          path="/waist"
-          element={isLoggedIn && isFilled ? <WaistPage /> : isLoggedIn ? <Navigate to="/profile" replace /> : <Navigate to="/signin" replace />}
+          path="products"
+          element={!isLoggedIn ? <Navigate to="/signin" replace /> : isLoggedIn && !isFilled ? <Navigate to="/profile" replace /> : <ProductsPage />}
         />
-        <Route path="/profile" element={isLoggedIn ? <UserPage /> : <Navigate to="/signin" replace />} />
-        <Route path="/test" element={<TestPage />} />
-        <Route path="/404" element={<ErrorPage />} />
+        <Route
+          path="waist"
+          element={!isLoggedIn ? <Navigate to="/signin" replace /> : isLoggedIn && !isFilled ? <Navigate to="/profile" replace /> : <WaistPage />}
+        />
+        <Route path="profile" element={!isLoggedIn ? <Navigate to="/signin" replace /> : <UserPage />} />
+        <Route path="test" element={<TestPage />} />
+        <Route path="404" element={<ErrorPage />} />
       </Route>
       <Route path="*" element={<Navigate to="404" replace />} />
     </Routes>

@@ -7,6 +7,8 @@ import { useState } from 'react';
 import { clearAllInputs } from 'components/Forms/Form/FormValidation';
 import { useDispatch } from 'react-redux';
 import { registerUser, loginUser } from '../../../redux/auth/operations';
+import { refreshUser } from '../../../redux/auth/operations';
+import { getUserProfile } from '../../../redux/userProfile/operations';
 
 const SignUpForm = () => {
   const dispatch = useDispatch();
@@ -27,10 +29,12 @@ const SignUpForm = () => {
       await dispatch(registerUser(registerationData));
       await dispatch(loginUser(loginData));
     } finally {
+      await dispatch(getUserProfile(registerationData));
+      await dispatch(refreshUser(registerationData));
       setIsLoading(false);
       setTimeout(() => {
         clearAllInputs(form);
-      }, 310);
+      }, 500);
     }
   };
 

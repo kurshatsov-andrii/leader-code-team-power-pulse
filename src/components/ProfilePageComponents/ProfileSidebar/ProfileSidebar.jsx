@@ -8,16 +8,20 @@ import { updateAvatar } from '../../../redux/auth/operations';
 
 const ProfileSidebar = () => {
   const dispatch = useDispatch();
-  const { profile } = useSelector((state) => state.profile);
+  const { userData } = useSelector((state) => state.auth);
   const [userName, setUserName] = useState('User Name');
+  const [targetTime, setTargetTime] = useState('0');
+  const [bmr, setBmr] = useState('0');
   const [imageURL, setImageURL] = useState('');
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (profile) {
-      setUserName(profile.name);
+    if (userData) {
+      setUserName(userData.name);
+      setTargetTime(userData.targetTime);
+      setBmr(userData.bmr);
     }
-  }, [profile]);
+  }, [userData]);
 
   const fileReader = new FileReader();
   fileReader.onloadend = () => {
@@ -62,13 +66,13 @@ const ProfileSidebar = () => {
             <Text size="small" icon="knife">
               Daily calorie intake
             </Text>
-            <Title size="h5">0</Title>
+            <Title size="h5">{bmr}</Title>
           </StatisticItem>
           <StatisticItem>
             <Text size="small" icon="dumbbell">
               Daily physical activity
             </Text>
-            <Title size="h5">0 min</Title>
+            <Title size="h5">{targetTime} min</Title>
           </StatisticItem>
           <Text size="big" color="rgba(239, 237, 232, 0.30)" icon="alarm">
             We understand that each individual is unique, so the entire approach to diet is relative and tailored to your unique body and goals.
