@@ -3,15 +3,18 @@ import { Link, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { fetchSpecialCategories } from '../../redux/exercises/operations';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectData, selectLoading, selectPage } from '../../redux/exercises/selectors';
+import { selectData, selectLoading, selectMaxPages, selectPage } from '../../redux/exercises/selectors';
 import Pagination from './Pagination';
 
 export const ListCategory = () => {
   const isLoading = useSelector(selectLoading);
-  const currentPage = useSelector(selectPage);
   const exercisesCategories = useSelector(selectData);
+  const currentPage = useSelector(selectPage);
+  const maxPages = useSelector(selectMaxPages);
   const dispatch = useDispatch();
   const { category, subcategory } = useParams();
+
+  console.log(exercisesCategories);
 
   useEffect(() => {
     dispatch(fetchSpecialCategories({ filter: category, page: currentPage }));
@@ -38,7 +41,7 @@ export const ListCategory = () => {
             );
           })}
       </Ul>
-      <Pagination />
+      {maxPages > 1 && <Pagination currentPage={currentPage} pagesCount={maxPages} />}
     </>
   );
 };

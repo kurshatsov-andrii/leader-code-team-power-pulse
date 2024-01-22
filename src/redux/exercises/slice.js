@@ -15,6 +15,7 @@ const exercisesSlice = createSlice({
   name: 'exercises',
   initialState: {
     data: null,
+    maxPages: 1,
     currentPage: 1,
     perPage: 10,
     isLoading: false,
@@ -33,14 +34,15 @@ const exercisesSlice = createSlice({
       .addCase(fetchSpecialCategories.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.data = action.payload;
+        state.data = action.payload.data;
+        state.maxPages = action.payload.maxPages
       })
       .addCase(fetchSpecialCategories.rejected, handleRejected)
       .addCase(changePageNumber.pending, handlePending)
       .addCase(changePageNumber.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.currentPage = action.pageNumber;
+        state.currentPage = action.payload;
       })
       .addCase(changePageNumber.rejected, handleRejected),
 });

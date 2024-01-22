@@ -21,13 +21,11 @@ import BasicModalWindow from '../BasicModalWindow/BasicModalWindow';
 import ModalTask from './modals/ModalTask';
 
 export const ExercisesList = () => {
+  const dispatch = useDispatch();
   const data = useSelector(selectData);
   const isLoading = useSelector(selectLoading);
-  const dispatch = useDispatch();
-
   const [selectTask, setSelectTask] = useState(null);
 
-  console.log(data)
 
   const { category, subcategory } = useParams();
 
