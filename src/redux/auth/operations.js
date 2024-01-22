@@ -31,7 +31,7 @@ const toastInfo = (text) => {
 };
 
 export const instance = axios.create({
-  baseURL: 'https://leader-code-team-power-pulse-back-end.onrender.com/api/',
+  baseURL: 'https://leader-code-team-power-pulse-back-end.onrender.com/',
 });
 
 export const token = {
@@ -45,7 +45,7 @@ export const token = {
 
 export const registerUser = createAsyncThunk('auth/registerUser', async (dataUser, thunkApi) => {
   try {
-    const { data } = await instance.post('auth/register', dataUser);
+    const { data } = await instance.post('api/auth/register', dataUser);
     token.set(data.token);
     toastInfo('A new user has been successfully registered!');
     return data;
@@ -57,7 +57,7 @@ export const registerUser = createAsyncThunk('auth/registerUser', async (dataUse
 
 export const loginUser = createAsyncThunk('auth/loginUser', async (dataUser, thunkApi) => {
   try {
-    const { data } = await instance.post('auth/login', dataUser);
+    const { data } = await instance.post('api/auth/login', dataUser);
     token.set(data.token);
     return data;
   } catch (error) {
@@ -68,7 +68,7 @@ export const loginUser = createAsyncThunk('auth/loginUser', async (dataUser, thu
 
 export const logOutUser = createAsyncThunk('auth/logOutUser', async (_, thunkApi) => {
   try {
-    await instance.post('auth/logout');
+    await instance.post('api/auth/logout');
     token.clear();
 
     return;
@@ -85,7 +85,7 @@ export const refreshUser = createAsyncThunk(
       const state = thunkApi.getState();
       const userToken = state.auth.token;
       token.set(userToken);
-      const { data } = await instance.get('auth/current');
+      const { data } = await instance.get('api/auth/current');
       return data;
     } catch (error) {
       toastError(`Oops! Something was wrong... ${error.response.data.message}`);
@@ -105,7 +105,7 @@ export const refreshUser = createAsyncThunk(
 
 export const updateUser = createAsyncThunk('auth/updateUser', async (newData, thunkApi) => {
   try {
-    const res = await instance.patch('auth/profile', newData);
+    const res = await instance.patch('api/auth/profile', newData);
     toastInfo('The form has been submitted successfully!');
     return res.data;
   } catch (error) {
@@ -119,7 +119,7 @@ export const updateAvatar = createAsyncThunk('auth/updateAvatar', async (file, t
   try {
     const formData = new FormData();
     formData.append('avatar', file);
-    const res = await instance.patch('auth/avatar', formData);
+    const res = await instance.patch('api/auth/avatar', formData);
     return res.data;
   } catch (error) {
     toastError(`Oops! Something was wrong... ${error.response.data.message}`);

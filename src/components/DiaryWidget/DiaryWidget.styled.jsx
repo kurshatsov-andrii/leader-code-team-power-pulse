@@ -5,6 +5,10 @@ export const StatisticsSection = styled.section`
   flex-direction: column;
   gap: 20px;
 
+  @media screen and (max-width: 767px) {
+    margin-bottom: 40px;
+  }
+
   @media screen and (min-width: 768px) {
     width: 593px;
     gap: 32px;
