@@ -1,4 +1,4 @@
-import{u as i,j as t}from"./index-9e1b2b0d.js";const p=i.div`
+import{u as i,j as t}from"./index-6b6e08b5.js";const p=i.div`
   display: inline-flex;
   flex-wrap: wrap;
   width: 100%;
@@ -35,6 +35,10 @@ import{u as i,j as t}from"./index-9e1b2b0d.js";const p=i.div`
   position: relative;
   font-family: 'RobotoMedium';
   font-weight: 500;
+
+  &::first-letter {
+    text-transform: capitalize;
+  }
 
   span {
     display: inline-flex;
