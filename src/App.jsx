@@ -1,4 +1,4 @@
-import { lazy } from 'react';
+import { lazy, useEffect } from 'react';
 import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
 import SharedLayout from './components/SharedLayout/SharedLayout';
 
@@ -16,7 +16,6 @@ const ExercisesList = lazy(() => import('./components/Exercises/ExerciseList'));
 const TestPage = lazy(() => import('./pages/TestPage/TestPage'));
 
 import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
 import { refreshUser } from './redux/auth/operations';
 import { useAuth } from './hooks/useAuth';
 
