@@ -6,6 +6,10 @@ export const TitleContent = styled.span`
   font-family: 'RobotoMedium';
   font-weight: 500;
 
+  &::first-letter {
+    text-transform: capitalize;
+  }
+
   span {
     display: inline-flex;
     flex-wrap: wrap;

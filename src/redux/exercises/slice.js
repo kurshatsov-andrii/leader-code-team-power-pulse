@@ -1,10 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {
-  fetchBodyParts,
-  fetchEquipment,
-  fetchExercises,
-  fetchMuscules,
-} from './operations';
+import { changePageNumber, fetchSpecialCategories, fetchSpecialExercises } from './operations';
 
 const handlePending = (state) => {
   state.isLoading = true;
@@ -19,42 +14,36 @@ const handleRejected = (state, action) => {
 const exercisesSlice = createSlice({
   name: 'exercises',
   initialState: {
-    exercises: [],
-    bodyParts: [],
-    muscules: [],
-    equipment: [],
+    data: null,
+    maxPages: 1,
+    currentPage: 1,
+    perPage: 10,
     isLoading: false,
     error: null,
   },
   extraReducers: (builder) =>
     builder
-      .addCase(fetchExercises.pending, handlePending)
-      .addCase(fetchExercises.fulfilled, (state, action) => {
+      .addCase(fetchSpecialExercises.pending, handlePending)
+      .addCase(fetchSpecialExercises.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.exercises = action.payload;
+        state.data = action.payload;
       })
-      .addCase(fetchBodyParts.pending, handlePending)
-      .addCase(fetchBodyParts.fulfilled, (state, action) => {
+      .addCase(fetchSpecialCategories.pending, handlePending)
+      .addCase(fetchSpecialCategories.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.bodyParts = action.payload;
+        state.data = action.payload.data;
+        state.maxPages = action.payload.maxPages
       })
-      .addCase(fetchBodyParts.rejected, handleRejected)
-      .addCase(fetchMuscules.pending, handlePending)
-      .addCase(fetchMuscules.fulfilled, (state, action) => {
+      .addCase(fetchSpecialCategories.rejected, handleRejected)
+      .addCase(changePageNumber.pending, handlePending)
+      .addCase(changePageNumber.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.muscules = action.payload;
+        state.currentPage = action.payload;
       })
-      .addCase(fetchMuscules.rejected, handleRejected)
-      .addCase(fetchEquipment.pending, handlePending)
-      .addCase(fetchEquipment.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.error = null;
-        state.equipment = action.payload;
-      })
-      .addCase(fetchEquipment.rejected, handleRejected),
+      .addCase(changePageNumber.rejected, handleRejected),
 });
 
 export const exercisesReducer = exercisesSlice.reducer;
