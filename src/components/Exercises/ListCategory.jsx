@@ -1,4 +1,4 @@
-import { Ul, Img, Title, SubTitle } from './ListCategory.styled';
+import { Ul, Img, Title, SubTitle, SectionCategories } from './ListCategory.styled';
 import { Link, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { fetchSpecialCategories } from '../../redux/exercises/operations';
@@ -25,7 +25,7 @@ export const ListCategory = () => {
   }
 
   return (
-    <>
+    <SectionCategories>
       <Ul>
         {exercisesCategories &&
           exercisesCategories.map(({ name, filter, imgURL, _id }) => {
@@ -42,6 +42,6 @@ export const ListCategory = () => {
           })}
       </Ul>
       {maxPages > 1 && <Pagination currentPage={currentPage} pagesCount={maxPages} />}
-    </>
+    </SectionCategories>
   );
 };

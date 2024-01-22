@@ -37,9 +37,8 @@ export const ExercisesList = () => {
     return 'loading';
   }
 
-  const onShowModal = (i) => {
-    console.log(data[i]);
-    setSelectTask(data[i]);
+  const onShowModal = (task) => {
+    setSelectTask(task);
   };
   const onClick = () => {
     setSelectTask(null);
@@ -54,12 +53,12 @@ export const ExercisesList = () => {
       )}
       <ExercisesListWrapper>
         {data &&
-          data.map(({ _id, name, bodyPart, target, burnedCalories }, i) => {
+          data.map(({ _id, name, bodyPart, target, burnedCalories, time, equipment }) => {
             return (
               <ExerciseWrapper key={_id}>
                 <ExerciseHeaderWrapper>
                   <CardHeaderTypeWrapper>WORKOUT</CardHeaderTypeWrapper>
-                  <CardHeaderButtonWrapper onClick={() => onShowModal(i)}>
+                  <CardHeaderButtonWrapper onClick={() => onShowModal({ _id, name, bodyPart, target, equipment, time, burnedCalories })}>
                     <p>Start</p>
                     <Arrow />
                   </CardHeaderButtonWrapper>

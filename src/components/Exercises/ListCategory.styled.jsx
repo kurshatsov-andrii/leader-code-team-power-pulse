@@ -1,6 +1,13 @@
 import styled from 'styled-components';
 import { device } from '../../styles/device';
 
+export const SectionCategories = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
 export const Img = styled.div`
   width: 335px;
   height: 206px;
@@ -29,11 +36,17 @@ export const Img = styled.div`
 `;
 
 export const Ul = styled.ul`
-  margin-top: 40px;
   margin-left: 20px;
   display: flex;
+  align-items: center;
   gap: 20px;
   flex-wrap: wrap;
+  @media (${device.tablet}) {
+    gap: 20px 16px;
+  }
+  @media (${device.desktop}) {
+    justify-content: center;
+  }
 `;
 
 export const Title = styled.h2`
