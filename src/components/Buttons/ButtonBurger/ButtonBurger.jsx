@@ -5,8 +5,8 @@ import { useSelector } from 'react-redux';
 
 const ButtonBurger = () => {
   const { activeClass, menuToggle } = useMenu();
-  const { profile } = useSelector((state) => state.profile);
-  const isFilled = profile && Number(profile.blood) > 0 ? true : false;
+  const birthday = useSelector((state) => state.profile.profile.birthday) || null;
+  const isFilled = birthday ? true : false;
 
   return (
     <MediaQuery maxWidth={1439}>

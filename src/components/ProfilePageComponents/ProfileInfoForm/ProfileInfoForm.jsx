@@ -1,17 +1,21 @@
 import { Form, Fieldset, Input } from 'components/Forms';
 import { Button, ButtonsList } from 'components/Buttons';
 import { useSelector, useDispatch } from 'react-redux';
-import { useState, useEffect } from 'react';
-import { updateUser, refreshUser } from '../../../redux/auth/operations';
+import { useState } from 'react';
+import { updateUser } from '../../../redux/auth/operations';
+// import { useEffect } from 'react';
+// import {  refreshUser } from '../../../redux/auth/operations';
+// import { getUserProfile } from '../../../redux/userProfile/operations';
 
 const ProfileInfoForm = () => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
-  const { profile } = useSelector((state) => state.profile);
+  const profile = useSelector((state) => state.auth.userData);
 
-  useEffect(() => {
-    dispatch(refreshUser());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(refreshUser());
+  //   dispatch(getUserProfile());
+  // }, [dispatch]);
 
   // НИЖЕ НЕ ТРОГАЕМ ===========================================================================
   const handleSubmit = async (e) => {

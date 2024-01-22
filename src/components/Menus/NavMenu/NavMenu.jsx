@@ -4,8 +4,8 @@ import { NavigationMenu } from './NavMenu.styled';
 import { useSelector } from 'react-redux';
 
 const NavMenu = () => {
-  const { profile } = useSelector((state) => state.profile);
-  const isFilled = profile && Number(profile.blood) > 0 ? true : false;
+  const birthday = useSelector((state) => state.profile.profile.birthday) || null;
+  const isFilled = birthday ? true : false;
   return (
     <MediaQuery minWidth={1440}>
       {isFilled && (
