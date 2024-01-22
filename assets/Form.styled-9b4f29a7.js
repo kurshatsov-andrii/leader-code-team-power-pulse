@@ -1,4 +1,4 @@
-import{u as t}from"./index-07870b95.js";const e=t.form`
+import{u as t}from"./index-67b672d6.js";const e=t.form`
   display: flex;
   flex-wrap: wrap;
   width: 100%;
