@@ -199,5 +199,8 @@
 		<symbol id="icon-calendar-right" viewBox="0 0 19 32">
 			<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="4.8" d="M3.2 3.2l12.8 12.8-12.8 12.8"></path>
 		</symbol>
+		<symbol id="icon-arrow" viewBox="0 0 32 32">
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.6" d="M15 28l13-13M28 15l-13-13M28 15h-26"></path>
+</symbol>
 	</defs>
 </svg>
