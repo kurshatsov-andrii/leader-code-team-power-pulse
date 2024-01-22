@@ -56,3 +56,15 @@ export const SectionPage = styled.div`
     margin-right: 60px;
   }
 `;
+
+export const BackButtonWrapper = styled.button`
+  width: fit-content;
+  background: transparent;
+  padding: 0;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  color: rgba(239, 237, 232, 0.4);
+  font-size: 16px;
+  line-height: 1.5;
+`;
