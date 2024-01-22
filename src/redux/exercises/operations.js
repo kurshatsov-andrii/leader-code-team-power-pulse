@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { instance } from '../../services/api';
+import { instance } from '../auth/operations';
 
 export const fetchSpecialCategories = createAsyncThunk('exercises/fetchSpecialCategories', async (params, thunkAPI) => {
   const { filter, page } = params;
