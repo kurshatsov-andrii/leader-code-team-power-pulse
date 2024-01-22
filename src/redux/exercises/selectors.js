@@ -1,4 +1,11 @@
 export const selectLoading = (state) => state.exercises.loading;
-export const selectData = (state) => state.exercises.data;
-export const selectPage = (state) => state.exercises.currentPage;
-export const selectMaxPages = (state) => state.exercises.maxPages;
+
+export const selectFilter = (state) => state.exercises.filter;
+
+export const selectExercises = (state) => state.exercises.exercises;
+
+export const selectBodyParts = (state) => state.exercises.bodyParts;
+
+export const selectMuscules = (state) => state.exercises.muscules;
+
+export const selectEquipment = (state) => state.exercises.equipment;

@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const HeaderContainer = styled.header`
@@ -6,7 +5,7 @@ export const HeaderContainer = styled.header`
   flex-wrap: wrap;
   align-items: center;
   align-content: center;
-  position: sticky;
+  position: fixed;
   left: 0px;
   top: 0px;
   width: 100%;
@@ -35,8 +34,6 @@ export const HeaderContainer = styled.header`
   }
 `;
 
-export const Navigation = styled.nav``
-
 export const Container = styled.div`
   display: flex;
   width: 100%;
@@ -59,8 +56,4 @@ export const Container = styled.div`
     max-width: 1440px;
     padding: 0px 96px;
   }
-`;
-
-export const StyledLink = styled(Link)`
-
 `;
