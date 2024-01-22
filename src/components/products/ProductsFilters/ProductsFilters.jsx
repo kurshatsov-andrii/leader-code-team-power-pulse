@@ -2,22 +2,24 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   FilterContainer,
   FilterLabel,
-  FilterList,
   InputContainer,
+  ProductsFormWrapper,
   ResetButton,
   SearchButton,
+  SelectWrapper,
   categorySelectStyles,
   recomendedSelectStyles,
 } from './ProductsFilters.styled';
 import sprite from '../../../images/sprite.svg';
 import { categoriesListThunk } from '../../../redux/products/operations';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { selectCategoriesProducts, selectFilter } from '../../../redux/products/selectors';
-import Form from '../../Forms/Form/Form';
+import { Form } from 'components/Forms';
 import { recommendedOptions, setFilter } from '../../../redux/products/slice';
 import Select from 'react-select';
+import { useDebouncedCallback } from 'use-debounce';
 // import Input from '../../Forms/Input/Input';
-// import InputSelect from '../../Forms/InputTypes/InputSelecte/InputSelecte';
+// import {InputSelect} from 'components/Forms';
 
 const toUpperCaseFirstLetter = (string) => {
   const newString = string.slice(0, 1).toUpperCase() + string.slice(1);
@@ -25,10 +27,11 @@ const toUpperCaseFirstLetter = (string) => {
 };
 
 export const ProductsFilters = () => {
+  const [search, setSearch] = useState('');
   const dispatch = useDispatch();
 
   const filter = useSelector(selectFilter);
-  const { search, category, recomended } = filter;
+  const { category, recomended } = filter;
 
   const categories = useSelector(selectCategoriesProducts);
 
@@ -44,9 +47,13 @@ export const ProductsFilters = () => {
     dispatch(categoriesListThunk());
   }, [dispatch]);
 
-  // debounce
-  const handleChange = ({ target: { value } }) => {
+  const debouncedSearch = useDebouncedCallback((value) => {
     dispatch(setFilter({ ...filter, search: value }));
+  }, 300);
+
+  const handleChange = ({ target: { value } }) => {
+    setSearch(value);
+    debouncedSearch(value);
   };
 
   const handleSubmit = (e) => {
@@ -56,6 +63,7 @@ export const ProductsFilters = () => {
   };
 
   const handleReset = () => {
+    setSearch('');
     dispatch(setFilter({ ...filter, search: '' }));
   };
 
@@ -68,10 +76,10 @@ export const ProductsFilters = () => {
   };
 
   return (
-    <FilterContainer>
+    <>
       <FilterLabel>Filters</FilterLabel>
-      <FilterList>
-        <li>
+      <FilterContainer>
+        <ProductsFormWrapper>
           <Form onSubmit={handleSubmit}>
             <InputContainer type="text" placeholder="Search" name="search" value={search} onChange={handleChange}></InputContainer>
             {search !== '' && (
@@ -87,8 +95,8 @@ export const ProductsFilters = () => {
               </svg>
             </SearchButton>
           </Form>
-        </li>
-        <li>
+        </ProductsFormWrapper>
+        <SelectWrapper>
           <Select
             name="category"
             value={category}
@@ -97,8 +105,6 @@ export const ProductsFilters = () => {
             placeholder="Categories"
             styles={categorySelectStyles}
           ></Select>
-        </li>
-        <li>
           <Select
             name="recomended"
             value={recomended}
@@ -107,8 +113,8 @@ export const ProductsFilters = () => {
             onChange={handleRecomendedSelect}
             styles={recomendedSelectStyles}
           ></Select>
-        </li>
-      </FilterList>
-    </FilterContainer>
+        </SelectWrapper>
+      </FilterContainer>
+    </>
   );
 };

@@ -1,20 +1,19 @@
-export const getDiaryProducts = (state) => state.diary.products;
+export const selectDiaryProducts = (state) => state.diary.products;
 
-export const getDiaryExercises = (state) => state.diary.exercises;
+export const selectDiaryExercises = (state) => state.diary.exercises;
 
-export const getIsLoadingDiary = (state) => state.diary.isLoading;
+export const selectIsLoadingDiary = (state) => state.diary.isLoading;
 
-export const getCalories = (state) => state.diary.consumedCalories;
+export const selectCalories = (state) => state.diary.consumedCalories;
 
-export const getDoneExercisesTime = (state) => state.diary.doneExercisesTime;
+export const selectDoneExercisesTime = (state) => state.diary.doneExercisesTime;
 
-export const getBurnedCalories = (state) => state.diary.burnedCalories;
+export const selectBurnedCalories = (state) => state.diary.burnedCalories;
 
-export const getError = (state) => state.diary.error;
+export const selectError = (state) => state.diary.error;
 
-export const getErrorProductsAndExercisesError = (state) =>
-  state.diary.productsAndExercisesError;
+export const selectErrorProductsAndExercisesError = (state) => state.diary.productsAndExercisesError;
 
-export const getAddProductIsLoading = (state) => state.products.isLoading;
+export const selectAddProductIsLoading = (state) => state.products.isLoading;
 
-export const getAddProductError = (state) => state.products.error;
+export const selectAddProductError = (state) => state.products.error;
