@@ -51,3 +51,13 @@ The application utilizes a backend developed by our team. Feel free to familiari
 
 The Redux store manages the application's state, encompassing tokens, user information such as name, email, avatar image, and the account creation
 date.
+
+## Figma
+
+`Look at` [**Figma**](https://www.figma.com/file/0xm1EIt7GWmWxWTa8xu2K5/Power-Pulse-2.0?type=design&node-id=0-1&mode=design&t=vJw2X0p5TitKmQP2-0)
+project design
+
+## Commands
+
+1. Set the project's basic dependencies as a command `npm install`.
+2. Enter development mode by running the command `npm run dev`.
