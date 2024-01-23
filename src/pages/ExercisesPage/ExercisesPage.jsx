@@ -26,8 +26,8 @@ function ExercisesPage() {
   return (
     <>
       <SectionBackground
-        isActive={subcategory ? true : false}
-        backgrounds={{
+        $isActive={subcategory ? true : false}
+        $backgrounds={{
           desktop,
           desktopretina,
         }}
