@@ -79,7 +79,6 @@ export const ProductsItem = ({ id, weight, calories, category, title, isRecomend
           <svg>
             <use href={`${sprite}#icon-running-figure`}></use>
           </svg>
-          {/* {title} */}
         </div>
         <p>{title}</p>
       </CardTitle>

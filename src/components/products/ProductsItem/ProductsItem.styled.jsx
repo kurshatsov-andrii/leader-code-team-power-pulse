@@ -21,9 +21,6 @@ export const DietWrapper = styled.div`
   text-transform: uppercase;
 `;
 
-// width: 41px;
-//   height: 24px;
-
 export const CardHeaderWrapper = styled.div`
   display: flex;
   gap: 16px;
@@ -53,7 +50,7 @@ export const AddButton = styled.button`
   color: var(--orange-color);
   background-color: inherit;
   font-size: 14px;
-  line-height: 1.29;
+  line-height: 1.28;
   display: flex;
   align-items: center;
   padding: 1px 0;

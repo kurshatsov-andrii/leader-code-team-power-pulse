@@ -1,4 +1,3 @@
-//backgrounds
 import desctop from '../../images/products-1x.jpg';
 import desctopretina from '../../images/products-2x.jpg';
 import tablet from '../../images/products-tablet-2x.jpg';
