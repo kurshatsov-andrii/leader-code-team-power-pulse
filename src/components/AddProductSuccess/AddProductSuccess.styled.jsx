@@ -71,6 +71,11 @@ export const BtnNext = styled.button`
   font-style: normal;
   font-weight: 500;
   line-height: 1.13;
+  transition: background-color 250ms ease-out;
+
+  &:hover {
+    background-color: #ef8964;
+  }
 
   @media screen and (min-width: 768px) {
     padding: 14px 32px;
@@ -83,19 +88,27 @@ export const DiaryLink = styled(Link)`
   align-items: center;
   gap: 8px;
   text-decoration: none;
+  color: rgba(239, 237, 232, 0.3);
+  stroke: rgba(239, 237, 232, 0.3);
+  transition: color 250ms ease-out;
+  transition: stroke 250ms ease-out;
+
+  &:hover {
+    color: #e6533c;
+    stroke: #e6533c;
+  }
 `;
 
 export const DiaryText = styled.span`
-  color: rgba(239, 237, 232, 0.3);
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: 1.29;
+  transition: color 250ms ease-out;
 `;
 
 export const DiarySvg = styled.svg`
   width: 16px;
   height: 16px;
-  stroke: rgba(239, 237, 232, 0.3);
 `;
