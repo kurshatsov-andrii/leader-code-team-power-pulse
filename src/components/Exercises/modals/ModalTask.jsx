@@ -46,7 +46,12 @@ const ModalTask = ({ exerciseTask, onClick, onComplete }) => {
       return;
     }
     const date = format(new Date(), 'dd-mm-yyyy');
-    dispatch(addExercise({ ...exercise, date }));
+    const data = {
+      ...exercise,
+      date,
+    };
+    delete data.calories;
+    dispatch(addExercise(data));
     setExercise({ exerciseId: null, time: 0, calories: 0 });
     onClick();
     onComplete();
