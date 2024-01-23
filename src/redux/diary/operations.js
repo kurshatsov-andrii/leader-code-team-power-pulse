@@ -33,8 +33,8 @@ export const getDiaryList = createAsyncThunk('getDiaryList', async (date, thunkA
 
 export const addDiaryProduct = createAsyncThunk('addDiaryProduct', async (productDetails, thunkAPI) => {
   try {
-    const { data } = await instance.post('/diary/addProduct', productDetails);
-    return data;
+    await instance.post('/diary/addProduct', productDetails);
+    return;
   } catch (error) {
     toastError(`Oops! Something was wrong.... ${error.message}`);
     return thunkAPI.rejectWithValue(error.message);
@@ -56,8 +56,8 @@ export const deleteProduct = createAsyncThunk('deleteProduct', async (productDet
 
 export const addExercise = createAsyncThunk('addExercise', async (exercise, thunkAPI) => {
   try {
-    const { data } = await instance.post('/diary/addExercise', exercise);
-    return data;
+    await instance.post('/diary/addExercise', exercise);
+    return;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }

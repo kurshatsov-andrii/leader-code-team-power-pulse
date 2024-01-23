@@ -53,17 +53,11 @@ const diary = createSlice({
     });
 
     builder.addCase(addDiaryProduct.pending, handlePending);
-    builder.addCase(addDiaryProduct.fulfilled, (state, action) => {
-      handleFulfilled(state);
-      state.products = action.payload.products;
-    });
+    builder.addCase(addDiaryProduct.fulfilled, handleFulfilled);
     builder.addCase(addDiaryProduct.rejected, handleRejected);
 
     builder.addCase(addExercise.pending, handlePending);
-    builder.addCase(addExercise.fulfilled, (state, action) => {
-      handleFulfilled(state);
-      state.exercises = action.payload.exercises;
-    });
+    builder.addCase(addExercise.fulfilled, handleFulfilled);
     builder.addCase(addExercise.rejected, handleRejected);
 
     builder.addCase(deleteProduct.pending, handlePending);

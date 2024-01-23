@@ -20,7 +20,7 @@ import {
 
 import { format } from 'date-fns';
 import { useDispatch } from 'react-redux';
-import { addDiaryProduct } from '../../redux/diary/operations';
+import { addDiaryProduct, getDiaryList } from '../../redux/diary/operations';
 
 const AddProductForm = ({ id, productName, calories, onClick, onClickSuccess, transferCaloriesAmount }) => {
   const dispatch = useDispatch();
@@ -55,7 +55,10 @@ const AddProductForm = ({ id, productName, calories, onClick, onClickSuccess, tr
       return;
     }
 
-    dispatch(addDiaryProduct(productData));
+    dispatch(addDiaryProduct(productData))
+      .unwrap()
+      .then(() => dispatch(getDiaryList))
+      .catch((error) => console.log(error));
 
     onClick();
     onClickSuccess();
