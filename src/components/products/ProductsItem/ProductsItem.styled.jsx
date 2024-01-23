@@ -1,14 +1,10 @@
 import styled from 'styled-components';
 
 export const CardHeader = styled.div`
-  margin-bottom: 35px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  @media screen and (min-width: 768px) {
-    margin-bottom: 27px;
-  }
+  height: 24px;
 `;
 
 export const DietWrapper = styled.div`
@@ -79,7 +75,7 @@ export const AddButton = styled.button`
 `;
 
 export const CardTitle = styled.div`
-  margin-bottom: 8px;
+  margin-top: 35px;
   display: flex;
   gap: 16px;
   align-items: center;
@@ -92,12 +88,6 @@ export const CardTitle = styled.div`
     height: 24px;
     background-color: var(--beige-color);
     border-radius: 50%;
-
-    svg {
-      width: 14px;
-      height: 16px;
-      fill: var(--white-color);
-    }
   }
 
   p {
@@ -112,6 +102,7 @@ export const CardTitle = styled.div`
   }
 
   @media screen and (min-width: 768px) {
+    margin-top: 27px;
     p {
       font-size: 24px;
       line-height: 1.33;
@@ -125,26 +116,10 @@ export const CardTitle = styled.div`
   }
 `;
 
-// export const IconRunningFigure = styled.div`
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   width: 24px;
-//   height: 24px;
-//   background-color: var(--beige-color);
-//   border-radius: 50%;
-
-//   svg {
-//     width: 14px;
-//     height: 16px;
-//     fill: #efede8;
-//     stroke: #efede8;
-//   }
-// `;
-
 export const CardInfo = styled.ul`
   display: flex;
   gap: 16px;
+  margin-top: 8px;
 
   li p {
     font-size: 12px;

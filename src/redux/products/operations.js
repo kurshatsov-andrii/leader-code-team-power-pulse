@@ -35,7 +35,6 @@ export const productListThunk = createAsyncThunk('products', async (filter, thun
 
   if (userToken) {
     token.set(userToken);
-
     try {
       const { search, category, recomended } = filter;
 
