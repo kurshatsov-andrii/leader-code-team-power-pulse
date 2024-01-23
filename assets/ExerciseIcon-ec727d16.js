@@ -1,4 +1,4 @@
-import{e as n,r as C,t as a,j as e}from"./index-1556e77a.js";import{s as x}from"./sprite-eca0d1cb.js";const h=n.div`
+import{e as n,r as C,t as a,j as e}from"./index-6642b840.js";import{s as x}from"./sprite-3e1a5e7e.js";const h=n.div`
   height: 100vh;
   width: 100vw;
   background: rgba(04, 04, 04, 0.4);
