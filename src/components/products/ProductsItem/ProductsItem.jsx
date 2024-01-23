@@ -15,7 +15,7 @@ import {
   RecomendedWrapper,
 } from './ProductsItem.styled';
 import { useState } from 'react';
-// import { ExerciseIcon } from 'components/Exercises';
+import { ExerciseIcon } from '../../Exercises/ExerciseIcon';
 
 export const ProductsItem = ({ id, weight, calories, category, title, isRecomended }) => {
   const [isModalOpen, setOpenModal] = useState(false);
@@ -54,52 +54,50 @@ export const ProductsItem = ({ id, weight, calories, category, title, isRecomend
           {<AddProductSuccess onClick={toggleSuccessWindow} calories={consumedCalories} />}{' '}
         </BasicModalWindow>
       )}
-      <CardHeader>
-        <DietWrapper>
-          <p>Diet</p>
-        </DietWrapper>
-        <CardHeaderWrapper>
-          <StyleSheetManager shouldForwardProp={isPropValid}>
-            <RecomendedWrapper recommendation={isRecomended}>
-              <div></div>
-              <p>{isRecomended ? 'Recommended' : 'Not recommended'}</p>
-            </RecomendedWrapper>
-          </StyleSheetManager>
-          <AddButton type="button" onClick={toggleModal}>
-            Add
-            <svg>
-              <use href={`${sprite}#icon-arrow-right`}></use>
-            </svg>
-          </AddButton>
-        </CardHeaderWrapper>
-      </CardHeader>
-      <CardTitle>
-        <div>
-          {/* <ExerciseIcon/> */}
-          <svg>
-            <use href={`${sprite}#icon-running-figure`}></use>
-          </svg>
-          {/* {title} */}
-        </div>
-        <p>{title}</p>
-      </CardTitle>
-      <CardInfo>
-        <li>
-          <p>
-            Calories:<span>{calories}</span>
-          </p>
-        </li>
-        <li>
-          <CategoryWrapper>
-            Category:<span>{category}</span>
-          </CategoryWrapper>
-        </li>
-        <li>
-          <p>
-            Weight:<span>{weight}</span>
-          </p>
-        </li>
-      </CardInfo>
+      <div>
+        <CardHeader>
+          <DietWrapper>
+            <p>Diet</p>
+          </DietWrapper>
+          <CardHeaderWrapper>
+            <StyleSheetManager shouldForwardProp={isPropValid}>
+              <RecomendedWrapper recommendation={isRecomended}>
+                <div></div>
+                <p>{isRecomended ? 'Recommended' : 'Not recommended'}</p>
+              </RecomendedWrapper>
+            </StyleSheetManager>
+            <AddButton type="button" onClick={toggleModal}>
+              Add
+              <svg>
+                <use href={`${sprite}#icon-arrow-right`}></use>
+              </svg>
+            </AddButton>
+          </CardHeaderWrapper>
+        </CardHeader>
+        <CardTitle>
+          <div>
+            <ExerciseIcon />
+          </div>
+          <p>{title}</p>
+        </CardTitle>
+        <CardInfo>
+          <li>
+            <p>
+              Calories:<span>{calories}</span>
+            </p>
+          </li>
+          <li>
+            <CategoryWrapper>
+              Category:<span>{category}</span>
+            </CategoryWrapper>
+          </li>
+          <li>
+            <p>
+              Weight:<span>{weight}</span>
+            </p>
+          </li>
+        </CardInfo>
+      </div>
     </>
   );
 };

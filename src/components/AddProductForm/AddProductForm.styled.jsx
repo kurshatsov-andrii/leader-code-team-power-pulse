@@ -123,6 +123,11 @@ export const ButtonAdd = styled.button`
   background-color: #e6533c;
   border: none;
   border-radius: 12px;
+  transition: background-color 250ms ease-out;
+
+  &:hover {
+    background-color: #ef8964;
+  }
 
   @media screen and (min-width: 375px) {
     margin-right: 14px;
@@ -146,6 +151,11 @@ export const ButtonCancel = styled.button`
   background-color: transparent;
   border: 1px solid rgba(239, 237, 232, 0.3);
   border-radius: 12px;
+  transition: border 250ms ease-out;
+
+  &:hover {
+    border: 1px solid #e6533c;
+  }
 
   @media screen and (min-width: 768px) {
     padding: 13px 40px;

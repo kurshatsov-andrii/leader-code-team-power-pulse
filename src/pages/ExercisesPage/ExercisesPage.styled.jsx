@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 import { device } from '../../styles/device';
+import { Link } from 'react-router-dom';
 
 export const SectionBackground = styled.div`
   position: relative;
   top: 0;
   left: auto;
   width: 100%;
-  min-height: 95%;
+  min-height: 100%;
   background-repeat: no-repeat;
   overflow-y: hidden;
   z-index: 1;
@@ -42,12 +43,12 @@ export const SectionPage = styled.div`
   gap: 20px;
   margin-top: 90px;
   margin-left: 20px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   @media (${device.tablet}) {
     flex-direction: row;
     align-items: center;
     margin-top: 144px;
-    margin-bottom: 64px;
+    margin-bottom: 32px;
     gap: 0;
     justify-content: space-between;
   }
@@ -57,7 +58,7 @@ export const SectionPage = styled.div`
   }
 `;
 
-export const BackButtonWrapper = styled.button`
+export const BackButtonWrapper = styled(Link)`
   width: fit-content;
   background: transparent;
   padding: 0;

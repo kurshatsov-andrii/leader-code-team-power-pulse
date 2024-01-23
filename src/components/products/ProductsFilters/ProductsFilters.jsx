@@ -1,15 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  FilterContainer,
-  FilterLabel,
-  InputContainer,
-  ProductsFormWrapper,
-  ResetButton,
-  SearchButton,
-  SelectWrapper,
-  categorySelectStyles,
-  recomendedSelectStyles,
-} from './ProductsFilters.styled';
+import { FilterContainer, FilterLabel, InputContainer, ResetButton, SearchButton, SelectWrapper } from './ProductsFilters.styled';
 import sprite from '../../../images/sprite.svg';
 import { categoriesListThunk } from '../../../redux/products/operations';
 import { useEffect, useState } from 'react';
@@ -18,34 +8,38 @@ import { Form } from 'components/Forms';
 import { recommendedOptions, setFilter } from '../../../redux/products/slice';
 import Select from 'react-select';
 import { useDebouncedCallback } from 'use-debounce';
-// import Input from '../../Forms/Input/Input';
-// import {InputSelect} from 'components/Forms';
+import { categorySelectStyles, productsSelectTheme, recomendedSelectStyles } from './ProductsSelectStyles';
 
 const toUpperCaseFirstLetter = (string) => {
   const newString = string.slice(0, 1).toUpperCase() + string.slice(1);
   return newString;
 };
 
+const byField = (fieldName) => {
+  return (a, b) => (a[fieldName] > b[fieldName] ? 1 : -1);
+};
+
 export const ProductsFilters = () => {
   const [search, setSearch] = useState('');
+
   const dispatch = useDispatch();
 
   const filter = useSelector(selectFilter);
   const { category, recomended } = filter;
-
   const categories = useSelector(selectCategoriesProducts);
-
-  const categoriesList = [
-    { value: 'all', label: 'Categories' },
-    ...categories.map(({ category }) => ({
-      value: category,
-      label: toUpperCaseFirstLetter(category),
-    })),
-  ];
 
   useEffect(() => {
     dispatch(categoriesListThunk());
   }, [dispatch]);
+
+  const sortedCategoriesList = categories
+    .map(({ category }) => ({
+      value: category,
+      label: toUpperCaseFirstLetter(category),
+    }))
+    .sort(byField('label'));
+
+  const categoriesList = [{ value: 'all', label: 'Categories' }, ...sortedCategoriesList];
 
   const debouncedSearch = useDebouncedCallback((value) => {
     dispatch(setFilter({ ...filter, search: value }));
@@ -77,9 +71,11 @@ export const ProductsFilters = () => {
 
   return (
     <>
-      <FilterLabel>Filters</FilterLabel>
+      <FilterLabel>
+        <p>Filters</p>
+      </FilterLabel>
       <FilterContainer>
-        <ProductsFormWrapper>
+        <div>
           <Form onSubmit={handleSubmit}>
             <InputContainer type="text" placeholder="Search" name="search" value={search} onChange={handleChange}></InputContainer>
             {search !== '' && (
@@ -95,7 +91,7 @@ export const ProductsFilters = () => {
               </svg>
             </SearchButton>
           </Form>
-        </ProductsFormWrapper>
+        </div>
         <SelectWrapper>
           <Select
             name="category"
@@ -104,6 +100,7 @@ export const ProductsFilters = () => {
             options={categoriesList}
             placeholder="Categories"
             styles={categorySelectStyles}
+            theme={productsSelectTheme}
           ></Select>
           <Select
             name="recomended"
@@ -112,6 +109,7 @@ export const ProductsFilters = () => {
             options={recommendedOptions}
             onChange={handleRecomendedSelect}
             styles={recomendedSelectStyles}
+            theme={productsSelectTheme}
           ></Select>
         </SelectWrapper>
       </FilterContainer>

@@ -27,7 +27,9 @@ export const SubmitButton = styled.button`
     background: var(--orange-light-color);
     border: 1px solid var(--orange-light-color);
   }
-
+  &:disabled {
+    opacity: 0.5;
+  }
   @media (${device.tablet}) {
     margin-top: auto;
     align-self: flex-end;

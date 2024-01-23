@@ -26,6 +26,7 @@ export const ExercisesListWrapper = styled.ul`
   }
   @media (${device.desktop}) {
     width: 850px;
+    margin-left: 100px;
   }
 `;
 
