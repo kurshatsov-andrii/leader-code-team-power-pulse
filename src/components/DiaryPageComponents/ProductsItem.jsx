@@ -1,18 +1,20 @@
 import { useEffect, useState } from 'react';
 import sprite from '../../images/sprite.svg';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { deleteProduct } from '../../redux/diary/operations';
 import { DiaryCard, DescriptionItem, DiarySupTitle, ValueBox, WrapLastDescrBox, TrashIconWrapper, DiaryTrashButton, Circle } from './Diary.styled';
+import { selectDiaryDate } from '../../redux/diary/selectors';
 
 export const ProductItem = ({ product, blood }) => {
   const {
-    _id,
-    productId: { title, category, groupBloodNotAllowed },
+    productId: { _id, title, category, groupBloodNotAllowed },
     calories,
     amount,
   } = product;
   const [points, setPoints] = useState(window.innerWidth);
   const handleResize = () => setPoints(window.innerWidth);
+
+  const date = useSelector(selectDiaryDate);
 
   useEffect(() => {
     window.addEventListener('resize', handleResize);
@@ -21,8 +23,8 @@ export const ProductItem = ({ product, blood }) => {
 
   const dispatch = useDispatch();
 
-  const deleteProductItem = (productId) => {
-    dispatch(deleteProduct(productId));
+  const deleteProductItem = (productDetails) => {
+    dispatch(deleteProduct(productDetails));
   };
 
   return (
@@ -55,7 +57,7 @@ export const ProductItem = ({ product, blood }) => {
             {groupBloodNotAllowed[blood] ? 'No' : 'Yes'}
           </ValueBox>
         </DescriptionItem>
-        <DiaryTrashButton type="button" onClick={() => deleteProductItem(_id)}>
+        <DiaryTrashButton type="button" onClick={() => deleteProductItem({ id: _id, date })}>
           <TrashIconWrapper>
             <use href={`${sprite}#icon-trash`} />
           </TrashIconWrapper>

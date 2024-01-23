@@ -65,7 +65,7 @@ export const StatisticsItem = styled.li`
   padding: 13px;
 
   border-radius: 12px;
-  border: 1px solid ${(props) => props.bordercolor || 'rgba(239, 237, 232, 0.2)'};
+  border: 1px solid ${(props) => props.$border || 'rgba(239, 237, 232, 0.2)'};
   background: ${(props) => props.color || 'initial'};
 
   @media screen and (min-width: 768px) {

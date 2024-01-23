@@ -45,7 +45,7 @@ export const deleteProduct = createAsyncThunk('deleteProduct', async (productDet
   const { id, date } = productDetails;
 
   try {
-    await instance.delete(`/diary/deleteProduct?id=${id}&date=${date}`);
+    await instance.delete(`/diary/deleteProduct`, { data: { id, date } });
     toastSuccess(`Product delete successfully`);
     return id;
   } catch (error) {
@@ -64,9 +64,10 @@ export const addExercise = createAsyncThunk('addExercise', async (exercise, thun
 });
 
 export const deleteExercise = createAsyncThunk('deleteExercise', async (exerciseDetails, thunkAPI) => {
+  const { id, date } = exerciseDetails;
+
   try {
-    const { id, date } = exerciseDetails;
-    await instance.delete(`/diary/deleteExercise?date=${date}&id=${id}`);
+    await instance.delete(`/diary/deleteExercise`, { data: { id, date } });
     toastSuccess(`Exercise delete successfully`);
     return id;
   } catch (error) {

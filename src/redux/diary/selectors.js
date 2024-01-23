@@ -17,3 +17,5 @@ export const selectErrorProductsAndExercisesError = (state) => state.diary.produ
 export const selectAddProductIsLoading = (state) => state.products.isLoading;
 
 export const selectAddProductError = (state) => state.products.error;
+
+export const selectDiaryDate = (state) => state.diary.date;
