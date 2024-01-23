@@ -1,4 +1,4 @@
-import{u as l,j as e,J as $,r as m,b as D,f as z,G as I,K as U}from"./index-282e0bde.js";import{d as k}from"./device-385ab3fc.js";import{b as q,a as H}from"./selectors-b58aa764.js";import{B as N}from"./BasicModalWindow-715402c5.js";import"./sprite-7801d67f.js";const G=l.ul`
+import{u as l,j as e,J as $,r as m,b as D,f as z,G as I,K as U}from"./index-58ae4a8e.js";import{d as k}from"./device-385ab3fc.js";import{b as q,a as H}from"./selectors-b58aa764.js";import{B as N}from"./BasicModalWindow-57d9d33c.js";import"./sprite-fc9ff37f.js";const G=l.ul`
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
