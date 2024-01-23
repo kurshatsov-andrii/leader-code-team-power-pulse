@@ -2,13 +2,16 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ProductsItem } from '../ProductsItem/ProductsItem';
 import { productListThunk } from '../../../redux/products/operations';
-import { selectFilter } from '../../../redux/products/selectors';
+import { selectFilter, selectIsLoadingProduct } from '../../../redux/products/selectors';
 import { ProductCard, ProductsListContainer } from './ProductsList.styled';
 import ProductsNotFound from '../ProductsNotFound/ProductsNotFound';
 import { selectUserBlood } from '../../../redux/userProfile/selectors';
+import CustomLoader from '../../Loader/Loader';
 
 export const ProductsList = () => {
   const dispatch = useDispatch();
+
+  const isLoading = useSelector(selectIsLoadingProduct);
   const bloodGroup = useSelector(selectUserBlood);
   const filter = useSelector(selectFilter);
   const [localFilter, setLocalFilter] = useState(filter);
@@ -66,6 +69,7 @@ export const ProductsList = () => {
 
   return (
     <>
+      {isLoading && <CustomLoader />}
       {products.length === 0 ? (
         <ProductsNotFound />
       ) : (
@@ -84,7 +88,6 @@ export const ProductsList = () => {
               </ProductCard>
             );
           })}
-          {products.length >= totalCount && <p style={{ fontSize: '44px', color: 'orange' }}>the end</p>}
         </ProductsListContainer>
       )}
     </>

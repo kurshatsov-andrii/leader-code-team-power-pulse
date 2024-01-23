@@ -54,6 +54,7 @@ export const InputContainer = styled.input`
   &::placeholder {
     color: var(--white-color);
   }
+
   &:hover,
   &:focus {
     outline: none;

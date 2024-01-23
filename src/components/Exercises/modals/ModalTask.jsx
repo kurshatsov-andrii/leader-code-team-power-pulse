@@ -16,16 +16,51 @@ import {
   FieldTitle,
   FieldValue,
 } from './ModalTask.styled';
+import { toast } from 'react-toastify';
+import { format } from 'date-fns';
+import { useDispatch } from 'react-redux';
+import { addExercise } from '../../../redux/diary/operations';
+const options = {
+  position: 'top-center',
+  autoClose: 2000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+  theme: 'dark',
+};
 
-const ModalTask = ({ exerciseTask }) => {
+const ModalTask = ({ exerciseTask, onClick, onComplete }) => {
+  const dispatch = useDispatch();
   const [isPause, setIsPause] = useState(true);
+  const [exercise, setExercise] = useState({ exerciseId: exerciseTask._id, time: 0, calories: 0 });
 
   const onStart = () => {
     setIsPause((prev) => !prev);
   };
-
+  const onSubmit = (e) => {
+    e.preventDefault();
+    if (exercise.time < 60) {
+      toast.error('Minimum 1 min.', options);
+      return;
+    }
+    const date = format(new Date(), 'dd-mm-yyyy');
+    dispatch(addExercise({ ...exercise, date }));
+    setExercise({ exerciseId: null, time: 0, calories: 0 });
+    onClick();
+    onComplete();
+  };
   const { name, bodyPart, equipment, gifUrl, target, burnedCalories, time } = exerciseTask;
-  const cooldown = time ? time * 60 : 3 * 60;
+  const cooldown = time * 60;
+  const calculation = (remainingTime) => {
+    const newTime = cooldown - remainingTime;
+    const burnedCal = Math.round((newTime * burnedCalories) / cooldown);
+    setExercise((prev) => {
+      return { ...prev, time: newTime, calories: burnedCal };
+    });
+  };
+
   const arr = [
     {
       title: 'Name',
@@ -55,12 +90,8 @@ const ModalTask = ({ exerciseTask }) => {
           isPlaying={!isPause}
           size={124}
           colors={'#E6533C'}
-          onComplete={() => {
-            onStart();
-          }}
-          onUpdate={(remainingTime) => {
-            console.log(remainingTime);
-          }}
+          onComplete={() => onStart()}
+          onUpdate={(remainingTime) => calculation(remainingTime)}
         >
           {({ remainingTime }) => {
             const minutes = Math.floor((remainingTime % 3600) / 60);
@@ -72,7 +103,7 @@ const ModalTask = ({ exerciseTask }) => {
           {isPause ? <Play /> : <Pause />}
         </ButtonModalIcon>
         <SpanBurnedCalories>
-          Burned calories: <SubSpanBC>{burnedCalories}</SubSpanBC>
+          Burned calories: <SubSpanBC>{exercise.calories}</SubSpanBC>
         </SpanBurnedCalories>
       </DivGifAndTimer>
       <DivFieldAndButton>
@@ -102,7 +133,9 @@ const ModalTask = ({ exerciseTask }) => {
           <span>{equipment}</span>
         </div> */}
         </FieldWrapper>
-        <ButtonModalSubmit>Add to Diary</ButtonModalSubmit>
+        <ButtonModalSubmit onSubmit={onSubmit} isPause={isPause}>
+          Add to Diary
+        </ButtonModalSubmit>
       </DivFieldAndButton>
     </Div>
   );
