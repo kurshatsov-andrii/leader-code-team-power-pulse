@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { device } from '../../styles/device';
-import { Link } from 'react-router-dom';
 
 export const SectionBackground = styled.div`
   position: relative;
@@ -14,9 +13,9 @@ export const SectionBackground = styled.div`
   background-position: right center;
   background-size: auto 100%;
   @media (${device.desktop}) {
-    background-image: url(${(props) => (props.backgrounds.desktop && props.isActive ? props.backgrounds.desktop : 'none')});
+    background-image: url(${(props) => (props.$backgrounds.desktop && props.$isActive ? props.$backgrounds.desktop : 'none')});
     @media (-webkit-min-device-pixel-ratio: 2) {
-      background-image: url(${(props) => (props.backgrounds.desktopretina && props.isActive ? props.backgrounds.desktopretina : 'none')});
+      background-image: url(${(props) => (props.$backgrounds.desktopretina && props.$isActive ? props.$backgrounds.desktopretina : 'none')});
     }
   }
 `;
@@ -40,15 +39,14 @@ export const Title = styled.h1`
 export const SectionPage = styled.div`
   display: flex;
   flex-direction: column;
-  position: relative;
   gap: 20px;
-  margin-top: 40px;
+  margin-top: 90px;
   margin-left: 20px;
   margin-bottom: 40px;
   @media (${device.tablet}) {
     flex-direction: row;
     align-items: center;
-    margin-top: 72px;
+    margin-top: 144px;
     margin-bottom: 64px;
     gap: 0;
     justify-content: space-between;
@@ -59,10 +57,9 @@ export const SectionPage = styled.div`
   }
 `;
 
-export const BackButtonWrapper = styled(Link)`
+export const BackButtonWrapper = styled.button`
   width: fit-content;
   background: transparent;
-  position: absolute;
   padding: 0;
   display: flex;
   gap: 8px;
@@ -70,10 +67,10 @@ export const BackButtonWrapper = styled(Link)`
   color: rgba(239, 237, 232, 0.4);
   font-size: 16px;
   line-height: 1.5;
-
-  top: -30px;
+  position: absolute;
+  top: 68px;
 
   @media (${device.tablet}) {
-    top: -46px;
+    top: 102px;
   }
 `;
