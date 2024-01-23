@@ -1,4 +1,4 @@
-import{u as l,j as e,J as C,r as m,b as F,f as S,G as D,K as U}from"./index-70748da6.js";import{d as v}from"./device-385ab3fc.js";import{B as q,E as H}from"./ExerciseIcon-bbeaf220.js";import{b as N,a as G}from"./selectors-b58aa764.js";import"./sprite-4c40abf4.js";const V=l.ul`
+import{e as l,j as e,J as C,r as m,a as F,f as S,G as D,K as U}from"./index-8c2a198c.js";import{d as v}from"./device-385ab3fc.js";import{B as q,E as H}from"./ExerciseIcon-3512698a.js";import{b as N,a as G}from"./selectors-b58aa764.js";import"./sprite-51bc4961.js";const V=l.ul`
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
