@@ -20,6 +20,7 @@ import { toast } from 'react-toastify';
 import { format } from 'date-fns';
 import { useDispatch } from 'react-redux';
 import { addExercise } from '../../../redux/diary/operations';
+import { parser } from '../../../services/utils/seconds-parser';
 const options = {
   position: 'top-center',
   autoClose: 2000,
@@ -31,7 +32,7 @@ const options = {
   theme: 'dark',
 };
 
-const ModalTask = ({ exerciseTask, onClick, onComplete }) => {
+const ModalTask = ({ exerciseTask, onClick, onComplete, setResult }) => {
   const dispatch = useDispatch();
   const [isPause, setIsPause] = useState(true);
   const [exercise, setExercise] = useState({ exerciseId: exerciseTask._id, time: 0, calories: 0 });
@@ -50,6 +51,7 @@ const ModalTask = ({ exerciseTask, onClick, onComplete }) => {
       ...exercise,
       date,
     };
+    setResult({ time: parser(exercise.time), calories: exercise.calories });
     delete data.calories;
     dispatch(addExercise(data));
     setExercise({ exerciseId: null, time: 0, calories: 0 });
