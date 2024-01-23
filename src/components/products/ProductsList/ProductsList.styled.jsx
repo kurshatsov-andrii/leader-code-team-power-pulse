@@ -38,10 +38,10 @@ export const ProductsListContainer = styled.ul`
 export const ProductCard = styled.div`
   max-width: 335px;
   height: 141px;
+  padding: 16px;
   border-radius: 12px;
   border: 1px solid rgba(239, 237, 232, 0.2);
   background: rgba(239, 237, 232, 0.05);
-  padding: 16px;
 
   @media screen and (min-width: 768px) {
     width: 335px;

@@ -15,26 +15,31 @@ const toUpperCaseFirstLetter = (string) => {
   return newString;
 };
 
+const byField = (fieldName) => {
+  return (a, b) => (a[fieldName] > b[fieldName] ? 1 : -1);
+};
+
 export const ProductsFilters = () => {
   const [search, setSearch] = useState('');
+
   const dispatch = useDispatch();
 
   const filter = useSelector(selectFilter);
   const { category, recomended } = filter;
-
   const categories = useSelector(selectCategoriesProducts);
-
-  const categoriesList = [
-    { value: 'all', label: 'Categories' },
-    ...categories.map(({ category }) => ({
-      value: category,
-      label: toUpperCaseFirstLetter(category),
-    })),
-  ];
 
   useEffect(() => {
     dispatch(categoriesListThunk());
   }, [dispatch]);
+
+  const sortedCategoriesList = categories
+    .map(({ category }) => ({
+      value: category,
+      label: toUpperCaseFirstLetter(category),
+    }))
+    .sort(byField('label'));
+
+  const categoriesList = [{ value: 'all', label: 'Categories' }, ...sortedCategoriesList];
 
   const debouncedSearch = useDebouncedCallback((value) => {
     dispatch(setFilter({ ...filter, search: value }));
