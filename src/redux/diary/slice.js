@@ -53,14 +53,14 @@ const diary = createSlice({
     builder.addCase(addDiaryProduct.pending, handlePending);
     builder.addCase(addDiaryProduct.fulfilled, (state, action) => {
       handleFulfilled(state);
-      state.products = action.payload;
+      state.products = action.payload.products;
     });
     builder.addCase(addDiaryProduct.rejected, handleRejected);
 
     builder.addCase(addExercise.pending, handlePending);
     builder.addCase(addExercise.fulfilled, (state, action) => {
       handleFulfilled(state);
-      state.exercises = action.payload;
+      state.exercises = action.payload.exercises;
     });
     builder.addCase(addExercise.rejected, handleRejected);
 
