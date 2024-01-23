@@ -19,12 +19,14 @@ import { fetchSpecialExercises } from '../../../redux/exercises/operations';
 import { selectData, selectLoading } from '../../../redux/exercises/selectors';
 import BasicModalWindow from '../../BasicModalWindow/BasicModalWindow';
 import ModalTask from '../modals/ModalTask';
+import ModalComplete from '../modals/ModalComplete';
 
 export const ExercisesList = () => {
   const dispatch = useDispatch();
   const data = useSelector(selectData);
   const isLoading = useSelector(selectLoading);
   const [selectTask, setSelectTask] = useState(null);
+  const [complete, setComplete] = useState(false);
 
   const { category, subcategory } = useParams();
 
@@ -35,19 +37,25 @@ export const ExercisesList = () => {
   if (isLoading) {
     return 'loading';
   }
-
+  const onComplete = () => {
+    setComplete(!complete);
+  };
   const onShowModal = (task) => {
     setSelectTask(task);
   };
   const onClick = () => {
     setSelectTask(null);
   };
-
   return (
     <>
       {data && selectTask && (
         <BasicModalWindow onClick={onClick}>
-          <ModalTask exerciseTask={selectTask} />
+          <ModalTask exerciseTask={selectTask} onClick={onClick} onComplete={onComplete} />
+        </BasicModalWindow>
+      )}
+      {complete && !selectTask && (
+        <BasicModalWindow onClick={onComplete}>
+          <ModalComplete onComplete={onComplete} />
         </BasicModalWindow>
       )}
       <ExercisesListWrapper>

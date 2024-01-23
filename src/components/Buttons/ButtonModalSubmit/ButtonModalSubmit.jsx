@@ -1,5 +1,9 @@
 import { SubmitButton } from './ButtonModalSubmit.styled';
 
-export const ButtonModalSubmit = ({ children }) => {
-  return <SubmitButton>{children}</SubmitButton>;
+export const ButtonModalSubmit = ({ onSubmit, isPause, children }) => {
+  return (
+    <SubmitButton onClick={onSubmit} disabled={!isPause}>
+      {children}
+    </SubmitButton>
+  );
 };
