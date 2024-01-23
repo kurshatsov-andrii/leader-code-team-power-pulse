@@ -52,12 +52,12 @@ export const ExercisesList = () => {
       )}
       <ExercisesListWrapper>
         {data &&
-          data.map(({ _id, name, bodyPart, target, burnedCalories, time, equipment }) => {
+          data.map(({ _id, name, bodyPart, target, burnedCalories, time, gifUrl, equipment }) => {
             return (
               <ExerciseWrapper key={_id}>
                 <ExerciseHeaderWrapper>
                   <CardHeaderTypeWrapper>WORKOUT</CardHeaderTypeWrapper>
-                  <CardHeaderButtonWrapper onClick={() => onShowModal({ _id, name, bodyPart, target, equipment, time, burnedCalories })}>
+                  <CardHeaderButtonWrapper onClick={() => onShowModal({ _id, name, bodyPart, target, equipment, gifUrl, time, burnedCalories })}>
                     <p>Start</p>
                     <Arrow />
                   </CardHeaderButtonWrapper>

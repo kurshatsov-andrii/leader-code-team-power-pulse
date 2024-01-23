@@ -26,6 +26,7 @@ const ModalTask = ({ exerciseTask }) => {
 
   const { name, bodyPart, equipment, gifUrl, target, burnedCalories, time } = exerciseTask;
   const cooldown = time ? time * 60 : 3 * 60;
+  console.log(exerciseTask);
   const arr = [
     {
       title: 'Name',
