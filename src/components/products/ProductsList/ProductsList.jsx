@@ -1,37 +1,76 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ProductsItem } from '../ProductsItem/ProductsItem';
 import { productListThunk } from '../../../redux/products/operations';
-import { selectFilter, selectProductsList } from '../../../redux/products/selectors';
+import { selectFilter } from '../../../redux/products/selectors';
 import { ProductCard, ProductsListContainer } from './ProductsList.styled';
 import ProductsNotFound from '../ProductsNotFound/ProductsNotFound';
 import { selectUserBlood } from '../../../redux/userProfile/selectors';
 
 export const ProductsList = () => {
   const dispatch = useDispatch();
-
-  const list = useSelector(selectProductsList);
   const bloodGroup = useSelector(selectUserBlood);
   const filter = useSelector(selectFilter);
-  const { search, category, recomended } = filter;
+  const [localFilter, setLocalFilter] = useState(filter);
+  const [products, setProducts] = useState([]);
+  const [fetching, setFetching] = useState(true);
+  const [page, setPage] = useState(1);
+  const [totalCount, setTotalCount] = useState(0);
+  const [firstMount, setFirstMount] = useState(true);
 
   useEffect(() => {
-    dispatch(
-      productListThunk({
-        search,
-        category: category.value,
-        recomended: recomended.value,
-      })
-    );
-  }, [dispatch, search, category, recomended]);
+    if (firstMount) {
+      setFirstMount(false);
+      return;
+    }
+    if (filter !== localFilter) {
+      setProducts([]);
+      setPage(1);
+      setLocalFilter(filter);
+      setFetching(true);
+    }
+    if (fetching) {
+      dispatch(
+        productListThunk({
+          search: localFilter.search,
+          category: localFilter.category.value,
+          recomended: localFilter.recomended.value,
+          page,
+        })
+      )
+        .then((res) => {
+          setProducts([...products, ...res.payload.products]);
+          setPage((prevState) => prevState + 1);
+          setTotalCount(res.payload.sum);
+        })
+        .finally(() => setFetching(false));
+    }
+  }, [dispatch, localFilter, filter, fetching, firstMount, page, products]);
+
+  const scrollHandler = (e) => {
+    if (e.target.scrollHeight - (e.target.scrollTop + window.innerHeight) < 100 && products.length < totalCount) {
+      setFetching(true);
+    }
+  };
+  const mobileScrollHandler = (e) => {
+    if (e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 100 && products.length < totalCount) {
+      setFetching(true);
+    }
+  };
+  useEffect(() => {
+    document.addEventListener('scroll', mobileScrollHandler);
+    return () => {
+      document.removeEventListener('scroll', mobileScrollHandler);
+    };
+  });
 
   return (
-    <div>
-      {list.length === 0 ? (
+    <>
+      {products.length === 0 ? (
         <ProductsNotFound />
       ) : (
-        <ProductsListContainer>
-          {list.map(({ _id, weight, calories, category, title, groupBloodNotAllowed }) => {
+        <ProductsListContainer onScroll={scrollHandler}>
+          {products.map(({ _id, weight, calories, category, title, groupBloodNotAllowed }) => {
             return (
               <ProductCard key={_id}>
                 <ProductsItem
@@ -45,8 +84,9 @@ export const ProductsList = () => {
               </ProductCard>
             );
           })}
+          {products.length >= totalCount && <p style={{ fontSize: '44px', color: 'orange' }}>the end</p>}
         </ProductsListContainer>
       )}
-    </div>
+    </>
   );
 };

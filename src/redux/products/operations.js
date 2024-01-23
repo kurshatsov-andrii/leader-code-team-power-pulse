@@ -32,6 +32,7 @@ export const categoriesListThunk = createAsyncThunk('category', async (_, thunkA
 export const productListThunk = createAsyncThunk('products', async (filter, thunkAPI) => {
   const state = thunkAPI.getState();
   const userToken = state.auth.token;
+  const page = filter.page;
 
   if (userToken) {
     token.set(userToken);
@@ -55,7 +56,7 @@ export const productListThunk = createAsyncThunk('products', async (filter, thun
 
       const queryParamsString = queryParams.join('&');
 
-      const url = `products?${queryParamsString}&page=1&limit=24`;
+      const url = `products?${queryParamsString}&page=${page}&limit=24`;
 
       const res = await instance.get(url);
       return res.data;
