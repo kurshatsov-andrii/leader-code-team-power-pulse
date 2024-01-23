@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { device } from '../../styles/device';
+import { Link } from 'react-router-dom';
 
 export const SectionBackground = styled.div`
   position: relative;
@@ -57,7 +58,7 @@ export const SectionPage = styled.div`
   }
 `;
 
-export const BackButtonWrapper = styled.button`
+export const BackButtonWrapper = styled(Link)`
   width: fit-content;
   background: transparent;
   padding: 0;
