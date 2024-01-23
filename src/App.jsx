@@ -4,7 +4,7 @@ import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
 import SharedLayout from './components/SharedLayout/SharedLayout';
 
 //redux imports
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { refreshUser } from './redux/auth/operations';
 import { useAuth } from './hooks/useAuth';
 import { getUserProfile } from './redux/userProfile/operations.js';
@@ -26,7 +26,7 @@ const TestPage = lazy(() => import('./pages/TestPage/TestPage'));
 
 function App() {
   const dispatch = useDispatch();
-  const { goToParams, isLoggedIn } = useAuth();
+  const { isLoggedIn } = useAuth();
 
   useEffect(() => {
     const fetchData = async () => {
