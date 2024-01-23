@@ -2,14 +2,16 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ProductsItem } from '../ProductsItem/ProductsItem';
 import { productListThunk } from '../../../redux/products/operations';
-import { selectFilter, selectProductsList } from '../../../redux/products/selectors';
+import { selectFilter, selectIsLoadingProduct, selectProductsList } from '../../../redux/products/selectors';
 import { ProductCard, ProductsListContainer } from './ProductsList.styled';
 import ProductsNotFound from '../ProductsNotFound/ProductsNotFound';
 import { selectUserBlood } from '../../../redux/userProfile/selectors';
+import CustomLoader from '../../Loader/Loader';
 
 export const ProductsList = () => {
   const dispatch = useDispatch();
 
+  const isLoading = useSelector(selectIsLoadingProduct);
   const list = useSelector(selectProductsList);
   const bloodGroup = useSelector(selectUserBlood);
   const filter = useSelector(selectFilter);
@@ -27,6 +29,7 @@ export const ProductsList = () => {
 
   return (
     <div>
+      {isLoading && <CustomLoader />}
       {list.length === 0 ? (
         <ProductsNotFound />
       ) : (
