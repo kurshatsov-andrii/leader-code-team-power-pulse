@@ -1,4 +1,4 @@
-import{e as M,r as h,q as fr,R as $t,t as pr,a as xt,f as Ce,v as hr,j as x,w as Bt,x as ve,Q as mr,y as gr,L as vr,z as br,A as xr,C as Er}from"./index-6642b840.js";import{S as Cr}from"./Section-d37691fc.js";import{T as yr}from"./Text.styled-9c498ff9.js";import{s as $e,f as Sr}from"./sprite-3e1a5e7e.js";import{F as wr}from"./Form-2a6eeeb0.js";import"./Fieldset.styled-6d609cfc.js";/* empty css                         */import{_ as Ee,a as bn,b as Fr,c as Or,d as Ar,e as Dr,f as Ir,g as Mr}from"./defineProperty-8501a314.js";import{B as jt,E as Pr}from"./ExerciseIcon-ec727d16.js";import{T as Ht}from"./Text-80ea4d78.js";import{C as Vr}from"./Loader-eed5e28b.js";import"./InputValidation-704be027.js";const Rr="/leader-code-team-power-pulse/assets/products-1x-60ae029e.jpg",Lr="/leader-code-team-power-pulse/assets/products-2x-88f016c5.jpg",zt="/leader-code-team-power-pulse/assets/products-tablet-2x-d8bdd0d5.jpg",Nt="/leader-code-team-power-pulse/assets/products-mobil-2x-b29d44f2.jpg",kr=M.div`
+import{e as M,r as h,q as fr,R as $t,t as pr,a as xt,f as Ce,v as hr,j as x,w as Bt,x as ve,Q as mr,y as gr,L as vr,z as br,A as xr,C as Er}from"./index-81360f12.js";import{S as Cr}from"./Section-fee50866.js";import{T as yr}from"./Text.styled-b5f70d99.js";import{s as $e,f as Sr}from"./sprite-0989cbe5.js";import{F as wr}from"./Form-f6c1298f.js";import"./Fieldset.styled-e51fc85a.js";/* empty css                         */import{_ as Ee,a as bn,b as Fr,c as Or,d as Ar,e as Dr,f as Ir,g as Mr}from"./defineProperty-8501a314.js";import{B as jt,E as Pr}from"./ExerciseIcon-4310e15b.js";import{T as Ht}from"./Text-d1ee0cd7.js";import{C as Vr}from"./Loader-a9bc301f.js";import"./InputValidation-704be027.js";const Rr="/leader-code-team-power-pulse/assets/products-1x-60ae029e.jpg",Lr="/leader-code-team-power-pulse/assets/products-2x-88f016c5.jpg",zt="/leader-code-team-power-pulse/assets/products-tablet-2x-d8bdd0d5.jpg",Nt="/leader-code-team-power-pulse/assets/products-mobil-2x-b29d44f2.jpg",kr=M.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -405,6 +405,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
 
   &:hover {
     color: var(--hover-color);
+    transform: scale(1.04);
 
     svg {
       stroke: var(--hover-color);
