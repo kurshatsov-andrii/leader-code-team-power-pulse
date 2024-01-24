@@ -52,6 +52,10 @@ export const DiaryLink = styled.div`
   line-height: 1.29;
   font-size: 14px;
   margin-right: 4px;
+  &:hover,
+  &:focus {
+    color: var(--orange-light-color);
+  }
 
   @media screen and (min-width: 768px) {
     font-size: 16px;
@@ -65,11 +69,6 @@ export const NextIconWrapper = styled.svg`
   fill: none;
   stroke: var(--orange-color);
   display: inline-block;
-  transition: stroke 0.3s var(--timing-function);
-  &:hover,
-  &:focus {
-    stroke: var(--orange-color);
-  }
 `;
 
 export const WrapTitlesTablet = styled.ul`

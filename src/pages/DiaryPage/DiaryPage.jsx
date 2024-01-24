@@ -9,7 +9,7 @@ import { Title } from 'components/Typography';
 import { DiaryProducts } from '../../components/DiaryPageComponents/DiaryProducts/DiaryProducts';
 import { DiaryExercises } from '../../components/DiaryPageComponents/DiaryExercises/DiaryExercises';
 import { getDiaryList } from '../../redux/diary/operations';
-// import { refreshUser } from '../../redux/auth/operations';
+import { refreshUser } from '../../redux/auth/operations';
 import { DiaryWrapActivity, DiaryWrapContent, DiaryWrapTitle } from './DiaryPage.styled';
 import CustomLoader from '../../components/Loader/Loader';
 import { selectIsLoadingDiary } from '../../redux/diary/selectors';
@@ -28,9 +28,9 @@ const DiaryPage = () => {
     dispatch(getDiaryList(selectedDate));
   }, [dispatch, selectedDate]);
 
-  // useEffect(() => {
-  //   dispatch(refreshUser());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
 
   return (
     <>

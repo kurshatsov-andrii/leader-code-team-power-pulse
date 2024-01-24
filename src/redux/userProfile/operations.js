@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const toastError = (text) => {
   toast.error(text, {
     position: 'top-center',
-    autoClose: 70000,
+    autoClose: 5000,
     hideProgressBar: false,
     closeOnClick: true,
     pauseOnHover: true,
@@ -42,7 +42,6 @@ export const getUserProfile = createAsyncThunk(
       }
       return;
     } catch (error) {
-      toastError(`Oops! Something was wrong... ${error.response.data.message}`);
       return thunkApi.rejectWithValue(error.message);
     }
   },
