@@ -27,6 +27,7 @@ export const ExercisesList = () => {
   const isLoading = useSelector(selectLoading);
   const [selectTask, setSelectTask] = useState(null);
   const [complete, setComplete] = useState(false);
+  const [result, setResult] = useState({ time: null, calories: 0 });
 
   const { category, subcategory } = useParams();
 
@@ -39,6 +40,7 @@ export const ExercisesList = () => {
   }
   const onComplete = () => {
     setComplete(!complete);
+    if (result.time) setResult({ time: null, calories: 0 });
   };
   const onShowModal = (task) => {
     setSelectTask(task);
@@ -50,12 +52,12 @@ export const ExercisesList = () => {
     <>
       {data && selectTask && (
         <BasicModalWindow onClick={onClick}>
-          <ModalTask exerciseTask={selectTask} onClick={onClick} onComplete={onComplete} />
+          <ModalTask exerciseTask={selectTask} onClick={onClick} onComplete={onComplete} setResult={setResult} />
         </BasicModalWindow>
       )}
       {complete && !selectTask && (
         <BasicModalWindow onClick={onComplete}>
-          <ModalComplete onComplete={onComplete} />
+          <ModalComplete onComplete={onComplete} result={result} />
         </BasicModalWindow>
       )}
       <ExercisesListWrapper>

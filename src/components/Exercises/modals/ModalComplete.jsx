@@ -2,21 +2,22 @@ import { Arrow } from '../Arrow';
 import { Button } from '../../Buttons';
 import { Div, Img, Title, Span, SecondSpan, SubSpan, LinkToDiary } from './ModalComplete.styled';
 
-const ModalComplete = ({ onComplete, time = '3 minutes', calories = 150 }) => {
+import imageLikex1 from '../../../images/like-1x.png';
+import imageLikex2 from '../../../images/like-2x.png';
+
+const ModalComplete = ({ onComplete, result }) => {
   return (
     <Div>
-      <Img src="/src/images/like-1x.png" srcSet="/src/images/like-1x.png 1x, /src/images/like-2x.png 2x" alt="like" />
+      <Img src="/src/images/like-1x.png" srcSet={`${imageLikex1} 1x, ${imageLikex2} 2x`} alt="like" />
       <Title>Well done</Title>
       <Span>
-        Your time: <SubSpan>{time}</SubSpan>
+        Your time: <SubSpan>{result.time}</SubSpan>
       </Span>
       <SecondSpan>
-        Burned calories: <SubSpan>{calories}</SubSpan>{' '}
+        Burned calories: <SubSpan>{result.calories}</SubSpan>{' '}
       </SecondSpan>
-      <Button to={'/products'} onClick={() => onComplete(false)}>
-        Next product
-      </Button>
-      <LinkToDiary to={'/diary'} onClick={() => onComplete(false)}>
+      <Button onClick={() => onComplete()}>Next exercise</Button>
+      <LinkToDiary to={'/diary'} onClick={() => onComplete()}>
         To the diary <Arrow />
       </LinkToDiary>
     </Div>
