@@ -1,0 +1,1 @@
+const e=s=>s.diary.products,a=s=>s.diary.exercises,i=s=>s.diary.isLoading,r=s=>s.diary.consumedCalories,c=s=>s.diary.doneExercisesTime,o=s=>s.diary.burnedCalories,t=s=>s.diary.date;export{o as a,c as b,t as c,e as d,a as e,i as f,r as s};

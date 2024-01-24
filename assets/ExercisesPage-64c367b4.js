@@ -1,4 +1,4 @@
-import{j as t,e as o,N as x,a as h,E as m,L as u,d as f,F as k,u as b,r as d,O as w}from"./index-0a8fbc9a.js";import{T as v}from"./Text.styled-f3f40cac.js";import{d as n}from"./device-385ab3fc.js";const $=e=>t.jsx("svg",{xmlns:"http://www.w3.org/2000/svg",width:16,height:16,viewBox:"0 0 16 16",fill:"none",...e,children:t.jsx("path",{d:"M8.5 14L2 7.5M2 7.5L8.5 1M2 7.5H15",stroke:"#EFEDE8",strokeOpacity:.4,strokeWidth:1.3,strokeLinecap:"round",strokeLinejoin:"round"})}),j=o.ul`
+import{j as t,e as o,N as x,a as h,E as m,L as u,d as f,F as k,u as b,r as d,O as w}from"./index-4a5c7b77.js";import{T as v}from"./Text.styled-218166ae.js";import{d as n}from"./device-385ab3fc.js";const $=e=>t.jsx("svg",{xmlns:"http://www.w3.org/2000/svg",width:16,height:16,viewBox:"0 0 16 16",fill:"none",...e,children:t.jsx("path",{d:"M8.5 14L2 7.5M2 7.5L8.5 1M2 7.5H15",stroke:"#EFEDE8",strokeOpacity:.4,strokeWidth:1.3,strokeLinecap:"round",strokeLinejoin:"round"})}),j=o.ul`
   display: flex;
   gap: 28px;
   margin-top: 20px;
