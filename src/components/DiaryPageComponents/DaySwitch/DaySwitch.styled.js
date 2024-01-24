@@ -73,7 +73,7 @@ export const CalendarGlobalStyles = createGlobalStyle`
   }
 
   .react-datepicker__current-month {
-    font-family: Roboto;
+    font-family: 'RobotoMedium';
     font-style: normal;
     text-align: center;
     color: var(--white-color) !important;
@@ -87,7 +87,7 @@ export const CalendarGlobalStyles = createGlobalStyle`
 
   .react-datepicker__day-name {
     color: rgba(239, 237, 232, 0.50)  !important;
-    font-family: Roboto;
+    font-family: 'RobotoMedium';
     font-size: 14px !important;
     font-style: normal;
     font-weight: 500;
@@ -134,7 +134,7 @@ export const CalendarGlobalStyles = createGlobalStyle`
     border-radius: 50% !important;
     text-align: center;
     color: var(--white-color) !important;
-    font-family: Roboto;
+    font-family: 'RobotoRegular';
     font-size: 14px !important;
     font-style: normal;
     font-weight: 400 ;
@@ -223,7 +223,7 @@ export const CalendarGlobalStyles = createGlobalStyle`
 
 export const TitleWrapper = styled.button`
   color: var(--white-color);
-  font-family: Roboto;
+  font-family: 'RobotoBold', sans-serif;
   font-size: 24px;
   font-style: normal;
   font-weight: 700;
@@ -235,6 +235,10 @@ export const TitleWrapper = styled.button`
   justify-content: center;
   gap: 8px;
   margin-right: 20px;
+  @media screen and (max-width: 767px) {
+    font-size: 18px;
+    line-height: 20px;
+  }
 `;
 
 export const CalendarWrapper = styled.div`
@@ -283,7 +287,7 @@ export const IconWrapperHeader = styled.svg`
 
 export const HeaderData = styled.p`
   color: var(--white-color);
-  font-family: Roboto;
+  font-family: 'RobotoMedium';
   font-size: 16px;
   font-style: normal;
   font-weight: 500;

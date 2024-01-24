@@ -56,10 +56,9 @@ export const DiaryExercises = () => {
             </WrapTitlesTablet>
           </MediaQuery>
           <DiaryLists>
-            {' '}
             {exercises.map((workout) => (
               <ExercisesItem workout={workout} key={workout._id} />
-            ))}{' '}
+            ))}
           </DiaryLists>
         </>
       ) : (

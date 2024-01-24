@@ -42,11 +42,11 @@ const ModalTask = ({ exerciseTask, onClick, onComplete, setResult }) => {
   };
   const onSubmit = (e) => {
     e.preventDefault();
-    if (exercise.time < 60) {
-      toast.error('Minimum 1 min.', options);
+    if (exercise.time < 20) {
+      toast.error('Minimum 20 sec.', options);
       return;
     }
-    const date = format(new Date(), 'dd-mm-yyyy');
+    const date = format(new Date(), 'dd-MM-yyyy');
     const data = {
       ...exercise,
       date,

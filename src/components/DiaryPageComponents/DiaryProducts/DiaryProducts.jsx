@@ -35,7 +35,7 @@ export const DiaryProducts = () => {
         </Link>
       </SectionsWrapTitle>
 
-      {products.length !== 0 ? (
+      {products.length !== 0 && user ? (
         <>
           <MediaQuery minWidth={768} maxWidth={1439}>
             <WrapTitlesTablet>
@@ -56,10 +56,9 @@ export const DiaryProducts = () => {
             </WrapTitlesTablet>
           </MediaQuery>
           <DiaryLists>
-            {' '}
-            {products.map((product) => (
-              <ProductItem product={product} key={product._id} blood={user.blood} />
-            ))}{' '}
+            {products.map((product) => {
+              return <ProductItem product={product} key={product._id} blood={user.blood} />;
+            })}
           </DiaryLists>
         </>
       ) : (

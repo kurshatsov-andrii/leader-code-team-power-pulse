@@ -1,18 +1,19 @@
 import { useEffect, useState } from 'react';
 import sprite from '../../images/sprite.svg';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { deleteExercise } from '../../redux/diary/operations';
 import { DiaryCard, DescriptionItem, DiarySupTitle, ValueBox, WrapLastDescrBox, TrashIconWrapper, DiaryTrashButton } from './Diary.styled';
+import { selectDiaryDate } from '../../redux/diary/selectors';
 
 export const ExercisesItem = ({ workout }) => {
   const {
-    _id,
     calories,
     time,
-    exerciseId: { bodyPart, equipment, name, target },
+    exerciseId: { _id, bodyPart, equipment, name, target },
   } = workout;
   const [points, setPoints] = useState(window.innerWidth);
   const handleResize = () => setPoints(window.innerWidth);
+  const date = useSelector(selectDiaryDate);
 
   useEffect(() => {
     window.addEventListener('resize', handleResize);
@@ -21,8 +22,8 @@ export const ExercisesItem = ({ workout }) => {
 
   const dispatch = useDispatch();
 
-  const deleteWorkoutItem = (workoutId) => {
-    dispatch(deleteExercise(workoutId));
+  const deleteWorkoutItem = (exerciseDetails) => {
+    dispatch(deleteExercise(exerciseDetails));
   };
 
   return (
@@ -58,7 +59,7 @@ export const ExercisesItem = ({ workout }) => {
             {time}
           </ValueBox>
         </DescriptionItem>
-        <DiaryTrashButton type="button" onClick={() => deleteWorkoutItem(_id)}>
+        <DiaryTrashButton type="button" onClick={() => deleteWorkoutItem({ id: _id, date })}>
           <TrashIconWrapper>
             <use href={`${sprite}#icon-trash`} />
           </TrashIconWrapper>
