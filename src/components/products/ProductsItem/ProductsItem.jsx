@@ -1,6 +1,7 @@
 import { StyleSheetManager } from 'styled-components';
 import isPropValid from '@emotion/is-prop-valid';
-import sprite from '../../../images/sprite.svg';
+import { Arrow } from '../../Exercises/Arrow';
+import { ExerciseIcon } from '../../Exercises/ExerciseIcon';
 import AddProductForm from '../../AddProductForm/AddProductForm';
 import AddProductSuccess from '../../AddProductSuccess/AddProductSuccess';
 import BasicModalWindow from '../../BasicModalWindow/BasicModalWindow';
@@ -15,7 +16,6 @@ import {
   RecomendedWrapper,
 } from './ProductsItem.styled';
 import { useState } from 'react';
-import { ExerciseIcon } from '../../Exercises/ExerciseIcon';
 
 export const ProductsItem = ({ id, weight, calories, category, title, isRecomended }) => {
   const [isModalOpen, setOpenModal] = useState(false);
@@ -68,9 +68,7 @@ export const ProductsItem = ({ id, weight, calories, category, title, isRecomend
             </StyleSheetManager>
             <AddButton type="button" onClick={toggleModal}>
               Add
-              <svg>
-                <use href={`${sprite}#icon-arrow-right`}></use>
-              </svg>
+              <Arrow />
             </AddButton>
           </CardHeaderWrapper>
         </CardHeader>

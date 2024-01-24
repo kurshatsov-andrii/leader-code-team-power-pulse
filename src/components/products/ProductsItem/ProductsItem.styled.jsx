@@ -61,13 +61,15 @@ export const AddButton = styled.button`
   }
 
   &:hover {
-    color: var(--hover-color);
-    transform: scale(1.04);
-
+    color: ${(props) => props.theme.beigeColor};
     svg {
-      stroke: var(--hover-color);
+      & path {
+        transition: 0.3s;
+        stroke: ${(props) => props.theme.beigeColor};
+      }
     }
   }
+
   @media screen and (min-width: 768px) {
     padding: 4px 0;
     font-size: 16px;
@@ -141,5 +143,9 @@ export const CategoryWrapper = styled.p`
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+
+    @media screen and (max-width: 374px) {
+      max-width: 24px;
+    }
   }
 `;

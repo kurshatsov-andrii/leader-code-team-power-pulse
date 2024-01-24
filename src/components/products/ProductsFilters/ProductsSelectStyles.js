@@ -118,6 +118,10 @@ export const recomendedSelectStyles = {
     WebkitAppearance: 'none',
     MozAppearance: 'none',
 
+    '@media screen and (max-width: 374px)': {
+      minWidth: '128px',
+    },
+
     '@media screen and (min-width: 375px)': {
       width: '171px',
       height: '46px',
