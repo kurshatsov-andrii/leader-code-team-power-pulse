@@ -4,7 +4,7 @@ import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
 import SharedLayout from './components/SharedLayout/SharedLayout';
 
 //redux imports
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { refreshUser } from './redux/auth/operations';
 import { useAuth } from './hooks/useAuth';
 import { getUserProfile } from './redux/userProfile/operations.js';
@@ -36,7 +36,9 @@ function App() {
     fetchData();
   }, [dispatch]);
 
-  const isFilled = false;
+  const birthday = useSelector((state) => state.profile.profile.birthday) || null;
+
+  const isFilled = birthday ? true : false;
 
   return (
     <Routes>
