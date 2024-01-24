@@ -1,12 +1,12 @@
-import { useNavigate, Outlet, useParams, useLocation } from 'react-router-dom';
-import { Container } from '../../styles/container';
-import { Categories } from '../../components/Exercises/Categories';
 import { Title } from 'components/Typography';
 import { useEffect, useState } from 'react';
+import { Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
+import BackButtonIcon from '../../components/Exercises/BackButton';
+import { Categories } from '../../components/Exercises/Categories';
 import desktop from '../../images/waist-1x.jpg';
 import desktopretina from '../../images/waist-2x.jpg';
-import { SectionPage, SectionBackground, BackButtonWrapper } from './ExercisesPage.styled';
-import BackButtonIcon from '../../components/Exercises/BackButton';
+import { Container } from '../../styles/container';
+import { BackButtonWrapper, SectionBackground, SectionPage } from './ExercisesPage.styled';
 
 function ExercisesPage() {
   const navigate = useNavigate();

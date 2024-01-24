@@ -62,6 +62,7 @@ export const AddButton = styled.button`
 
   &:hover {
     color: var(--hover-color);
+    transform: scale(1.04);
 
     svg {
       stroke: var(--hover-color);

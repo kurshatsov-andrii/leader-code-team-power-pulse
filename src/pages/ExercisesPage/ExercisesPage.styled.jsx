@@ -1,6 +1,6 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { device } from '../../styles/device';
-import { Link } from 'react-router-dom';
 
 export const SectionBackground = styled.div`
   position: relative;
@@ -70,6 +70,17 @@ export const BackButtonWrapper = styled(Link)`
   line-height: 1.5;
   position: absolute;
   top: 68px;
+  transition: 0.3s;
+
+  &:hover {
+    color: ${(props) => props.theme.beigeColor};
+    svg {
+      & path {
+        transition: 0.3s;
+        stroke: ${(props) => props.theme.beigeColor};
+      }
+    }
+  }
 
   @media (${device.tablet}) {
     top: 102px;

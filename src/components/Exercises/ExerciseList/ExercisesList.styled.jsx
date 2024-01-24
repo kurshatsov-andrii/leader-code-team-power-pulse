@@ -67,6 +67,17 @@ export const CardHeaderButtonWrapper = styled.button`
   font-weight: 400;
   line-height: 1.28571;
   background: transparent;
+  transition: 0.3s;
+
+  &:hover {
+    color: ${(props) => props.theme.beigeColor};
+    svg {
+      & path {
+        transition: 0.3s;
+        stroke: ${(props) => props.theme.beigeColor};
+      }
+    }
+  }
 `;
 
 export const NameWrapper = styled.div`

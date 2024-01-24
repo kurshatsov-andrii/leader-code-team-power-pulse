@@ -25,6 +25,10 @@ export const LinkTo = styled(NavLink)`
   color: rgba(239, 237, 232, 0.4);
   border: none;
   height: 28px;
+  transition: 0.3s;
+  &:hover {
+    color: ${(props) => props.theme.beigeColor};
+  }
   &.active {
     color: #efede8;
     & {
