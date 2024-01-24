@@ -18,9 +18,9 @@ import {
   ProductFormWrapper,
 } from './AddProductForm.styled';
 
-import { format } from 'date-fns';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addDiaryProduct, getDiaryList } from '../../redux/diary/operations';
+import { selectDiaryDate } from '../../redux/diary/selectors';
 
 const AddProductForm = ({ id, productName, calories, onClick, onClickSuccess, transferCaloriesAmount }) => {
   const dispatch = useDispatch();
@@ -40,17 +40,19 @@ const AddProductForm = ({ id, productName, calories, onClick, onClickSuccess, tr
     theme: 'dark',
   };
 
+  const selectedCalendarDate = useSelector(selectDiaryDate);
+
   const productData = {
     productId: id,
     amount: quantity,
-    date: format(new Date(), 'dd-MM-yyyy'),
+    date: selectedCalendarDate,
   };
 
   const onClickBtnAdd = (e) => {
     e.preventDefault();
 
     if (caloriesAmount <= 0) {
-      setQuantity(0);
+      setQuantity('');
       toast.error('Weight must be greater than 0', options);
       return;
     }
