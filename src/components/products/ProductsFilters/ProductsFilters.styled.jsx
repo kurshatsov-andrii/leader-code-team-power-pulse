@@ -118,4 +118,8 @@ export const SearchButton = styled.button`
 export const SelectWrapper = styled.div`
   display: flex;
   gap: 16px;
+
+  @media screen and (max-width: 374px) {
+    justify-content: space-around;
+  }
 `;
