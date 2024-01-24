@@ -2,6 +2,8 @@
 
 ![Presentation](./public/power-pulse.jpg)
 
+![Presentation](./public/presentation.gif)
+
 # Development team :
 
 - [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/kurshatsov-andrii) Andrii
