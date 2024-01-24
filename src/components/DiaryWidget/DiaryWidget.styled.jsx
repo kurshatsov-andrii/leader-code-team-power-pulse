@@ -68,6 +68,10 @@ export const StatisticsItem = styled.li`
   border: 1px solid ${(props) => props.$border || 'rgba(239, 237, 232, 0.2)'};
   background: ${(props) => props.color || 'initial'};
 
+  @media screen and (max-width: 375px) {
+    width: 48%;
+  }
+
   @media screen and (min-width: 768px) {
     width: 187px;
     height: 116px;

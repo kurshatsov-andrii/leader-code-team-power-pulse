@@ -235,6 +235,10 @@ export const TitleWrapper = styled.button`
   justify-content: center;
   gap: 8px;
   margin-right: 20px;
+  @media screen and (max-width: 767px) {
+    font-size: 18px;
+    line-height: 20px;
+  }
 `;
 
 export const CalendarWrapper = styled.div`
