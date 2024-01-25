@@ -1,4 +1,4 @@
-import{e as i,j as t}from"./index-6c3894c0.js";const p=i.div`
+import{e as i,j as t}from"./index-8a3a50d9.js";const p=i.div`
   display: inline-flex;
   flex-wrap: wrap;
   width: 100%;
@@ -209,4 +209,4 @@ import{e as i,j as t}from"./index-6c3894c0.js";const p=i.div`
     font-size: ${e=>e["data-size"]==="small"?"12px":"18px"};
     line-height: 1.5;
   }
-`;export{r as T,p as a,x as b,d as c};
+`;export{r as T,d as a,p as b,x as c};
