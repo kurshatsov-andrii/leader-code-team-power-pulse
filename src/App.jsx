@@ -56,22 +56,21 @@ function App() {
             element={isLoggedIn && isFilled ? <Navigate to="/diary" replace /> : isLoggedIn ? <Navigate to="/profile" replace /> : <SignInPage />}
           />
         </Route>
-
-        <Route path="/" element={isLoggedIn ? <Outlet /> : <Navigate to="/" />}>
-          <Route path="diary" element={<DiaryPage />} />
-          <Route path="profile" element={<UserPage />} />
-          <Route path="products" element={<ProductsPage />} />
-        </Route>
-
-        <Route path="/exercises" element={isLoggedIn ? <ExercisesPage /> : <Navigate to="/" />}>
+        <Route
+          path="diary"
+          element={
+            isLoggedIn && isFilled ? <DiaryPage /> : isLoggedIn && !isFilled ? <Navigate to="/profile" replace /> : <Navigate to="/signin" replace />
+          }
+        />
+        <Route path="profile" element={isLoggedIn ? <UserPage /> : <Navigate to="/signin" replace />} />
+        <Route path="products" element={isLoggedIn ? <ProductsPage /> : <Navigate to="/signin" replace />} />
+        <Route path="exercises" element={isLoggedIn ? <ExercisesPage /> : <Navigate to="/signin" />}>
           <Route path=":category" element={<ListCategory />} />
           <Route path=":category/:subcategory" element={<ExercisesList />} />
         </Route>
-
-        <Route path="/404" element={<ErrorPage />} />
-        <Route path="/test" element={<TestPage />} />
-        <Route path="*" element={<Navigate to="404" replace />} />
       </Route>
+      <Route path="/test" element={<TestPage />} />
+      <Route path="/404" element={<ErrorPage />} />
       <Route path="*" element={<Navigate to="404" replace />} />
     </Routes>
   );
