@@ -18,11 +18,8 @@ const ErrorPage = lazy(() => import('./pages/ErrorPage/ErrorPage'));
 const DiaryPage = lazy(() => import('./pages/DiaryPage/DiaryPage'));
 const ProductsPage = lazy(() => import('./pages/ProductsPage/ProductsPage'));
 const ExercisesPage = lazy(() => import('./pages/ExercisesPage/ExercisesPage'));
-
 const ListCategory = lazy(() => import('./components/Exercises/ListCategory'));
 const ExercisesList = lazy(() => import('./components/Exercises/ExerciseList'));
-
-const TestPage = lazy(() => import('./pages/TestPage/TestPage'));
 
 function App() {
   const dispatch = useDispatch();
@@ -68,9 +65,8 @@ function App() {
           <Route path=":category" element={<ListCategory />} />
           <Route path=":category/:subcategory" element={<ExercisesList />} />
         </Route>
+        <Route path="404" element={<ErrorPage />} />
       </Route>
-      <Route path="/test" element={<TestPage />} />
-      <Route path="/404" element={<ErrorPage />} />
       <Route path="*" element={<Navigate to="404" replace />} />
     </Routes>
   );
