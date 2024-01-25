@@ -1,4 +1,4 @@
-import{e as o,H as W,r as h,j as t,a as q,Q as I,J as P,L as Z,f as A,F as O,K as G}from"./index-1f0aebe6.js";import{d as L}from"./device-385ab3fc.js";import{A as B,B as E,E as J}from"./BasicModalWindow-2b15c17d.js";import{b as N,a as $}from"./selectors-b58aa764.js";import{f as Q}from"./format-4e6081aa.js";import{B as _}from"./Button-11c85080.js";import"./sprite-f348fa51.js";const ee=o.ul`
+import{e as o,H as W,r as h,j as t,a as q,Q as I,J as P,L as Z,f as A,F as O,K as G}from"./index-6c3894c0.js";import{d as L}from"./device-385ab3fc.js";import{A as B,B as E,E as J}from"./BasicModalWindow-b07669b1.js";import{b as N,a as $}from"./selectors-b58aa764.js";import{f as Q}from"./format-4e6081aa.js";import{B as _}from"./Button-b846083c.js";import"./sprite-129ee497.js";const ee=o.ul`
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
