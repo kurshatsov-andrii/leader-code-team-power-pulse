@@ -43,7 +43,7 @@ export const DiaryTitle = styled.h3`
   line-height: 1.29;
 `;
 
-export const DiaryLink = styled.div`
+export const DiaryLink = styled.button`
   display: flex;
   align-items: center;
   gap: 8px;
@@ -52,9 +52,14 @@ export const DiaryLink = styled.div`
   line-height: 1.29;
   font-size: 14px;
   margin-right: 4px;
+  background-color: transparent;
+  border: none;
   &:hover,
   &:focus {
     color: var(--orange-light-color);
+    svg {
+      stroke: var(--orange-light-color);
+    }
   }
 
   @media screen and (min-width: 768px) {
