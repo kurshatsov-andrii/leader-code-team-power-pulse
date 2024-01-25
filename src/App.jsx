@@ -1,5 +1,5 @@
 import { lazy, useEffect } from 'react';
-import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
 import SharedLayout from './components/SharedLayout/SharedLayout';
 
