@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import MediaQuery from 'react-responsive';
 import { useSelector } from 'react-redux';
 import sprite from '../../../images/sprite.svg';
@@ -18,19 +18,18 @@ import {
 
 export const DiaryExercises = () => {
   const exercises = useSelector(selectDiaryExercises);
+  const navigate = useNavigate();
 
   return (
     <DiarySections height="1066px">
       <SectionsWrapTitle>
         <DiaryTitle>Exercises</DiaryTitle>
-        <Link to="/exercises">
-          <DiaryLink>
-            Add exercise
-            <NextIconWrapper>
-              <use href={`${sprite}#icon-arrow-right`} />
-            </NextIconWrapper>
-          </DiaryLink>
-        </Link>
+        <DiaryLink onClick={() => navigate('/exercises')}>
+          Add exercise
+          <NextIconWrapper>
+            <use href={`${sprite}#icon-arrow-right`} />
+          </NextIconWrapper>
+        </DiaryLink>
       </SectionsWrapTitle>
 
       {exercises.length !== 0 ? (
